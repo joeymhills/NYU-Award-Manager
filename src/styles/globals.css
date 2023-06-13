@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "benton-bold";
+    src: url("./fonts/BentonSans\ Bold.otf");
+  }
+
+  @font-face {
+    font-family: "benton-reg";
+    src: url("./fonts/BentonSans\ Regular.otf");
+  }
