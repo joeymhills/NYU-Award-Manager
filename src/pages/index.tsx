@@ -24,6 +24,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full h-10 bg-[#541A83]" />
+      <div className="h-px" />
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#DBA349] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
           <div className=" py-6">
@@ -36,7 +37,7 @@ const Home: NextPage = () => {
           <h1 className="py-10 text-8xl font-bentonreg text-[#541A83]">
             #The<span className="font-bentonbold">BestOutcomes</span>
           </h1>
-          <div className="max-w-xl text-white text-4xl font-bentonbold ">
+          <div className="max-w-xl text-white text-4xl leading-tight font-bentonbold ">
             <p>
               Welcome to our online search tool for NYU Langone Health’s Accolades, Outcomes and Awards. Search below using free text to search for an award by service line, location, awarding organization and more. Or click one of the locations below to start a search by location. 
             </p>
@@ -44,12 +45,12 @@ const Home: NextPage = () => {
 
           <div className="py-16 max-w-3xl">
             <form className="flex flex-row gap-1">
-              <input className="w-96 mr-10"></input>
+              <input className="w-96 mr-10 rounded-md"></input>
               <button className="bg-white font-bentonbold text-lg text-[#541A83] py-1 px-10 rounded-3xl">Search</button>
             </form>
           </div>
           
-          <div className="grid grid-cols-3 w-9/12 gap-0 ">
+          <div className="grid grid-cols-3 max-w-5xl gap-0 ">
             <div className="flex flex-col text-center gap-0 ">
               <Image src={grid1} alt={""} />
               <p className="text-white font-bentonbold">Tisch Hospital and<br />Kimmel Pavilion</p>
