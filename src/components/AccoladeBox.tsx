@@ -39,7 +39,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
   async function create(data: FormData) { 
     try {
-      await fetch('http://localhost:3000/api/create',{
+      await fetch('https://please-work-beta.vercel.app/api/create',{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'POST'});
