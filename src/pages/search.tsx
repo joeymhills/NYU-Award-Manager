@@ -170,9 +170,9 @@ const searchPage = () => {
             </div>
           </div>
           <div className="w-full flex flex-col items-center justify-center">
-            <div aria-live="polite" aria-busy={isLoading}>
+            <div className="pt-5" aria-live="polite" aria-busy={isLoading}>
               {isLoading && <Ring 
-              size={60}
+              size={80}
               lineWeight={5}
               speed={2} 
               color="white" 
