@@ -72,7 +72,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
                  className="flex flex-col items-center justify-center w-200">
                   
-                  <div className="grid grid-cols-2 gap-5 p-5">
+                  <div className="grid grid-cols-2 gap-3 p-5">
                   <input 
                   type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} className= "p-3 rounded-xl w-96" placeholder="Institution name">
                   </input>
