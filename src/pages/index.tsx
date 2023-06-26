@@ -43,7 +43,7 @@ const Home: NextPage = () => {
       
         <AccoladeBox />
         
-        <button type="button" className="text-white text-5xl fixed top-0 right-0 m-6 z-20"onClick={() => setShowForm(false)}>X</button>
+        <button type="button" className="text-white text-5xl fixed top-0 right-0 m-4 z-20"onClick={() => setShowForm(false)}>X</button>
         
         </motion.div>)}
       </AnimatePresence>
@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 
       </div>
       <div className="w-full h-10 bg-[#541A83]" />
-      <div className="h-px" />
+      <div className="h-px bg-white" />
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
           <div className="hover:cursor-pointer py-6">

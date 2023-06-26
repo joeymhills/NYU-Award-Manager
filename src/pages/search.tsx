@@ -53,7 +53,7 @@ const searchPage = () => {
     if (error) return(
         <>
         <div className="w-full h-10 bg-[#541A83]" />
-        <div className="h-px" />
+        <div className="h-px bg-white" />
         <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
           <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
             <div className=" py-6">
@@ -75,7 +75,7 @@ const searchPage = () => {
     if (isLoading) return(
         <>
         <div className="w-full h-10 bg-[#541A83]" />
-        <div className="h-px" />
+        <div className="h-px bg-white" />
         <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
           <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
             <div className=" py-6">
@@ -146,7 +146,7 @@ const searchPage = () => {
 
     </div>
     <div className="w-full h-10 bg-[#541A83]" />
-      <div className="h-px" />
+    <div className="h-px bg-white" />
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
           <div className="py-6 hover:cursor-pointer">
