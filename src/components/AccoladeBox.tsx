@@ -128,7 +128,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </input>
 
                   <div className="flex flex-col items-center justify-center">
-                    <button className="bg-white text-xl text-[#541A83]  py-4 m-1 w-96 rounded-2xl">Upload an Image</button>
+                    <button type="button" className="bg-white text-xl text-[#541A83]  py-4 m-1 w-96 rounded-2xl">Upload an Image</button>
                   </div>
 
                   <textarea 
