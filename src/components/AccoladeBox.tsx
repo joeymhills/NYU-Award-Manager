@@ -90,12 +90,12 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
                   <input 
                   type="text" name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Internal Source">
+                  className= "p-3 rounded-xl w-96" placeholder="Internal Source, Contact & Approvals">
                   </input>
 
                   <input 
                   type="text" name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="External Source">
+                  className= "p-3 rounded-xl w-96" placeholder="External Source & Contact">
                   </input>
 
                   <input 
