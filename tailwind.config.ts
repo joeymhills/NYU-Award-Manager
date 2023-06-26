@@ -5,6 +5,12 @@ export default {
   theme: {
     extend: {
 
+      width: {
+        '236': '64rem',
+        '200': '53rem',
+        '128': '36rem'
+      },
+
       fontFamily: {
         bentonbold: ['benton-bold'],
         bentonreg: ['benton-reg']

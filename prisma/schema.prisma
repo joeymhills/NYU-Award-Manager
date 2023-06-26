@@ -10,13 +10,22 @@ datasource db {
   relationMode = "prisma"
 }
 
-model accolades {
+model accolade {
     id           String   @id @default(cuid())
-    createdAt    DateTime @default(now())
-    accolade     String   @db.VarChar(255)
-    institution  String   @db.VarChar(255)
-    messaging    String   @db.VarChar(255)
-    comments     String   @db.VarChar(255)
+    name         String?   @db.VarChar(255)
+    institution  String?   @db.VarChar(255)
+    outcome      String?   @db.VarChar(255)
+    extSource    String?   @db.VarChar(500)
+    intSource    String?   @db.VarChar(500)
+    messaging    String?   @db.VarChar(2500)
+    comments     String?   @db.VarChar(2500)
+    frequency    String?   @db.VarChar(500)
+    notifDate    String?   @db.VarChar(255)
+    cmcontact    String?   @db.VarChar(255)
+    sourceatr    String?   @db.VarChar(255)
+    wherepubint  String?   @db.VarChar(255)
+    promotionlim String?   @db.VarChar(500)
+
 
     @@index([institution])
     

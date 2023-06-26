@@ -1,0 +1,46 @@
+(6/21/23) ~5 hours {
+- Added "No results found" message when no results are found.
+- Loading animations
+- Added "Detailed View" for each Accolade
+- Figured out how to pass each Accolades ID through to DetailView Component(Needed for updating/ deleting)
+- Added "back to homepage" on logo click
+}
+
+(6/22/23) {
+ - Added conditional rendering for accolade fields(in preview view)
+
+}
+
+(6/25/23) {
+- Finished Accolade Creator, now successfully interacts with "api/create"
+
+}
+
+STUFF TO DO: {
+    
+    BACKEND/API {
+    - Add editing functionality inside of the detailed view(Figure out POST requests)
+    - Finish adding all possible fields for "AccoladeBox" wizard
+    - Add "Create another" button for "AccoladeBox"
+    - IMAGE UPLOAD SUPPORT (most likely through s3 bucket)
+    - Success messages
+    - dropdown for common institutions in accolade box
+
+    }
+    
+    STYLING {
+    
+    - Add responsiveness to design (site-wide)
+    - fix landing page grid(uneven)
+    - update landing page grid images
+    - center "SearchInput" on "Search.tsx"
+    - make comments and messaging "scrollable" in detail view
+
+    }
+    
+    PRODUCTION {
+    
+    - Fix GitHub repo and deploy to vercel
+
+    }
+}
