@@ -51,9 +51,9 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
     messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: ''}))
   }
 
-  const handleSubmit = (data: FormData) => {
+  async function handleSubmit (data: FormData) {
     try {
-      {create(data);}
+      await create(data);
       notify()
     } catch (error) {
       console.log('error in handleSubmit')
