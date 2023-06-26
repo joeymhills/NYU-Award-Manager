@@ -9,6 +9,9 @@
     
     "allowJs": true,
     "checkJs": true,
+
+    "strictNullChecks":false,
+    
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
