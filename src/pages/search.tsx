@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useSearchParams } from "next/navigation";
 import { accolade } from "@prisma/client";
 import useSWR from 'swr';
@@ -8,7 +9,6 @@ import SearchInput from "~/SearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
 import router from "next/router";
-import LoadSpinner from "~/components/loadSpinner";
 
 const fetchAccolades = async (url: string) => {
     const response = await fetch(url);
