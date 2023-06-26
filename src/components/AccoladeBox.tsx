@@ -127,6 +127,10 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   className= "p-3 rounded-xl w-96" placeholder="Limitations on Promotion">
                   </input>
 
+                  <div className="flex flex-col items-center justify-center">
+                    <button className="bg-white text-xl text-[#541A83]  py-4 m-1 w-96 rounded-2xl">Upload an Image</button>
+                  </div>
+
                   <textarea 
                   name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
                   className= "p-3 rounded-xl h-48 w-96" placeholder="Enter messaging">
@@ -140,6 +144,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </div>
 
                   <button type="submit" onClick={() => handleSubmit} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
+                  
                   <ToastContainer 
                   position="top-center"
                   autoClose={3000}
