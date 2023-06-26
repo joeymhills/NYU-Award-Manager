@@ -2,6 +2,21 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../prisma/client";
 
+interface create {
+    institution: string,
+    name: string,
+    comments: string
+    outcome: string
+    intSource: string
+    extSource: string
+    messaging: string
+    frequency: string
+    notifDate: string
+    cmcontact: string
+    sourceatr: string
+    wherepubint: string
+    promotionlim: string
+}
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
