@@ -30,6 +30,8 @@ STUFF TO DO: {
     - Add "Create another" button for "AccoladeBox"
     - IMAGE UPLOAD SUPPORT (most likely through s3 bucket)
     - dropdown for common institutions in accolade box
+    - user tiers
+    -filtering and sorting
 
 
     -fix all TS errors (change build command back to default)

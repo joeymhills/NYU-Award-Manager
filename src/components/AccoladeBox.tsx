@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { url } from "inspector";
+import { UploadButton } from "@uploadthing/react";
 
 
 const AccoladeBox = () => {
@@ -21,8 +23,7 @@ const AccoladeBox = () => {
     sourceatr: string
     wherepubint: string
     promotionlim: string
-  }
-
+  }  
   const notify = () => toast.success('Form submission was successful!', {
     position: "top-center",
     autoClose: 3000,
@@ -39,7 +40,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
   async function create(data: FormData) { 
     try {
-      await fetch('https://please-work-beta.vercel.app/api/create',{
+      await fetch("http://localhost:3000/api/create",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'POST'});
@@ -143,6 +144,18 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   </div>
 
+                  <UploadButton
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res) => {
+                      // Do something with the response
+                      console.log("Files: ", res);
+                      alert("Upload Completed");
+                    }}
+                    onUploadError={(error: Error) => {
+                      // Do something with the error.
+                      alert(`ERROR! ${error.message}`);
+                    }}
+                  />
                   <button type="submit" onClick={() => handleSubmit} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
                   
                   <ToastContainer 
