@@ -23,7 +23,8 @@
 }
 (6/29/23) {
 - Added image uploads
--
+- Styled images within card
+- Fixed font sizes
 }
 
 STUFF TO DO: {

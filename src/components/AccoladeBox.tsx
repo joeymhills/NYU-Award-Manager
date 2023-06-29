@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { UploadButton } from "@uploadthing/react";
 import "@uploadthing/react/styles.css";
 import { OurFileRouter } from "~/server/uploadthing";
+import { UploadButton } from "~/utils/uploadthing";
 
 const AccoladeBox = () => {
   
@@ -146,7 +146,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   </div>
 
-                  <UploadButton<OurFileRouter>
+                  <UploadButton
                     endpoint="imageUploader"
                     onClientUploadComplete={(res:any) => {
                       // Do something with the response
