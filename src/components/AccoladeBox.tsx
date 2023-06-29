@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { url } from "inspector";
 import { UploadButton } from "@uploadthing/react";
-
+import "@uploadthing/react/styles.css";
+import { OurFileRouter } from "~/server/uploadthing";
 
 const AccoladeBox = () => {
   
@@ -23,6 +23,7 @@ const AccoladeBox = () => {
     sourceatr: string
     wherepubint: string
     promotionlim: string
+    imgurl: string
   }  
   const notify = () => toast.success('Form submission was successful!', {
     position: "top-center",
@@ -36,7 +37,8 @@ const AccoladeBox = () => {
     });
 
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: ''})
+messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl:''})
+
 
   async function create(data: FormData) { 
     try {
@@ -49,7 +51,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
       console.log('error in POST request()')
     }
     (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: ''}))
+    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl: ''}))
   }
 
   async function handleSubmit (data: FormData) {
@@ -144,11 +146,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   </div>
 
-                  <UploadButton
+                  <UploadButton<OurFileRouter>
                     endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
+                    onClientUploadComplete={(res:any) => {
                       // Do something with the response
-                      console.log("Files: ", res);
+                      const response = (res[0])
+                      setForm({...form, imgurl: response.fileUrl})
+                      console.log(form)
                       alert("Upload Completed");
                     }}
                     onUploadError={(error: Error) => {

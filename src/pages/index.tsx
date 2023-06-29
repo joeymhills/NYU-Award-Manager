@@ -9,6 +9,7 @@ import grid4 from "../assets/grid4.png"
 import grid5 from "../assets/grid5.png"
 import grid6 from "../assets/grid6.png"
 import grid7 from "../assets/grid7.png"
+import grid8 from "../assets/grid8.png"
 import SearchInput from "~/SearchInput";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -64,7 +65,7 @@ const Home: NextPage = () => {
           <h1 className="py-10 text-8xl font-bentonreg text-[#541A83]">
             #The<span className="font-bentonbold">BestOutcomes</span>
           </h1>
-          <div className="max-w-xl text-white text-4xl leading-tight font-bentonbold ">
+          <div className="max-w-xl text-white text-3xl leading-tight font-bentonbold ">
             <p>
               Welcome to our online search tool for NYU Langone Health’s Accolades, Outcomes and Awards. Search below using free text to search for an award by service line, location, awarding organization and more. Or click one of the locations below to start a search by location. 
             </p>
@@ -76,13 +77,13 @@ const Home: NextPage = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-3 max-w-5xl gap-0">
-            <button type="button" onClick = {() => router.push("/search?q=tisch%20kimmel")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid1} alt={""} />
-              <p className="text-white font-bentonbold">Tisch Hospital and<br />Kimmel Pavilion</p>
+          <div className="grid grid-cols-3 max-w-5xl gap-5">
+            <button type="button" onClick = {() => router.push("/search?q=tisch%20kimmel")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid1} className="w-80 drop-shadow-lg" alt={""} />
+              <p className="text-white font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=NYU")} className="flex flex-col items-center justify-center gap-0 ">
-            <div className="flex flex-col justify-center items-center rounded-3xl w-72 h-52 bg-[#541A83]">
+            <button type="button" onClick = {() => router.push("/search?q=NYU")} className="flex flex-col items-center justify-center gap-4 ">
+            <div className="flex flex-col drop-shadow-lg justify-center items-center rounded-3xl w-80 h-60 bg-[#541A83]">
               <svg width="192px" height="81px" viewBox="0 0 129 55" fill="#fff" xmlns="http://www.w3.org/2000/svg">
               <path d="M46.775,11.088 C46.792,11.071 46.804,11.054 46.78,11.016 C46.746,10.961 46.658,10.842 46.471,10.571 C46.236,10.232 44.796,8.231 42.924,6.539 C41.046,4.842 35.359,0 26.319,0 C16.9,0 10.512,5.138 7.221,8.815 C4.005,12.406 2.398,16.363 2.354,16.474 C2.309,16.584 2.29,16.608 2.336,16.627 C2.386,16.647 2.401,16.574 2.46,16.466 C2.521,16.354 4.203,12.679 7.845,9.692 C11.489,6.703 17.56,3.258 26.412,3.258 C33.971,3.258 39.416,5.945 41.909,7.442 C44.402,8.938 45.993,10.426 46.338,10.748 C46.539,10.935 46.643,11.028 46.697,11.073 C46.734,11.104 46.757,11.103 46.775,11.088" id="Fill-1"></path>
               <path d="M0.157,25.239 C0.179,25.242 0.195,25.244 0.202,25.261 C0.219,25.301 0.207,25.398 0.206,25.605 C0.205,25.76 0.022,30.157 2.26,34.785 C4.568,39.556 8.657,44.546 15.192,47.812 C21.411,50.923 27.434,51.373 31.976,50.873 C36.345,50.392 39.701,48.753 40.07,48.6 C40.22,48.538 40.249,48.501 40.265,48.532 C40.268,48.538 40.271,48.549 40.267,48.558 C40.254,48.585 40.2,48.623 40.113,48.697 C39.99,48.801 39.791,48.967 39.527,49.166 C39.016,49.551 37.996,50.478 34.566,51.934 C29.654,54.019 21.422,55.334 13.202,50.881 C5.318,46.61 1.789,39.219 0.593,33.578 C-0.308,29.324 0.082,25.757 0.093,25.469 C0.102,25.367 0.101,25.306 0.11,25.273 C0.118,25.247 0.133,25.238 0.157,25.239" id="Fill-3"></path>
@@ -91,25 +92,29 @@ const Home: NextPage = () => {
             </div>
               <p className="text-white pt-9 font-bentonbold">Institution-Wide Accolades</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=-brooklyn")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid3} alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=-brooklyn")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid3} className="w-80 drop-shadow-lg" alt={""} />
               <p className="text-white font-bentonbold">NYU Langone Hospital—Brooklyn</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=Hassenfeld")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid4} alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=Hassenfeld")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid4} className="w-80 drop-shadow-lg" alt={""} />
               <p className="text-white font-bentonbold">Hassenfeld Children’s Hospital</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=Orthopedic%20Hospital")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid5} alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=Orthopedic%20Hospital")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid5} className="w-80 drop-shadow-lg" alt={""} />
               <p className="text-white font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=hospital-long%20island")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid6} alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=hospital-long%20island")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid6} className="w-80 drop-shadow-lg" alt={""} />
               <p className="text-white font-bentonbold">NYU Langone Hospital—Long Island</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=medical")} className="flex flex-col items-center justify-center gap-0 ">
-              <Image src={grid7} alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=medical")} className="flex flex-col items-center justify-center gap-4">
+              <Image src={grid7} className="w-80 drop-shadow-lg" alt={""} />
               <p className="text-white font-bentonbold">Medical Education</p>
+            </button>
+            <button type="button" onClick = {() => router.push("/search?q=medical")} className="flex flex-col items-center justify-center gap-">
+              <Image src={grid8} className="w-80 drop-shadow-lg" alt={""} />
+              <p className="text-white font-bentonbold">Research</p>
             </button>
           </div>
           <div className="block">

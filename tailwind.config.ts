@@ -10,6 +10,9 @@ export default {
         '200': '53rem',
         '128': '36rem'
       },
+      height: {
+        '70': '278px'
+      },
 
       fontFamily: {
         bentonbold: ['benton-bold'],

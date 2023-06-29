@@ -28,7 +28,7 @@ export default async function handler(
                     },
                 },
                 {
-                    comments: {
+                    outcome: {
                         contains: query,
                     },
                 },                {
@@ -36,6 +36,32 @@ export default async function handler(
                         contains: query,
                     },
                 },
+                {
+                    comments: {
+                        contains: query,
+                    },
+                },
+                {
+                    extSource: {
+                        contains: query,
+                    },
+                },
+                {
+                    intSource: {
+                        contains: query,
+                    },
+                },
+                {
+                    sourceatr: {
+                        contains: query,
+                    },
+                },
+                {
+                    wherepubint: {
+                        contains: query,
+                    },
+                },
+
             ],
         },
     });

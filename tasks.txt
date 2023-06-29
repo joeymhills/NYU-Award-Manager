@@ -20,15 +20,16 @@
 - center "SearchInput" on "Search.tsx"
 - Finish adding all possible fields to Accolade creator
 - Fix GitHub repo and deploy to vercel
-
+}
+(6/29/23) {
+- Added image uploads
+-
 }
 
 STUFF TO DO: {
     
     BACKEND/API {
     - Add editing functionality inside of the detailed view(Figure out POST requests)
-    - Add "Create another" button for "AccoladeBox"
-    - IMAGE UPLOAD SUPPORT (most likely through s3 bucket)
     - dropdown for common institutions in accolade box
     - user tiers
     -filtering and sorting
