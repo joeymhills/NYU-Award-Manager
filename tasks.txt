@@ -26,14 +26,18 @@
 - Styled images within card
 - Fixed font sizes
 }
-
+(6/30/23) {
+- implemented delete accolade feature
+- implemented editing feature
+}
 STUFF TO DO: {
     
     BACKEND/API {
-    - Add editing functionality inside of the detailed view(Figure out POST requests)
     - dropdown for common institutions in accolade box
     - user tiers
+    - using shared state/useEffect in order to update 
     -filtering and sorting
+    -update state of deleted/edited entry
 
 
     -fix all TS errors (change build command back to default)
@@ -41,9 +45,17 @@ STUFF TO DO: {
     
     STYLING {
     
-    - Add responsiveness to design (site-wide)
-    - fix landing page grid(uneven)
-    - update landing page grid images
+    - Add titles for fields in edit view
+    - Add responsiveness to design (site-wide) {
+        -landing page
+        -search page
+        -accolade creator
+        -detail view
+        -delete window
+        -edit view
+    }
+    - cute animations
+    - fix landing page nyu image
     - make comments and messaging "scrollable" in detail view
 
     }

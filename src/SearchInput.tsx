@@ -19,7 +19,7 @@ const SearchInput = () => {
     return(
         
         <div className='w-full flex flex-col justify-center items-center'>
-        <form onSubmit={onSearch}>
+        <form className='max-w-2xl' onSubmit={onSearch}>
             <input
             value={searchQuery}
             placeholder="Search for Accolades"
