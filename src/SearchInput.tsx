@@ -19,14 +19,14 @@ const SearchInput = () => {
     return(
         
         <div className='w-full flex flex-col justify-center items-center'>
-        <form className='max-w-2xl' onSubmit={onSearch}>
+        <form className='max-w-sm' onSubmit={onSearch}>
             <input
             value={searchQuery}
             placeholder="Search for Accolades"
             onChange={(event) => setSearchQuery(event.target.value)}
-            className="w-96 h-11 p-3 rounded-lg mr-5"
+            className="h-8 p-1 mr-1 rounded-lg"
             />
-            <button type="submit" className="bg-white font-bentonbold text-xl text-[#541A83] py-2 w-44 rounded-3xl">Search</button>
+            <button type="submit" className="bg-white font-bentonbold text-sm text-[#541A83] py-2 w-20 h-8 rounded-3xl">Search</button>
             
         </form>
         </div>
