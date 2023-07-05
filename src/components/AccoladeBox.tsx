@@ -6,6 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import "@uploadthing/react/styles.css";
 import { OurFileRouter } from "~/server/uploadthing";
 import { UploadButton } from "~/utils/uploadthing";
+import { useAtom } from "jotai";
+import { accoladeFormAtom } from "./atoms";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 const AccoladeBox = () => {
   
@@ -39,6 +42,7 @@ const AccoladeBox = () => {
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
 messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl:''})
 
+const [showForm, setShowForm] = useAtom(accoladeFormAtom)
 
   async function create(data: FormData) { 
     try {
@@ -70,7 +74,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
               <motion.div
               className={'flex w-200 flex-col z-20 rounded-2xl m-4 items-center justify-center bg-slate-100'}>
                 <div className="flex flex-col pt-2 items-center justify-center">
-                <h1 className="font-bentonbold text-[#541A83] text-4xl py-4 ">Create an Accolade</h1>
+                
+                <div className="flex flex-row">
+                  <h1 className="font-bentonbold text-[#541A83] text-4xl py-4 ">Create an Accolade</h1>
+                </div>
+                <div className="text-[#541A83] h-10 w-10 top-3 right-3 z-30"onClick={() => setShowForm(false)}><XMarkIcon/></div>
+
+
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
                  className="flex flex-col items-center justify-center w-200">
