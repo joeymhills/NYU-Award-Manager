@@ -116,8 +116,8 @@ const Home: NextPage = () => {
               <Image src={grid7} className="w-80 shadow-lg" alt={""} />
               <p className="text-white h-5 text-xs font-bentonbold">Medical Education</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=medical")} className="flex flex-col items-center justify-center gap-4 z-0">
-              <Image src={grid8} className="w-80 shadow-lg" alt={""} />
+            <button type="button" onClick = {() => router.push("/search?q=reseach")} className="flex flex-col items-center justify-center gap-4">
+              <Image src={grid8} className="w-80" alt={""} />
               <p className="text-white h-5 text-xs font-bentonbold">Research</p>
             </button>
           </div>

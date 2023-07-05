@@ -8,7 +8,7 @@ import { OurFileRouter } from "~/server/uploadthing";
 import { UploadButton } from "~/utils/uploadthing";
 import { useAtom } from "jotai";
 import { accoladeFormAtom } from "./atoms";
-import { XMarkIcon } from "@heroicons/react/20/solid";
+import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 const AccoladeBox = () => {
   
@@ -42,7 +42,26 @@ const AccoladeBox = () => {
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
 messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl:''})
 
-const [showForm, setShowForm] = useAtom(accoladeFormAtom)
+const [showForm, setShowForm] = useAtom(accoladeFormAtom);
+
+const [page,setPage] = useState(1)
+
+const nextPage = () => {
+  if (page < 4) {
+    setPage(page + 1)
+    console.log("meow")
+  }
+  return
+}
+
+const prevPage = () => {
+  if (page > 1) {
+    setPage(page - 1)
+  }
+  return
+}
+
+
 
   async function create(data: FormData) { 
     try {
@@ -75,10 +94,10 @@ const [showForm, setShowForm] = useAtom(accoladeFormAtom)
               className={'flex w-200 flex-col z-20 rounded-2xl m-4 items-center justify-center bg-slate-100'}>
                 <div className="flex flex-col pt-2 items-center justify-center">
                 
-                <div className="flex flex-row">
-                  <h1 className="font-bentonbold text-[#541A83] text-4xl py-4 ">Create an Accolade</h1>
+                <div className="flex flex-row justify-between">
+                  <h1 className="font-bentonbold text-[#541A83] text-4xl py-1 ">Create an Accolade</h1>
+                  <div className="text-[#541A83] h-10 w-10 z-30 justify-self-end"onClick={() => setShowForm(false)}><XMarkIcon/></div>
                 </div>
-                <div className="text-[#541A83] h-10 w-10 top-3 right-3 z-30"onClick={() => setShowForm(false)}><XMarkIcon/></div>
 
 
 
@@ -86,6 +105,9 @@ const [showForm, setShowForm] = useAtom(accoladeFormAtom)
                  className="flex flex-col items-center justify-center w-200">
                   
                   <div className="grid grid-cols-2 gap-3 p-5">
+                  
+                  {(page == 1) && (
+                  <>
                   <input 
                   type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} className= "p-3 rounded-xl w-96" placeholder="Institution name">
                   </input>
@@ -103,8 +125,11 @@ const [showForm, setShowForm] = useAtom(accoladeFormAtom)
                   <input 
                   type="text" name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
                   className= "p-3 rounded-xl w-96" placeholder="Internal Source, Contact & Approvals">
-                  </input>
-
+                  </input></>
+                  )}
+                 
+                  {(page == 2) && (
+                  <>
                   <input 
                   type="text" name="frequency" value={form.frequency} onChange ={e=> setForm({...form, frequency: e.target.value})}
                   className= "p-3 rounded-xl w-96" placeholder="Frequency">
@@ -124,7 +149,10 @@ const [showForm, setShowForm] = useAtom(accoladeFormAtom)
                   type="text" name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
                   className= "p-3 rounded-xl w-96" placeholder="Source Attribution">
                   </input>
+                  </>)}
 
+                  {(page == 3) && (
+                    <>
                   <input 
                   type="text" name="wherepubint" value={form.wherepubint} onChange ={e=> setForm({...form, wherepubint: e.target.value})}
                   className= "p-3 rounded-xl w-96" placeholder="Where published internally?">
@@ -144,13 +172,23 @@ const [showForm, setShowForm] = useAtom(accoladeFormAtom)
                   name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
                   className= "p-3 rounded-xl h-48 w-96" placeholder="Enter messaging">
                   </textarea>
+                  </>)}
 
+                  {(page == 4) && (
+                  <>
                   <textarea 
                   name="comments" value={form.comments} onChange ={e=> setForm({...form, comments: e.target.value})}
                   className= "p-3 rounded-xl h-48 w-96" placeholder="Enter any comments">
                   </textarea>
-                  
+                  </>)}
+
                   </div>
+
+                  <div className="w-200 flex flex-row justify-end px-10">
+                  <div className="flex flex-row justify-between">
+                    <div className="h-7 w-7 hover: cursor-pointer" onClick={prevPage}><ChevronLeftIcon/></div><div className="font-bentonreg text-lg">Page {page}/4</div><div className="h-7 w-7 hover: cursor-pointer" onClick={nextPage}><ChevronRightIcon/></div>
+                  </div>
+                </div>
 
                   <UploadButton
                     endpoint="imageUploader"

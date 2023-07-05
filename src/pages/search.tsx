@@ -123,7 +123,6 @@ const searchPage = () => {
           </div>
           <div className="flex flex-row justify-center items-center gap-5">
             <Dropdown />
-            <Dropdown />
           </div>
           <div className="w-full flex flex-col items-center justify-center">
             <div className="pt-5" aria-live="polite" aria-busy={isLoading}>
