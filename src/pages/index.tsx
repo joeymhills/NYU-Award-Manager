@@ -131,7 +131,7 @@ const Home: NextPage = () => {
               <Image src={grid5} className="w-80 shadow-lg" alt={""} />
               <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=hospital-long%20island")} className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick = {() => router.push("/search?q=long%20island")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid6} className="w-80 shadow-lg" alt={""} />
               <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital Long Island</p>
             </button>
