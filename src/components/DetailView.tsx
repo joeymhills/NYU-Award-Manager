@@ -171,7 +171,7 @@ const DetailView: React.FC<Props> = (
                 <>
                 <input 
                 type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})}
-                className= "p-3 rounded-xl w-80" placeholder="Institution name">
+                className= "p-3 rounded-xl w-80" placeholder="Institution/Department">
                 </input>
 
                 <input 

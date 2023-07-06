@@ -113,7 +113,7 @@ const prevPage = () => {
                   <>
                   <input 
                   type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-                  className= "p-3 rounded-xl lg:w-96 md:72" placeholder="Institution name">
+                  className= "p-3 rounded-xl lg:w-96 md:72" placeholder="Institution/Department">
                   </input>
 
                   <input 
