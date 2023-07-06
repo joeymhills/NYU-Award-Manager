@@ -12,7 +12,7 @@ import router from "next/router";
 import { Ring, Waveform } from "@uiball/loaders";
 import Dropdown from "~/components/Dropdown";
 import { useAtom } from "jotai";
-import { showDetailPage } from "~/components/atoms";
+import { dropFilter, showDetailPage } from "~/components/atoms";
 
 const fetchAccolades = async (url: string) => {
     const response = await fetch(url);
@@ -36,6 +36,7 @@ const searchPage = () => {
 
 
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
+    const [filter,setFilter] = useAtom(dropFilter)
 
     
     // setting state for DetailView props
@@ -126,9 +127,9 @@ const searchPage = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row justify-center items-center gap-5">
+          {/* <div className="flex flex-row justify-center items-center gap-5">
             <Dropdown />
-          </div>
+          </div> */}
           <div className="w-full flex flex-col items-center justify-center">
             <div className="pt-5" aria-live="polite" aria-busy={isLoading}>
               {isLoading && <Ring 
@@ -144,6 +145,11 @@ const searchPage = () => {
           
           {noSearchResults()}
           {data?.accolade.map(id => 
+            <>
+            {/* {()=>{const inst = id.institution;
+            const inst2 = inst.toLowerCase;
+            inst2.includes(filter) && (
+             */}
             <motion.div
             initial={{ opacity: 0 }}
             transition={{ duration: .7 }}
@@ -207,6 +213,8 @@ const searchPage = () => {
             </div>
             </div>
             </motion.div>
+            </>
+
             )}
         
         </div>

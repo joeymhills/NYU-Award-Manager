@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { SignUp, SignInButton, SignUpButton, SignOutButton, SignIn, useUser } from "@clerk/nextjs";
 import grid1 from "../assets/grid1.png"
+import grid2 from "../assets/png.png"
 import grid3 from "../assets/grid3.png"
 import grid4 from "../assets/grid4.png"
 import grid5 from "../assets/grid5.png"
@@ -115,7 +116,7 @@ const Home: NextPage = () => {
               <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
             </button>
               <button type="button" onClick = {() => router.push("/search?q=NYU")} className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid1} className="w-80 shadow-lg" alt={""} />
+              <Image src={grid2} className="w-80 shadow-lg" alt={""} />
               <p className="text-white text-xs lg:text-lg h-5 font-bentonbold">Institution Wide Accolades</p>
               </button>
             <button type="button" onClick = {() => router.push("/search?q=-brooklyn")} className="flex flex-col items-center justify-center gap-4 ">
@@ -146,7 +147,7 @@ const Home: NextPage = () => {
           </motion.div>
   
           <div className="flex items-center justify-center">
-            <p className="text-white font-bentonbold text-center py-10 text-lg md:text-2xl">
+            <p className="text-white font-bentonbold text-center pt-16 pb-10 text-lg md:text-2xl">
             To submit a new accolade, outcome or award, click here  
             </p>
           </div>
