@@ -122,7 +122,7 @@ const Home: NextPage = () => {
             </button>
           </div>
           <div className="block">
-            <p className="text-white font-bentonbold py-20 text-2xl">
+            <p className="text-white font-bentonbold py-10 text-2xl">
             To submit a new accolade, outcome or award, click here  
             </p>
           </div>

@@ -91,40 +91,44 @@ const prevPage = () => {
           <AnimatePresence>
             <motion.div className="flex fixed z-10 min-h-screen w-screen flex-col items-center bg-black/50 ">
               <motion.div
-              className={'flex w-200 flex-col z-20 rounded-2xl m-4 items-center justify-center bg-slate-100'}>
-                <div className="flex flex-col pt-2 items-center justify-center">
-                
-                <div className="flex flex-row justify-between">
-                  <h1 className="font-bentonbold text-[#541A83] text-4xl py-1 ">Create an Accolade</h1>
-                  <div className="text-[#541A83] h-10 w-10 z-30 justify-self-end"onClick={() => setShowForm(false)}><XMarkIcon/></div>
-                </div>
-
+              className={'flex lg:w-200 md:w-150 w-96 flex-col z-20 rounded-2xl m-4 items-center justify-center bg-slate-100'}>
+                <div className="flex flex-col pt-3 items-center justify-center"> 
+                  
+                  <div className="flex flex-row 
+                  lg:w-200 
+                  md:w-150 
+                  w-96
+                  relative justify-center items-center">
+                    <h1 className="font-bentonbold text-[#541A83] md:text-4xl text-3xl py-1 ">Create an Accolade</h1>
+                    <div className="text-[#541A83] hover:cursor-pointer h-9 w-9 md:h-11 md:w-11 z-30 absolute right-3"onClick={() => setShowForm(false)}><XMarkIcon/></div>
+                  </div>
 
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
-                 className="flex flex-col items-center justify-center w-200">
+                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
                   
-                  <div className="grid grid-cols-2 gap-3 p-5">
+                  <div className="grid sm:grid-cols-2 gap-4 p-5">
                   
                   {(page == 1) && (
                   <>
                   <input 
-                  type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} className= "p-3 rounded-xl w-96" placeholder="Institution name">
+                  type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
+                  className= "p-3 rounded-xl lg:w-96 md:72" placeholder="Institution name">
                   </input>
 
                   <input 
                   type="text" name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Accolade name">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Accolade name">
                   </input>
 
                   <input 
                   type="text" name="outcome" value={form.outcome} onChange ={e=> setForm({...form, outcome: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Related Outcome">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Related Outcome">
                   </input>
 
                   <input 
                   type="text" name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Internal Source, Contact & Approvals">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Internal Source, Contact & Approvals">
                   </input></>
                   )}
                  
@@ -132,22 +136,22 @@ const prevPage = () => {
                   <>
                   <input 
                   type="text" name="frequency" value={form.frequency} onChange ={e=> setForm({...form, frequency: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Frequency">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Frequency">
                   </input>
 
                   <input 
                   type="text" name="notifDate" value={form.notifDate} onChange ={e=> setForm({...form, notifDate: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Notification Date">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Notification Date">
                   </input>
 
                   <input 
                   type="text" name="cmcontact" value={form.cmcontact} onChange ={e=> setForm({...form, cmcontact: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="C&M Service Line Contact">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="C&M Service Line Contact">
                   </input>
 
                   <input 
                   type="text" name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Source Attribution">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Source Attribution">
                   </input>
                   </>)}
 
@@ -155,22 +159,22 @@ const prevPage = () => {
                     <>
                   <input 
                   type="text" name="wherepubint" value={form.wherepubint} onChange ={e=> setForm({...form, wherepubint: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Where published internally?">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Where published internally?">
                   </input>
 
                   <input 
                   type="text" name="promotionlim" value={form.promotionlim} onChange ={e=> setForm({...form, promotionlim: e.target.value})}
-                  className= "p-3 rounded-xl w-96" placeholder="Limitations on Promotion">
+                  className= "p-3 rounded-xl lg:w-96 md:w-72" placeholder="Limitations on Promotion">
                   </input>
 
                   <textarea 
                   name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
-                  className= "p-3 rounded-xl h-48 w-96" placeholder="External Source & Contact">
+                  className= "p-3 rounded-xl h-32 lg:w-96 md:w-72" placeholder="External Source & Contact">
                   </textarea>
 
                   <textarea 
                   name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
-                  className= "p-3 rounded-xl h-48 w-96" placeholder="Enter messaging">
+                  className= "p-3 rounded-xl h-32 lg:w-96 md:w-72" placeholder="Enter messaging">
                   </textarea>
                   </>)}
 
@@ -178,15 +182,15 @@ const prevPage = () => {
                   <>
                   <textarea 
                   name="comments" value={form.comments} onChange ={e=> setForm({...form, comments: e.target.value})}
-                  className= "p-3 rounded-xl h-48 w-96" placeholder="Enter any comments">
+                  className= "p-3 rounded-xl h-32 lg:w-96 md:w-72" placeholder="Enter any comments">
                   </textarea>
                   </>)}
 
                   </div>
 
-                  <div className="w-200 flex flex-row justify-end px-10">
+                  <div className="lg:w-200 md:w-150 w-96 flex flex-row justify-center sm:justify-end pb-2 px-10">
                   <div className="flex flex-row justify-between">
-                    <div className="h-7 w-7 hover: cursor-pointer" onClick={prevPage}><ChevronLeftIcon/></div><div className="font-bentonreg text-lg">Page {page}/4</div><div className="h-7 w-7 hover: cursor-pointer" onClick={nextPage}><ChevronRightIcon/></div>
+                    <div className="h-7 w-7 hover: cursor-pointer" onClick={prevPage}><ChevronLeftIcon/></div><div className="font-bentonreg text-lg md:text-md">Page {page}/4</div><div className="h-7 w-7 hover: cursor-pointer" onClick={nextPage}><ChevronRightIcon/></div>
                   </div>
                 </div>
 
