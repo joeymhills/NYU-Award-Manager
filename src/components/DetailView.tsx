@@ -290,22 +290,22 @@ const DetailView: React.FC<Props> = (
           </motion.div>
               )}
              
-            <div className=" flex flex-col gap-6 justify-center relative align-middle w-200 bg-white rounded-lg border-2 p-5 m-6 text-2xl font-bentonbold">
+            <div className=" flex flex-col gap-6 justify-center relative align-middle w-200 bg-white rounded-lg border-2 p-5 m-4 text-2xl font-bentonbold">
             <div className="hover:cursor-pointer h-9 w-9 md:h-11 md:w-11 z-30 absolute right-3 top-3"onClick={() => setShowDetail(false)}><XMarkIcon/></div>
                 <div >{institution}</div> 
                 {name !== "" && (<div className="font-bentonreg border-b-[2px] pb-4">{name}</div>)}
-                {imgurl !== null &&(<div className="flex flex-row font-bentonreg justify-center items-center text-lg"> <div><Link href={imgurl}>Download link</Link></div><img src={imgurl} className="h-36 w-36"/></div>)}
-                {outcome !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Outcome: </span>{outcome}</div>)}
-                {intSource !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Internal Source: </span>{intSource}</div>)}
-                {extSource !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">External Source: </span>{extSource}</div>)} 
-                {comments !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Comments: </span>{comments}</div>)}
-                {messaging !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Messaging: </span>{messaging}</div>)}
-                {frequency !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Frequency: </span>{frequency}</div>)}
-                {notifDate !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Notification Date: </span>{notifDate}</div>)}
-                {cmcontact !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">C&M Contact Line: </span>{cmcontact}</div>)}
-                {sourceatr !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Source Attribution: </span>{sourceatr}</div>)}
-                {wherepubint !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Where Published Internally: </span>{wherepubint}</div>)}
-                {promotionlim !== "" && (<div className="font-bentonreg text-lg"><span className="font-bentonbold">Limitations on Promotion: </span>{promotionlim}</div>)}
+                {imgurl !== null &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={imgurl}>Download link</Link></div><img src={imgurl} className="h-36 w-36"/></div>)}
+                {outcome !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Outcome: </span>{outcome}</div>)}
+                {intSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Internal Source: </span>{intSource}</div>)}
+                {extSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">External Source: </span>{extSource}</div>)} 
+                {comments !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Comments: </span>{comments}</div>)}
+                {messaging !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Messaging: </span>{messaging}</div>)}
+                {frequency !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Frequency: </span>{frequency}</div>)}
+                {notifDate !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Notification Date: </span>{notifDate}</div>)}
+                {cmcontact !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">C&M Contact Line: </span>{cmcontact}</div>)}
+                {sourceatr !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Source Attribution: </span>{sourceatr}</div>)}
+                {wherepubint !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Where Published Internally: </span>{wherepubint}</div>)}
+                {promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{promotionlim}</div>)}
                 <div className="flex flex-row justify-center items-center gap-3">
                   <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=>setEditWindow(true)}>Edit</button>
                   <button className="bg-red-500 w-36 h-8 text-white font-bentonreg rounded-2xl"onClick={()=>setDeleteWindow(true)}>Delete</button>
