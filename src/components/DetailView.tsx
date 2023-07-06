@@ -137,14 +137,14 @@ const DetailView: React.FC<Props> = (
       return (
         <>
           <AnimatePresence>
-            <motion.div className="flex fixed top-0 right-0 z-30 min-h-screen w-screen flex-col items-center bg-black/50 ">  
+            <motion.div className="flex fixed top-0 right-0 z-30 min-h-screen w-screen flex-col items-center bg-black/50">  
 
               {deleteWindow &&(
-                <motion.div className="flex fixed top-0 right-0 z-30 min-h-screen w-screen flex-col items-center">
-                    <div className="w-96 h-54 z-80 p-5 m-2 bg-white border-2 border-slate-300 fixed rounded-2xl">
+                <motion.div className="flex fixed top-0 right-0 z-50 min-h-screen bg-black/50 w-screen flex-col items-center">
+                    <div className="w-96 h-54 z-80 p-5 m-12 bg-white fixed rounded-2xl">
                         <div className="flex flex-col justify-center items-center gap-3"> 
                             <div>
-                                <p className="text-center">Are you sure you want to delete this entry?(This action cannot be undone)</p>
+                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?<span className="font-bentonreg">(This action cannot be undone)</span></p>
                             </div>
                             <div className="flex flex-row justify-center gap-2">
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>setDeleteWindow(false)}>Cancel</button>
@@ -158,7 +158,7 @@ const DetailView: React.FC<Props> = (
               {editWindow &&(
             <motion.div className="flex fixed z-10 min-h-screen w-screen bg-black/50 flex-col items-center ">
             <motion.div
-            className={'flex w-180 flex-col z-20 rounded-2xl m-4 items-center justify-center bg-slate-100'}>
+            className={'flex w-180 flex-col z-20 rounded-2xl m-12 items-center justify-center bg-slate-100'}>
               <div className="flex flex-col pt-2 items-center justify-center">
               <h1 className="font-bentonbold text-[#541A83] text-4xl py-4 "></h1>
 

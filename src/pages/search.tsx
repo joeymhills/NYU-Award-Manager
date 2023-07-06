@@ -144,6 +144,11 @@ const searchPage = () => {
           
           {noSearchResults()}
           {data?.accolade.map(id => 
+            <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .7 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}>
             <div className="flex flex-col mb-6 gap-0 justify-center align-middle w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 text-2xl font-bentonbold">
                 <div className="flex flex-row justify-between">
 
@@ -201,6 +206,7 @@ const searchPage = () => {
 
             </div>
             </div>
+            </motion.div>
             )}
         
         </div>

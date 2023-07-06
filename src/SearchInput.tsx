@@ -19,7 +19,8 @@ const SearchInput = () => {
     return(
         
         <div className='w-full flex flex-col justify-center items-center'>
-        <form className='max-w-sm lg:max-w-2xl 
+        <form className='max-w-sm 
+            lg:max-w-2xl 
             md:max-w-xl
             sm:max-w-lg' 
             onSubmit={onSearch}>
@@ -27,9 +28,9 @@ const SearchInput = () => {
             value={searchQuery}
             placeholder="Search for Accolades"
             onChange={(event) => setSearchQuery(event.target.value)}
-            className="h-8 p-1 mr-1 rounded-lg sm:w-44"
+            className="h-8 p-1 mr-1 sm:mr-3 md:mr-5 rounded-lg w-44 sm:w-60 md:w-96 lg:w-100"
             />
-            <button type="submit" className="bg-white font-bentonbold text-sm text-[#541A83] py-2 w-20 h-8 rounded-3xl">Search</button>
+            <button type="submit" className="bg-white font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-lg lg:py-0 md:w-40 h-8 rounded-3xl">Search</button>
             
         </form>
         </div>
