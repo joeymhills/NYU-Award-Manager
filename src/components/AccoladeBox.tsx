@@ -81,6 +81,7 @@ const prevPage = () => {
     try {
       await create(data);
       notify()
+      setShowForm(false)
     } catch (error) {
       console.log('error in handleSubmit')
     }
@@ -208,7 +209,7 @@ const prevPage = () => {
                       alert(`ERROR! ${error.message}`);
                     }}
                   />
-                  <button type="submit" onClick={() => handleSubmit} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
+                  <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
                   
                   <ToastContainer 
                   position="top-center"
