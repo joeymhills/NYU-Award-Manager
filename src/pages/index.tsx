@@ -14,7 +14,7 @@ import grid8 from "../assets/grid8.png"
 import SearchInput from "~/SearchInput";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import AccoladeBox from "~/components/AccoladeBox";
+import addAward from "~/pages/addAward";
 import { motion, AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,22 +37,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="z-20">
-      <AnimatePresence>
-      {showForm && (
-
-        <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
-      
-        <AccoladeBox />
-                
-        </motion.div>)}
-      </AnimatePresence>
-
 
       </div>
-      <div className="w-full h-5 bg-[#541A83]" />
+      <div className="w-full h-10 flex flex-col items-center justify-center bg-[#541A83]">
+      <button type="button" onClick = {() => router.push("/addAward")} className="text-white font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Add Award</button>
+      </div>
+
       <div className="h-px bg-white" />
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
@@ -85,8 +75,12 @@ const Home: NextPage = () => {
             md:text-xl md:max-w-xl
             sm:text-md sm:max-w-lg
             ">
-              <p>
-              Welcome to our online search tool for NYU Langone Health’s Accolades, Outcomes and Awards. Search below using free text to search for an award by service line, location, awarding organization and more. Or click one of the locations below to start a search by location. 
+              <p className="text-center">
+              This internal tool offers quick access to review accolades and awards given to NYU from independent organizations.
+              </p>
+
+              <p className="text-center pt-12 pb-2">
+                Begin a keyword search
               </p>
             </div>
           </div>
@@ -96,7 +90,7 @@ const Home: NextPage = () => {
             initial={{ opacity: 0 }}
             transition={{ duration: .5, delay: .2 }}
             animate={{ opacity: 1 }}>
-          <div className="py-11 
+          <div className=" 
             lg:max-w-2xl 
             md:max-w-xl
             sm:max-w-lg">
@@ -106,9 +100,26 @@ const Home: NextPage = () => {
           </div>
           </motion.div>
 
-            <motion.div
+          <motion.div
             initial={{ opacity: 0 }}
             transition={{ duration: .5, delay: .3 }}
+            animate={{ opacity: 1 }}>
+          <div>
+            <div className=" text-white max-w-xs text-sm pt-12 pb-4 font-bentonbold 
+            lg:text-3xl lg:max-w-2xl 
+            md:text-xl md:max-w-xl
+            sm:text-md sm:max-w-lg
+            ">
+              <p className="text-center">
+              Or click one of the locations below to begin a search by location.
+              </p>
+            </div>
+          </div>
+          </motion.div>
+
+            <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5, delay: .4 }}
             animate={{ opacity: 1 }}> 
           <div className="grid grid-cols-2 md:grid-cols-3 max-w-5xl gap-10 ">
             <button type="button" onClick = {() => router.push("/search?q=tisch%20kimmel")} className="flex flex-col items-center justify-center gap-4 ">
@@ -121,7 +132,7 @@ const Home: NextPage = () => {
               </button>
             <button type="button" onClick = {() => router.push("/search?q=-brooklyn")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid3} className="w-80 shadow-lg" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital Brooklyn</p>
+              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
             </button>
             <button type="button" onClick = {() => router.push("/search?q=Hassenfeld")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid4} className="w-80 shadow-lg" alt={""} />
@@ -133,7 +144,7 @@ const Home: NextPage = () => {
             </button>
             <button type="button" onClick = {() => router.push("/search?q=long%20island")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid6} className="w-80 shadow-lg" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital Long Island</p>
+              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
             </button>
             <button type="button" onClick = {() => router.push("/search?q=medical")} className="flex flex-col items-center justify-center gap-4">
               <Image src={grid7} className="w-80 shadow-lg" alt={""} />
@@ -146,14 +157,8 @@ const Home: NextPage = () => {
           </div>
           </motion.div>
   
-          <div className="flex items-center justify-center">
-            <p className="text-white font-bentonbold text-center pt-16 pb-10 text-lg md:text-2xl">
-            To submit a new accolade, outcome or award, click here  
-            </p>
-          </div>
-          <div className="pb-64">
-          <button type="button" onClick = {() => {setShowForm(true)}} className="bg-white text-[#541A83] font-bentonbold w-36 py-1 text-sm sm:text-xl sm:py-2 sm:w-64 rounded-3xl">Submit</button>
-        </div>
+
+
         </div>
       </main>
     </>

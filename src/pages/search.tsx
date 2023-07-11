@@ -127,6 +127,18 @@ const searchPage = () => {
               </div>
             </div>
           </div>
+          
+          <div className="flex flex-col justify-center items-center">
+            <div className=" text-white max-w-xs text-sm font-bentonbold
+              lg:text-3xl lg:max-w-2xl 
+              md:text-xl md:max-w-xl
+              sm:text-md sm:max-w-lg
+              ">
+                <p className="">
+                Showing results for "{searchQuery}"
+                </p>
+              </div>
+            </div>
           {/* <div className="flex flex-row justify-center items-center gap-5">
             <Dropdown />
           </div> */}
@@ -155,38 +167,39 @@ const searchPage = () => {
             transition={{ duration: .7 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}>
-            <div className="flex flex-col mb-6 gap-0 justify-center align-middle w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 text-2xl font-bentonbold">
+            <div className="flex flex-col mb-2 md:mb-6 gap-0 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 font-bentonbold">
+                
                 <div className="flex flex-row justify-between">
 
-                  <div className="flex flex-col mt-6 self-center"> 
-                    <div className="">{id.institution}</div>
-                    <div className="font-bentonreg pt-4 text-2xl">{id.name}</div>               
+                  <div className="flex flex-col mt-6 md:text-lg lg:text-2xl truncate self-center"> 
+                    <div className="mr-40">{id.institution}</div>
+                    <div className="font-bentonreg pt-4 md:text-lg lg:text-2xl truncate">{id.name}</div>               
                   </div>
                 
 
                   <div>
                   {id.imgurl !== "" && (
-                  <img src={id.imgurl} className="h-36"/>)}
+                  <img src={id.imgurl} className="h-20 md:h-28"/>)}
                   </div>
                 
                 </div>
                 <div className="border-b-[2px]"/>
 
-                {id.outcome !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Outcome: </span>{id.outcome}</div>)}
-                {id.intSource !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Internal Source: </span>{id.intSource}</div>)}
-                {id.extSource !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">External Source: </span>{id.extSource}</div>)}
-                {id.comments !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Comments: </span>{id.comments}</div>)}
-                {id.messaging !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Messaging: </span>{id.messaging}</div>)}
-                {id.frequency !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Frequency: </span>{id.frequency}</div>)}
-                {id.notifDate !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Notification Date: </span>{id.notifDate}</div>)}
-                {id.cmcontact !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">C&M Contact Line: </span>{id.cmcontact}</div>)}
-                {id.sourceatr !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Source Attribution: </span>{id.sourceatr}</div>)}
-                {id.wherepubint !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Where Published Internally: </span>{id.wherepubint}</div>)}
-                {id.promotionlim !== "" && (<div className="font-bentonreg pt-5 text-lg truncate"><span className="font-bentonbold">Limitations on Promotion: </span>{id.promotionlim}</div>)}
-                <div className="p-3" />
+                {id.outcome !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Outcome: </span>{id.outcome}</div>)}
+                {id.intSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Internal Source: </span>{id.intSource}</div>)}
+                {id.extSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">External Source: </span>{id.extSource}</div>)}
+                {id.comments !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Comments: </span>{id.comments}</div>)}
+                {id.messaging !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Messaging: </span>{id.messaging}</div>)}
+                {id.frequency !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Frequency: </span>{id.frequency}</div>)}
+                {id.notifDate !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Notification Date: </span>{id.notifDate}</div>)}
+                {id.cmcontact !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">C&M Contact Line: </span>{id.cmcontact}</div>)}
+                {id.sourceatr !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Source Attribution: </span>{id.sourceatr}</div>)}
+                {id.wherepubint !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Where Published Internally: </span>{id.wherepubint}</div>)}
+                {id.promotionlim !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Limitations on Promotion: </span>{id.promotionlim}</div>)}
+                <div className="p-2" />
                 <div className="font-bentonreg border-b-[2px]" />
                 <div className="flex flex-col justify-center items-center">
-                <div className="p-3" />
+                <div className="p-2" />
                 <button type="button" onClick = {() => {
                   
                   setShowDetail(true)
@@ -207,7 +220,7 @@ const searchPage = () => {
                   setPromotionlim(id.promotionlim)
                   setImgurl(id.imgurl)
                   }}
-                  className="bg-[#541A83] font-bentonbold text-xl text-white py-2 px-0 w-64 rounded-3xl">
+                  className="bg-[#541A83] font-bentonbold text-sm lg:text-lg text-white py-1 md:py-2 px-0 w-40 md:w-64 rounded-3xl">
                   Detailed View</button>
 
             </div>
