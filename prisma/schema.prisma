@@ -25,7 +25,10 @@ model accolade {
     sourceatr    String?   @db.VarChar(255)
     wherepubint  String?   @db.VarChar(255)
     promotionlim String?   @db.VarChar(500)
-    imgurl       String?   @db.VarChar(200)
+    imgurl1      String?   @db.VarChar(200)
+    imgurl2      String?   @db.VarChar(200)
+    imgurl3      String?   @db.VarChar(200)
+    imgurl4      String?   @db.VarChar(200)
 
     @@index([institution])
     

@@ -294,7 +294,7 @@ const DetailView: React.FC<Props> = (
             <div className="hover:cursor-pointer h-9 w-9 md:h-11 md:w-11 z-30 absolute right-3 top-3"onClick={() => setShowDetail(false)}><XMarkIcon/></div>
                 <div >{institution}</div> 
                 {name !== "" && (<div className="font-bentonreg border-b-[2px] pb-4">{name}</div>)}
-                {imgurl !== null &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={imgurl}>Download link</Link></div><img src={imgurl} className="h-36 w-36"/></div>)}
+                {((imgurl !== null) && (imgurl !== "")) &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={imgurl}>Download link</Link></div><img src={imgurl} className="h-36 w-36"/></div>)}
                 {outcome !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Outcome: </span>{outcome}</div>)}
                 {intSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Internal Source: </span>{intSource}</div>)}
                 {extSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">External Source: </span>{extSource}</div>)} 

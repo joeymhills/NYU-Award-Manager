@@ -13,21 +13,14 @@ import grid7 from "../assets/grid7.png"
 import grid8 from "../assets/grid8.png"
 import SearchInput from "~/SearchInput";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import addAward from "~/pages/addAward";
 import { motion, AnimatePresence, LazyMotion, domAnimation, m } from "framer-motion";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { atom, useAtom } from "jotai";
-import { accoladeFormAtom } from "~/components/atoms";
 
 const Home: NextPage = () => {
   
   const user = useUser();
-
+  
   const router = useRouter();
-
-  const [showForm, setShowForm] = useAtom(accoladeFormAtom)
 
   return (
     <>
@@ -39,11 +32,15 @@ const Home: NextPage = () => {
       <div className="z-20">
 
       </div>
-      <div className="w-full h-10 flex flex-col items-center justify-center bg-[#541A83]">
-      <button type="button" onClick = {() => router.push("/addAward")} className="text-white font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Add Award</button>
-      </div>
+    <div className="w-full h-10 bg-[#541A83] flex flex-col justify-center items-end">
+      <div className="divide-x">
+        <button type="button" onClick = {() => router.push("/addAward")} className="text-white hover:underline font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Add Award</button>
+        <button type="button" onClick = {() => router.push("/admin")} className="text-white hover:underline font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Admin Page</button>
+        </div>
+    </div>
 
-      <div className="h-px bg-white" />
+      <div className="h-px bg-white"/>
+
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
           <div className="hover:cursor-pointer py-4">
@@ -121,7 +118,7 @@ const Home: NextPage = () => {
             initial={{ opacity: 0 }}
             transition={{ duration: .5, delay: .4 }}
             animate={{ opacity: 1 }}> 
-          <div className="grid grid-cols-2 md:grid-cols-3 max-w-5xl gap-10 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 max-w-5xl gap-10 pb-32">
             <button type="button" onClick = {() => router.push("/search?q=tisch%20kimmel")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid1} className="w-80 shadow-lg" alt={""} />
               <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>

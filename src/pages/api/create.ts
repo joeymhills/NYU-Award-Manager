@@ -16,20 +16,24 @@ interface create {
     sourceatr: string
     wherepubint: string
     promotionlim: string
-    imgurl:string
+    imgurl1:string
+    imgurl2:string
+    imgurl3:string
+    imgurl4:string
 }
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
     const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments,imgurl} = req.body
+        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = req.body
 
     try {
         await prisma.accolade.create({
             data: {
                 institution, name, comments, outcome, extSource,
                 intSource, messaging, frequency, notifDate, cmcontact,
-                sourceatr, wherepubint, promotionlim,imgurl
+                sourceatr, wherepubint, promotionlim, imgurl1, imgurl2,
+                imgurl3, imgurl4
 
             }})
         res.status(200).json({message: 'accolade created'})

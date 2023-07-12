@@ -6,7 +6,7 @@ const Deletewindow = (id:props) => {
     
     async function deleteAccolade(id:props) { 
         try {
-          await fetch("http://localhost:3000/api/delete",{
+          await fetch("http://please-work-beta.vercel.app/api/delete",{
             body: JSON.stringify(id),
             headers: { 'Content-Type': 'Application/json'},
             method: 'DELETE'});

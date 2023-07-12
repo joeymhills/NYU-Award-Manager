@@ -101,7 +101,12 @@ const searchPage = () => {
       </AnimatePresence>
 
     </div>
-    <div className="w-full h-5 bg-[#541A83]" />
+    <div className="w-full h-10 bg-[#541A83] flex flex-col justify-center items-end">
+      <div className="divide-x">
+        <button type="button" onClick = {() => router.push("/addAward")} className="text-white hover:underline font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Add Award</button>
+        <button type="button" onClick = {() => router.push("/admin")} className="text-white hover:underline font-bentonreg w-36 py-1 text-sm sm:text-xl sm:py-2">Admin Page</button>
+        </div>
+    </div>
     <div className="h-px bg-white" />
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
@@ -153,7 +158,7 @@ const searchPage = () => {
             </div>
           </div>
 
-        <div className="w-full flex flex-col gap-5 justify-center align-center">
+        <div className="w-full flex flex-col justify-center align-center">
           
           {noSearchResults()}
           {data?.accolade.map(id => 
@@ -167,19 +172,19 @@ const searchPage = () => {
             transition={{ duration: .7 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}>
-            <div className="flex flex-col mb-2 md:mb-6 gap-0 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 font-bentonbold">
+            <div className="flex flex-col mb-2 md:mb-4 gap-0 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 font-bentonbold">
                 
                 <div className="flex flex-row justify-between">
 
                   <div className="flex flex-col mt-6 md:text-lg lg:text-2xl truncate self-center"> 
-                    <div className="mr-40">{id.institution}</div>
-                    <div className="font-bentonreg pt-4 md:text-lg lg:text-2xl truncate">{id.name}</div>               
+                    <div className="mr-40">{id.name}</div>
+                    <div className="font-bentonreg pt-4 md:text-lg lg:text-2xl truncate">{id.institution}</div>               
                   </div>
                 
 
                   <div>
-                  {id.imgurl !== "" && (
-                  <img src={id.imgurl} className="h-20 md:h-28"/>)}
+                  {id.imgurl1 !== "" && (
+                  <img src={id.imgurl1} className="h-20 md:h-28"/>)}
                   </div>
                 
                 </div>
@@ -218,7 +223,7 @@ const searchPage = () => {
                   setSourceatr(id.sourceatr)
                   setWherepubint(id.wherepubint)
                   setPromotionlim(id.promotionlim)
-                  setImgurl(id.imgurl)
+                  setImgurl(id.imgurl1)
                   }}
                   className="bg-[#541A83] font-bentonbold text-sm lg:text-lg text-white py-1 md:py-2 px-0 w-40 md:w-64 rounded-3xl">
                   Detailed View</button>

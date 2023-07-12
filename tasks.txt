@@ -36,10 +36,10 @@ STUFF TO DO: {
     - dropdown for common institutions in accolade box
     - user tiers
     - using shared state/useEffect in order to update 
-    -filtering and sorting
-    -update state of deleted/edited entry
-
-
+    - filtering and sorting
+    - update state of deleted/edited entry
+    - error handling
+    - rollback ability for changes
     -fix all TS errors (change build command back to default)
     }
     
