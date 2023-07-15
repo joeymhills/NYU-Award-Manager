@@ -21,7 +21,7 @@ interface types {
 }
 
 interface FormData {
-    id: string | string[],
+    id: object,
     institution: string,
     name: string,
     comments: string
@@ -42,6 +42,7 @@ interface FormData {
   }
 
   const id = router.query.id
+  const empty = ""
 
   const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
   messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
@@ -56,7 +57,7 @@ interface FormData {
     catch (error) {
       console.log('error in POST request()')
     }
-    (()=> setForm({id: '', institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
+    (()=> setForm({id: {empty}, institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
     messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
   }
 
