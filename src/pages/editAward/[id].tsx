@@ -49,7 +49,7 @@ interface FormData {
 
   async function update(data: FormData) { 
     try {
-      await fetch(`http://localhost:3000/api/update`,{
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/update`,{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'PUT'});
@@ -73,7 +73,7 @@ interface FormData {
 
 useEffect(() => {
 function send(){ 
-  axios.post('/api/find', {
+  axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/find`, {
     id
   })
   .then(res => {
