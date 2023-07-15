@@ -227,7 +227,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   {/* Displays images that have been umploaded */}
                   <div className="flex flex-row gap-2">
-                    
+
                     <div className="">
                       <img src={form.imgurl1} className="h-24" alt="" />
                       {form.imgurl1 !== "" && (<div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
