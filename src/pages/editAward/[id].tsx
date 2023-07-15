@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { accolade } from "@prisma/client";
 import axios from "axios";
 
-const addAward:NextPage = () => {
+const editAward:NextPage = () => {
     
 const router = useRouter();
 
@@ -86,6 +86,18 @@ function send(){
 }
 send()
 },[])
+
+const imgflag = (img:string) => {
+  if(img == "") {
+    return false
+  }
+  else if(img == null) {
+    return false
+  }
+  else {
+    return true
+  }
+}
 
 return(
     <>
@@ -245,22 +257,22 @@ return(
                 
                 <div className="">
                   <img src={form.imgurl1} className="h-24" alt="" />
-                  {form.imgurl1 !== null && (<div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                  {imgflag(form.imgurl1) && (<div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
                 </div>
                 
                 <div className="">
                   <img src={form.imgurl2} className="h-24" alt="" />
-                  {form.imgurl2 !== null && (<div onClick={()=>{setForm({...form, imgurl2: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                  {imgflag(form.imgurl2) && (<div onClick={()=>{setForm({...form, imgurl2: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
                 </div>
 
                 <div className="">
                   <img src={form.imgurl3} className="h-24" alt="" />
-                  {form.imgurl3 !== null && (<div onClick={()=>{setForm({...form, imgurl3: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                  {imgflag(form.imgurl3) && (<div onClick={()=>{setForm({...form, imgurl3: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
                 </div>
 
                 <div className="">
                   <img src={form.imgurl4} className="h-24" alt="" />
-                  {form.imgurl4 !== null && (<div onClick={()=>{setForm({...form, imgurl4: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                  {imgflag(form.imgurl4) && (<div onClick={()=>{setForm({...form, imgurl4: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
                 </div>
 
               </div>
@@ -290,4 +302,4 @@ return(
     
 );}
 
-export default addAward
+export default editAward
