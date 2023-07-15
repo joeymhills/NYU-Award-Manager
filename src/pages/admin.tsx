@@ -39,11 +39,11 @@ return(
             initial={{ opacity: 0 }}
             transition={{ duration: .5 }}
             animate={{ opacity: 1 }}>
-          <h1 className="py-5 text-4xl font-bentonreg text-[#541A83]
+          <h1 className="py-5 text-4xl font-bentonbold text-[#541A83]
            lg:text-8xl 
            md:text-7xl 
            sm:text-6xl">
-            Under Construction<span className="font-bentonbold"><br/>Coming soon...</span>
+            Under Construction<span className="font-bentonreg"><br/>Coming soon...</span>
           </h1>
           </motion.div>
 
