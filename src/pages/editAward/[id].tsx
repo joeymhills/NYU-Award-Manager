@@ -21,7 +21,7 @@ interface types {
 }
 
 interface FormData {
-    id: string
+    id: string | string[],
     institution: string,
     name: string,
     comments: string
