@@ -9,6 +9,7 @@ import "@uploadthing/react/styles.css";
 import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useAtom } from "jotai";
 import { showDetailPage } from "./atoms";
+import { useRouter } from "next/router";
 
 interface Props {
 id:string,
@@ -27,6 +28,7 @@ wherepubint:string,
 promotionlim:string,
 imgurl:string
 }
+
 interface FormData {
   institution: string,
   name: string,
@@ -43,14 +45,16 @@ interface FormData {
   promotionlim: string
   imgurl: string
   id: string
-} 
+}
 
+    const DetailView: React.FC<Props> = (
 
-const DetailView: React.FC<Props> = (
     {id,name,institution,outcome,extSource,intSource,messaging, 
     comments,frequency,notifDate,cmcontact,sourceatr,wherepubint,promotionlim,imgurl}) => {
 
       const [editPage,setEditPage] = useState(1)
+      const router = useRouter()
+
 
       const nextEditPage = () => {
         if (editPage < 4) {
@@ -77,7 +81,7 @@ const DetailView: React.FC<Props> = (
 
       async function update(data: FormData) { 
         try {
-          await fetch("https://please-work-beta.vercel.app//api/update",{
+          await fetch("http://localhost:3000/api/update",{
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'Application/json'},
             method: 'PUT'});
@@ -123,7 +127,7 @@ const DetailView: React.FC<Props> = (
         
       async function deleteAccolade(id: string) { 
         try {
-          await fetch("https://please-work-beta.vercel.app/api/delete",{
+          await fetch("http://localhost:3000/api/delete",{
             body: JSON.stringify(id),
             headers: { 'Content-Type': 'Application/json'},
             method: 'POST'});
@@ -147,7 +151,7 @@ const DetailView: React.FC<Props> = (
                                 <p className="text-center font-bentonbold">Are you sure you want to delete this entry?<span className="font-bentonreg">(This action cannot be undone)</span></p>
                             </div>
                             <div className="flex flex-row justify-center gap-2">
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>setDeleteWindow(false)}>Cancel</button>
+                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setDeleteWindow(false)}}>Cancel</button>
                                 <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAccolade(id);setDeleteWindow(false)}}>Delete</button>
                             </div>
                         </div>
@@ -307,7 +311,7 @@ const DetailView: React.FC<Props> = (
                 {wherepubint !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Where Published Internally: </span>{wherepubint}</div>)}
                 {promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{promotionlim}</div>)}
                 <div className="flex flex-row justify-center items-center gap-3">
-                  <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=>setEditWindow(true)}>Edit</button>
+                  <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=> {setShowDetail(false);router.push(`/editAward/${id}`)}}>Edit</button>
                   <button className="bg-red-500 w-36 h-8 text-white font-bentonreg rounded-2xl"onClick={()=>setDeleteWindow(true)}>Delete</button>
                 </div>
                 <ToastContainer 

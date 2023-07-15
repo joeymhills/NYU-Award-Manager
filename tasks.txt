@@ -35,29 +35,19 @@ STUFF TO DO: {
     BACKEND/API {
     - dropdown for common institutions in accolade box
     - user tiers
-    - using shared state/useEffect in order to update 
     - filtering and sorting
-    - update state of deleted/edited entry
     - error handling
-    - rollback ability for changes
+    - rollback ability for changes (im thinking about getting data from main table, deleting it, and moving it the backup table)
     -fix all TS errors (change build command back to default)
+    -remove detail view atom(persists after leaving page and shows empty detail window)
     }
     
     STYLING {
     
     - Add titles for fields in edit view
-    - Add responsiveness to design (site-wide) {
-        -landing page
-        -search page
-        -accolade creator
-        -detail view
-        -delete window
-        -edit view
-    }
+    - Add responsiveness to design
     - cute animations
     - fix landing page nyu image
-    - make comments and messaging "scrollable" in detail view
-
     }
     
     PRODUCTION {

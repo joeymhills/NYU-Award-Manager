@@ -176,20 +176,20 @@ const searchPage = () => {
                 
                 <div className="flex flex-row justify-between">
 
-                  <div className="flex flex-col mt-6 md:text-lg lg:text-2xl truncate self-center"> 
+                  <div className="flex flex-col mt-4 md:text-lg lg:text-2xl truncate self-center"> 
                     <div className="mr-40">{id.name}</div>
-                    <div className="font-bentonreg pt-4 md:text-lg lg:text-2xl truncate">{id.institution}</div>               
                   </div>
                 
 
                   <div>
                   {id.imgurl1 !== "" && (
-                  <img src={id.imgurl1} className="h-20 md:h-28"/>)}
+                  <img src={id.imgurl1} className="py-2 h-20 md:h-24"/>)}
                   </div>
                 
                 </div>
                 <div className="border-b-[2px]"/>
 
+                {id.institution !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Institution: </span>{id.institution}</div>)}
                 {id.outcome !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Outcome: </span>{id.outcome}</div>)}
                 {id.intSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Internal Source: </span>{id.intSource}</div>)}
                 {id.extSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">External Source: </span>{id.extSource}</div>)}
@@ -226,7 +226,7 @@ const searchPage = () => {
                   setImgurl(id.imgurl1)
                   }}
                   className="bg-[#541A83] font-bentonbold text-sm lg:text-lg text-white py-1 md:py-2 px-0 w-40 md:w-64 rounded-3xl">
-                  Detailed View</button>
+                  Full Description</button>
 
             </div>
             </div>

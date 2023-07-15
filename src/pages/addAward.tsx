@@ -1,6 +1,5 @@
 import { useState } from "react"; 
 import { motion, AnimatePresence } from "framer-motion";
-import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "@uploadthing/react/styles.css";
@@ -8,6 +7,7 @@ import { OurFileRouter } from "~/server/uploadthing";
 import { UploadButton } from "~/utils/uploadthing";
 import { useAtom } from "jotai";
 import { accoladeFormAtom } from "../components/atoms";
+import { TrashIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -52,13 +52,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
   async function create(data: FormData) { 
     try {
-      await fetch("https://please-work-beta.vercel.app/api/create",{
+      await fetch("http://localhost:3000/api/create",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'POST'});
     }
     catch (error) {
-      console.log('error in POST request()')
+      console.log('error with addAward request')
     }
     (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
     messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
@@ -122,13 +122,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
                   
                   <input 
-                  type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:72" placeholder="Institution/Department">
+                  type="text" name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:w-72" placeholder="Award name">
                   </input>
 
                   <input 
-                  type="text" name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
-                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:w-72" placeholder="Accolade name">
+                  type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
+                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:72" placeholder="Institution/Department">
                   </input>
 
                   <textarea 
@@ -189,7 +189,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </div>
 
                   <div className="lg:w-200 md:w-150 w-96 justify-center pb-2 px-10 flex flex-row items-center">
-                  <div className="text-black font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">Choose any images you would like to upload(Only .jpg, .png, and .svg files can be displayed, but others file types will still be stored)</div>
+                  <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">Choose any images you would like to upload<br/>(Only .jpg, .png, and .svg files can be displayed, but others file types will still be stored)</div>
                   </div>
                   <UploadButton
                     endpoint="imageUploader"
@@ -199,22 +199,18 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                       
                       if(form.imgurl1 == "") {
                       setForm({...form, imgurl1: response.fileUrl})
-                      alert("Upload 1 complete");
                       }
 
                       else if (form.imgurl2 == "") {
                       setForm({...form, imgurl2: response.fileUrl})
-                      alert("Upload 2 complete");
                       }
 
                       else if (form.imgurl3 == "") {
                       setForm({...form, imgurl3: response.fileUrl})
-                      alert("Upload 3 complete");
                       }
 
                       else if(form.imgurl4 == "") {
                         setForm({...form, imgurl4: response.fileUrl})
-                        alert("Upload 4 complete");
                       }
                       
                       else {
@@ -231,10 +227,27 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   {/* Displays images that have been umploaded */}
                   <div className="flex flex-row gap-2">
-                    <img src={form.imgurl1} className="h-24" alt="" />
-                    <img src={form.imgurl2} className="h-24" alt="" />
-                    <img src={form.imgurl3} className="h-24" alt="" />
-                    <img src={form.imgurl4} className="h-24" alt="" />
+                    
+                    <div className="">
+                      <img src={form.imgurl1} className="h-24" alt="" />
+                      {form.imgurl1 !== "" && (<div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                    </div>
+                    
+                    <div className="">
+                      <img src={form.imgurl2} className="h-24" alt="" />
+                      {form.imgurl2 !== "" && (<div onClick={()=>{setForm({...form, imgurl2: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                    </div>
+
+                    <div className="">
+                      <img src={form.imgurl3} className="h-24" alt="" />
+                      {form.imgurl3 !== "" && (<div onClick={()=>{setForm({...form, imgurl3: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                    </div>
+
+                    <div className="">
+                      <img src={form.imgurl4} className="h-24" alt="" />
+                      {form.imgurl4 !== "" && (<div onClick={()=>{setForm({...form, imgurl4: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
+                    </div>
+
                   </div>
                   <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
                   
