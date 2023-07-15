@@ -81,7 +81,7 @@ interface FormData {
 
       async function update(data: FormData) { 
         try {
-          await fetch("http://localhost:3000/api/update",{
+          await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/update`,{
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'Application/json'},
             method: 'PUT'});
@@ -127,7 +127,7 @@ interface FormData {
         
       async function deleteAccolade(id: string) { 
         try {
-          await fetch("http://localhost:3000/api/delete",{
+          await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete`,{
             body: JSON.stringify(id),
             headers: { 'Content-Type': 'Application/json'},
             method: 'POST'});

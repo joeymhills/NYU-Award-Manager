@@ -4,9 +4,10 @@ import prisma from "../../../prisma/client"
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
-    console.log("req is: ", req.body)
-    const payload = req.body
-
+    if (req.method === "POST") {
+        console.log("req is: ", req.body)
+        const payload = req.body
+    
     try {
         await prisma.accolade.delete({
             where: {
@@ -18,4 +19,5 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         res.status(500).json({message: 'unable to delete: '})
         console.log('error with id:', payload)
     }
+}
 }
