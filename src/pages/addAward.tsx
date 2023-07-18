@@ -73,6 +73,18 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
     }
   }
 
+  const imgflag = (img:string) => {
+    if(img == "") {
+      return false
+    }
+    else if(img == null) {
+      return false
+    }
+    else {
+      return true
+    }
+  }
+
   return(
         <>
           <Head>
@@ -197,19 +209,19 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                       // Do something with the response
                       const response = (res[0])
                       
-                      if(form.imgurl1 == "") {
+                      if(!imgflag(form.imgurl1)) {
                       setForm({...form, imgurl1: response.fileUrl})
                       }
 
-                      else if (form.imgurl2 == "") {
+                      else if (!imgflag(form.imgurl2)) {
                       setForm({...form, imgurl2: response.fileUrl})
                       }
 
-                      else if (form.imgurl3 == "") {
+                      else if (!imgflag(form.imgurl3)) {
                       setForm({...form, imgurl3: response.fileUrl})
                       }
 
-                      else if(form.imgurl4 == "") {
+                      else if(!imgflag(form.imgurl4)) {
                         setForm({...form, imgurl4: response.fileUrl})
                       }
                       
@@ -230,25 +242,29 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   {/* Displays images that have been umploaded */}
                   <div className="flex flex-row gap-2">
 
-                    <div className="">
-                      <img src={form.imgurl1} className="h-24" alt="" />
-                      {form.imgurl1 !== "" && (<div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
-                    </div>
-                    
-                    <div className="">
-                      <img src={form.imgurl2} className="h-24" alt="" />
-                      {form.imgurl2 !== "" && (<div onClick={()=>{setForm({...form, imgurl2: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
-                    </div>
+                {imgflag(form.imgurl1) && (
+                <div className="">
+                  <img src={form.imgurl1} className="h-24" alt="" />
+                  <div onClick={()=>{setForm({...form, imgurl1: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>
+                </div>)}
+                
+                {imgflag(form.imgurl2) && (
+                <div className="">
+                  <img src={form.imgurl2} className="h-24" alt="" />
+                  <div onClick={()=>{setForm({...form, imgurl2: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>
+                </div>)}
 
-                    <div className="">
-                      <img src={form.imgurl3} className="h-24" alt="" />
-                      {form.imgurl3 !== "" && (<div onClick={()=>{setForm({...form, imgurl3: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
-                    </div>
-
-                    <div className="">
-                      <img src={form.imgurl4} className="h-24" alt="" />
-                      {form.imgurl4 !== "" && (<div onClick={()=>{setForm({...form, imgurl4: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>)}
-                    </div>
+                {imgflag(form.imgurl3) && (
+                <div className="">
+                  <img src={form.imgurl3} className="h-24" alt="" />
+                  <div onClick={()=>{setForm({...form, imgurl3: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>
+                </div>)}
+                
+                {imgflag(form.imgurl4) && (
+                <div className="">
+                  <img src={form.imgurl4} className="h-24" alt="" />
+                  <div onClick={()=>{setForm({...form, imgurl4: ""})}} className=" hover:cursor-pointer pt-1 flex flex-row justify-center items-center"> <TrashIcon className="h-5"/> </div>
+                </div>)}
 
                   </div>
                   <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
