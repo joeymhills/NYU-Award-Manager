@@ -31,8 +31,34 @@ model accolade {
     imgurl4      String?   @db.VarChar(200)
 
     @@index([institution])
-    
+}
 
-    
+model accoladeBackup {
+    id           String    @id @default(cuid())
+    name         String?   @db.VarChar(255)
+    institution  String?   @db.VarChar(255)
+    outcome      String?   @db.VarChar(255)
+    extSource    String?   @db.VarChar(500)
+    intSource    String?   @db.VarChar(500)
+    messaging    String?   @db.VarChar(2500)
+    comments     String?   @db.VarChar(2500)
+    frequency    String?   @db.VarChar(500)
+    notifDate    String?   @db.VarChar(255)
+    cmcontact    String?   @db.VarChar(255)
+    sourceatr    String?   @db.VarChar(255)
+    wherepubint  String?   @db.VarChar(255)
+    promotionlim String?   @db.VarChar(500)
+    imgurl1      String?   @db.VarChar(200)
+    imgurl2      String?   @db.VarChar(200)
+    imgurl3      String?   @db.VarChar(200)
+    imgurl4      String?   @db.VarChar(200)
+    deletedAt    DateTime  @default(now())    
 
+    @@index([institution])
+}
+
+model users {
+  userId    String     @unique @db.VarChar(50)
+  name      String?    @unique @db.VarChar(50)
+  role      String?    @db.VarChar(50)
 }
