@@ -148,11 +148,11 @@ interface FormData {
                     <div className="w-96 h-54 z-80 p-5 m-12 bg-white fixed rounded-2xl">
                         <div className="flex flex-col justify-center items-center gap-3"> 
                             <div>
-                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?</p>
+                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?<span className="font-bentonreg">(This action cannot be undone)</span></p>
                             </div>
                             <div className="flex flex-row justify-center gap-2">
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setDeleteWindow(false)}}>Cancel</button>
-                                <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAccolade(id);setDeleteWindow(false); setShowDetail(false)}}>Delete</button>
+                                <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAccolade(id);setDeleteWindow(false)}}>Delete</button>
                             </div>
                         </div>
                     </div>

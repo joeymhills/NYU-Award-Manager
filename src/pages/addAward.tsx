@@ -11,36 +11,10 @@ import { TrashIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import Head from "next/head";
-import axios from "axios";
-import { useAuth, useUser } from "@clerk/nextjs";
 
 const addAward:NextPage = () => {
   
   const router = useRouter();
-  const [role, setRole] = useState('')
-  const { userId } = useAuth();
-  const { user, isLoaded } = useUser()
-
-
-  if(isLoaded){
-  (async () => {
-    axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/roleCheck`, {
-      userId
-    })
-    .then(res => {
-      const resdata = res.data
-      setRole(resdata.users.role)
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  })();
-  }
-
-const noPriv = () => {if(role == 'unassigned')
-  router.push('/unauthorized')
-}
-noPriv()
   
   interface FormData {
     institution: string,

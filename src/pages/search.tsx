@@ -12,9 +12,8 @@ import router from "next/router";
 import { Ring, Waveform } from "@uiball/loaders";
 import Dropdown from "~/components/Dropdown";
 import { useAtom } from "jotai";
-import { hospitalFilterAtom, showCardAtom, showDetailPage, showTableAtom } from "~/components/atoms";
+import { dropFilter, showDetailPage } from "~/components/atoms";
 import Head from "next/head";
-import HospitalFilter from "~/components/HospitalFilter";
 
 const fetchAccolades = async (url: string) => {
     const response = await fetch(url);
@@ -25,6 +24,7 @@ const fetchAccolades = async (url: string) => {
 
     return response.json();
 };
+
 
 const searchPage = () => {
 
@@ -37,10 +37,7 @@ const searchPage = () => {
 
 
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
-    const [filter,setFilter] = useAtom(hospitalFilterAtom)
-
-    const [showCard,setShowCard] = useAtom(showCardAtom)
-    const [showTable,setShowTable] = useAtom(showTableAtom)
+    const [filter,setFilter] = useAtom(dropFilter)
 
     
     // setting state for DetailView props
@@ -154,16 +151,9 @@ const searchPage = () => {
                 </p>
               </div>
             </div>
-          
-          <div className="flex flex-row justify-center itmes-center gap-2 py-4">
-            <button onClick={()=>{setShowCard(true);setShowTable(false)}} className={showCard ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-lg lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-lg lg:py-0 md:w-36 h-8 rounded-lg'}>Card View</button>
-            <button onClick={()=>{setShowCard(false);setShowTable(true)}} className={showTable ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-lg lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-lg lg:py-0 md:w-36 h-8 rounded-lg'}>Table View</button>
-          </div>
-          
-          <div className="flex flex-row justify-center items-center gap-5">
-            <HospitalFilter />
-          </div>
-
+          {/* <div className="flex flex-row justify-center items-center gap-5">
+            <Dropdown />
+          </div> */}
           <div className="w-full flex flex-col items-center justify-center">
             <div className="pt-5" aria-live="polite" aria-busy={isLoading}>
               {isLoading && <Ring 
@@ -174,8 +164,7 @@ const searchPage = () => {
               />}
             </div>
           </div>
-          
-        {showCard &&(
+
         <div className="w-full flex flex-col justify-center align-center">
           
           {noSearchResults()}
@@ -195,11 +184,11 @@ const searchPage = () => {
                 <div className="flex flex-row justify-between">
 
                   <div className="flex flex-col mt-4 md:text-lg lg:text-2xl truncate self-center"> 
-                    <div className="text-ellipsis">{id.name}</div>
+                    <div className="mr-40">{id.name}</div>
                   </div>
                 
 
-                  <div className="w-36 pl-5">
+                  <div>
                   {id.imgurl1 !== "" && (
                   <img src={id.imgurl1} className="py-2 h-20 md:h-24"/>)}
                   </div>
@@ -250,63 +239,10 @@ const searchPage = () => {
             </div>
             </motion.div>
             </>
-            )}
-            
-        </div>
-        )}
 
-        {showTable &&(
-        <div className="w-full flex flex-col justify-center align-center">
-        <table id="example" className="table-fixed border-collapse border border-slate-500 w-full truncate bg-white rounded-lg">
-          <thead>
-            <tr>
-              <th className="w-24 truncate">Name</th>
-              <th className="w-24 truncate">Institution/Departmnet</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Outcome</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Internal Source</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">External Source</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Comments</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Messaging</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Frequency</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Notification Date</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">C&M Contact</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Source Attribution</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Where Published Internally</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Promotion Limitation</th>
-              <th className="w-24 truncate border-collapse border border-slate-500">Img 1</th>
-
-            </tr>
-          </thead>
-          <tbody className="border-collapse border border-slate-500">
-          {data?.accolade.map(id => 
-            <>
-            {/* {()=>{const inst = id.institution;
-            const inst2 = inst.toLowerCase;
-            inst2.includes(filter) && (
-             */}
-                <tr className="border-collapse border border-slate-500">
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.name}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 h-36 w-16 pt-2 md:pt-4 text-md truncate">{id.institution}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-36 pt-2 md:pt-4 text-md truncate">{id.outcome}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.intSource}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.extSource}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.comments}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.messaging}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.frequency}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.notifDate}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.cmcontact}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.sourceatr}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.wherepubint}</td>
-                  <td className="font-bentonreg border-collapse border border-slate-500 w-16 pt-2 md:pt-4 text-md truncate">{id.promotionlim}</td>
-                  <td></td>
-                </tr>
-            </>
             )}
-          </tbody>
-          </table>
-            
+        
         </div>
-        )}
         
         </div>
         </div>

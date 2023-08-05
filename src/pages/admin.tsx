@@ -1,236 +1,15 @@
-import { SignOutButton, useAuth, useSession, useUser } from "@clerk/nextjs"
-import axios from "axios"
 import { motion } from "framer-motion"
 import { NextPage } from "next"
 import Head from "next/head"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import useSWR from "swr"
-import { accoladeBackup, users } from "@prisma/client";
-import Ring from "@uiball/loaders/dist/components/Ring"
+
 
 const admin:NextPage = () => {
 
-// const { data, isLoading } = useSWR<{ users: Array<users>}>(`${process.env.NEXT_PUBLIC_BASE_URL}/api/unassigned`,
-//   fetcher);
-
-
 const router = useRouter()
-
-// User Role Authentication
-const [role, setRole] = useState('')
-const { userId } = useAuth();
-const { user, isLoaded } = useUser();
-const [unassigned, setUnassigned] = useState<{ users: Array<users>}>();
-const [userArray, setUserArray] = useState<{ users: Array<users>}>();
-const [managerArray, setManagerArray] =  useState<{ users: Array<users>}>();
-const [adminArray, setAdminArray] =  useState<{ users: Array<users>}>();
-const [deletedAccolades, setDeletedAccolades] = useState<{ accoladeBackup: Array<accoladeBackup>}>();
-const [deleteWindow,setDeleteWindow] = useState(false);
-const [id,setId] = useState("id");
-const [oldRole, setOldRole] = useState("role")
-const [roleWindow, setRoleWindow] = useState(false)
-
-
-const unassignedRedirect = () => {if(role == 'unassigned')
-router.push('/unauthorized')
-}
-
-const userRedirect = () => {if(role == 'user')
-router.push('/')
-}
-
-const managerRedirect = () => {if(role == 'manager')
-router.push('/')
-}
-
-
-
-const redirect = () => {
-unassignedRedirect()
-userRedirect()
-managerRedirect()
-}
-
-useEffect(() => {
-  function checkRoles(){
-    if(isLoaded){
-    axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/roleCheck`, {
-      userId
-    })
-    .then(res => {
-      const resdata = res.data
-      setRole(resdata)
-      redirect()
-    })
-    .catch(function (error) {
-      console.log(error);
-    })}};
-  checkRoles();
-  },[]);
-
-function fetchDeleted(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deletedAccolades`)
-  .then(res => {
-    const resdata = res.data
-    setDeletedAccolades(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  fetchDeleted();
-  },[]);
-
-async function deleteAward() { 
-  try {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/permDelete`,{
-      body: JSON.stringify(id),
-      headers: { 'Content-Type': 'Application/json'},
-      method: 'POST'});
-      fetchDeleted();
-  }
-  catch (error) {
-      console.log('error in DELETE request()')
-  }
-}
-
-function getUnassigned() {
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/unassigned`)
-  .then(res => {
-    const resdata = res.data
-    setUnassigned(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);})
-}
-
-useEffect(() => {
-  getUnassigned();
-  },[]);
-
-function getUsers(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/user`)
-  .then(res => {
-    const resdata = res.data
-    setUserArray(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getUsers()
-  },[]);
-
-function getManagers(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/manager`)
-  .then(res => {
-    const resdata = res.data
-    setManagerArray(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getManagers();
-  },[]);
-
-function getAdmins(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/admin`)
-  .then(res => {
-    const resdata = res.data
-    setAdminArray(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getAdmins();
-  },[]);
-
-async function changeRole(roleId:string, oldRole:string, role:string) {
-  axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/changeRole`, {
-    roleId,role
-  })
-  .then(res => {
-    console.log('log from admin page', res.data)
-    if(role == 'unassigned' || oldRole == 'unassigned'){
-    getUnassigned()
-    }
-    if(role == 'user' || oldRole == 'user'){
-    getUsers()
-    }
-    if (role == 'manager' ||oldRole == 'manager') {
-    getManagers()
-    }
-    if(role == 'admin' || oldRole == 'admin'){
-    getAdmins()
-    }
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-function undoDelete(undoId: string){
-  if(isLoaded){
-  axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/undoDelete`, {
-    undoId
-  })
-  .then(res => {
-    console.log(res.data)
-    fetchDeleted()
-  })
-  .catch(function (error) {
-    console.log(error);
-  })}};
-
+    
 return(
 <>
-
-        {deleteWindow &&(
-                <motion.div className="flex fixed top-0 right-0 z-50 min-h-screen bg-black/50 w-screen flex-col items-center">
-                    <div className="w-96 h-54 z-80 p-5 m-12 bg-white fixed rounded-2xl">
-                        <div className="flex flex-col justify-center items-center gap-3"> 
-                            <div>
-                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?<span className="font-bentonreg">(This action cannot be undone)</span></p>
-                            </div>
-                            <div className="flex flex-row justify-center gap-2">
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setDeleteWindow(false)}}>Cancel</button>
-                                <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAward(); setDeleteWindow(false)}}>Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-              )}
-        {roleWindow &&(
-                <motion.div className="flex fixed top-0 right-0 z-50 min-h-screen bg-black/50 w-screen flex-col items-center">
-                    <div className="w-96 h-54 z-80 p-5 m-12 bg-white fixed rounded-2xl">
-                        <div className="flex flex-col justify-center items-center gap-3"> 
-                            <div>
-                              <p>Which role would you like to assign?</p>
-                            </div>
-                            <div className="flex flex-col justify-center gap-2">
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'unassigned')}}>Unassigned</button>
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'user')}}>User</button>
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'manager')}}>Manager</button>
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id, oldRole, 'admin')}}>Admin</button>
-                                <button className="bg-white mt-5 border-2 border-black rounded-2xl text-black h-8 w-32" onClick={()=>{setRoleWindow(false)}}>Cancel</button>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-              )}
       <Head>
         <title>Awards</title>
         <meta name="description" content="Generated by create-t3-app" />
@@ -241,7 +20,6 @@ return(
       <div className="flex flex-row gap-2 sm:gap-4 p-3">
         <button type="button" onClick = {() => router.push("/addAward")} className="text-white hover:text-[#f5b246] duration-500 font-bentonreg py-1 text-sm sm:text-lg sm:py-2">Add Award</button>
         <button type="button" onClick = {() => router.push("/admin")} className="text-white hover:text-[#f5b246] duration-500 font-bentonreg py-1 text-sm sm:text-lg sm:py-2">Admin Page</button>
-        <button type="button" className="text-white hover:text-[#f5b246] duration-500 font-bentonreg py-1 text-sm sm:text-lg sm:py-2"><SignOutButton/></button>
         </div>
     </div>
 
@@ -256,138 +34,22 @@ return(
             <path d="M87.296,33.292 C87.368,33.299 87.436,33.3 87.505,33.299 L89.192,33.445 C91.271,33.593 91.372,33.888 91.372,34.397 C91.372,35.051 90.488,35.474 89.12,35.474 C87.197,35.474 86.802,35.002 86.802,34.294 C86.802,33.927 86.973,33.583 87.296,33.292 Z M89.015,24.023 C90.116,24.023 90.347,25.02 90.347,25.857 C90.347,27.036 89.862,27.712 89.015,27.712 C87.856,27.712 87.683,26.55 87.683,25.857 C87.683,25.172 87.856,24.023 89.015,24.023 Z M83.798,34.833 C83.798,36.661 85.297,37.371 88.659,37.371 C92.184,37.371 94.462,36.077 94.462,33.912 C94.462,31.774 93.137,30.921 89.739,30.691 L88.3,30.622 C87.465,30.533 87.432,30.344 87.432,30.146 C87.432,30.072 87.453,29.959 87.616,29.813 C88.049,29.914 88.512,29.965 88.994,29.965 C91.773,29.965 93.5,28.359 93.5,25.774 C93.5,25.378 93.434,24.975 93.301,24.546 C93.874,24.442 94.371,24.442 94.622,24.442 L94.796,24.442 L94.796,21.52 L94.603,21.541 C93.796,21.629 92.823,22.06 92.176,22.609 C91.402,21.923 90.305,21.561 88.994,21.561 C86.207,21.561 84.405,23.215 84.405,25.774 C84.405,27.119 84.93,28.266 85.891,29.031 C85.096,29.612 84.593,30.424 84.593,31.15 C84.593,31.726 84.84,32.215 85.311,32.578 C84.294,33.165 83.798,33.904 83.798,34.833 Z M51.77,44.111 L46.797,44.111 L46.797,38.179 L43.268,38.179 L43.268,53.77 L46.797,53.77 L46.797,47.095 L51.77,47.095 L51.77,53.77 L55.298,53.77 L55.298,38.179 L51.77,38.179 L51.77,44.111 Z M79.199,53.77 L82.644,53.77 L82.644,39.307 L79.199,39.765 L79.199,53.77 Z M73.737,50.403 C73.173,50.921 72.571,51.182 71.944,51.182 C71.382,51.182 71.073,50.85 71.073,50.248 C71.073,49.592 71.381,48.775 73.737,48.227 L73.737,50.403 Z M77.078,50.876 L77.078,45.918 C77.078,43.272 75.898,42.04 73.367,42.04 C71.364,42.04 69.573,42.676 68.189,43.882 L68.066,43.989 L69.671,46.096 L69.809,45.995 C70.407,45.554 71.588,44.815 72.781,44.815 C73.469,44.815 73.737,45.125 73.737,45.918 L73.737,46.232 C69.697,46.993 67.732,48.492 67.732,50.813 C67.732,52.772 68.787,53.895 70.627,53.895 C71.885,53.895 72.912,53.453 73.753,52.546 C73.786,53.028 73.871,53.369 73.953,53.646 L73.991,53.77 L77.425,53.77 L77.338,53.535 C77.151,53.028 77.078,52.282 77.078,50.876 Z M67.581,29.924 C67.018,30.442 66.415,30.704 65.789,30.704 C65.226,30.704 64.917,30.372 64.917,29.77 C64.917,29.113 65.226,28.297 67.581,27.748 L67.581,29.924 Z M67.835,33.292 L71.27,33.292 L71.182,33.056 C70.995,32.549 70.921,31.803 70.921,30.397 L70.921,25.439 C70.921,22.793 69.743,21.561 67.212,21.561 C65.208,21.561 63.417,22.198 62.034,23.403 L61.911,23.51 L63.515,25.618 L63.654,25.516 C64.252,25.076 65.432,24.337 66.626,24.337 C67.313,24.337 67.581,24.646 67.581,25.439 L67.581,25.754 C63.541,26.515 61.576,28.014 61.576,30.335 C61.576,32.294 62.631,33.417 64.47,33.417 C65.729,33.417 66.756,32.974 67.596,32.067 C67.63,32.549 67.714,32.89 67.797,33.167 L67.835,33.292 Z M79.771,21.561 C78.414,21.561 77.294,22.28 76.619,23.02 L76.619,21.791 L73.173,21.791 L73.173,33.292 L76.619,33.292 L76.619,25.432 C77.288,24.83 77.883,24.525 78.39,24.525 C78.822,24.525 79.22,24.661 79.22,25.648 L79.22,33.292 L82.644,33.292 L82.644,24.665 C82.644,22.634 81.651,21.561 79.771,21.561 Z M88.976,38.465 L85.552,38.921 L85.552,42.27 L83.963,42.27 L83.963,44.899 L85.552,44.899 L85.552,50.813 C85.552,53.089 86.485,53.895 89.116,53.895 C89.813,53.895 90.847,53.815 91.091,53.742 L91.215,53.705 L91.215,51.092 L90.972,51.197 C90.859,51.246 90.425,51.308 90.121,51.308 C89.179,51.308 88.976,51.083 88.976,50.039 L88.976,44.899 L91.362,44.899 L91.362,42.27 L88.976,42.27 L88.976,38.465 Z M113.596,21.561 C112.238,21.561 111.119,22.28 110.444,23.02 L110.444,21.791 L106.999,21.791 L106.999,33.292 L110.444,33.292 L110.444,25.432 C111.112,24.83 111.708,24.525 112.215,24.525 C112.646,24.525 113.045,24.661 113.045,25.648 L113.045,33.292 L116.469,33.292 L116.469,24.665 C116.469,22.634 115.475,21.561 113.596,21.561 Z M122.952,24.274 C123.278,24.274 124.253,24.274 124.438,26.373 L121.389,26.373 C121.557,25.017 122.108,24.274 122.952,24.274 Z M125.544,29.344 L125.44,29.509 C125.027,30.168 124.216,30.872 123.182,30.872 C122.084,30.872 121.487,30.089 121.36,28.479 L127.603,28.479 L127.603,27.74 C127.603,23.813 125.908,21.561 122.952,21.561 C120.652,21.561 117.965,23.13 117.965,27.552 C117.965,31.29 119.861,33.521 123.036,33.521 C124.962,33.521 126.433,32.744 127.531,31.144 L127.623,31.011 L125.544,29.344 Z M99.484,42.04 C98.127,42.04 97.006,42.758 96.332,43.499 L96.332,37.486 L92.887,37.946 L92.887,53.77 L96.332,53.77 L96.332,45.911 C97.001,45.309 97.596,45.004 98.104,45.004 C98.535,45.004 98.933,45.139 98.933,46.127 L98.933,53.77 L102.358,53.77 L102.358,45.143 C102.358,43.113 101.364,42.04 99.484,42.04 Z M100.287,30.808 C99.58,30.808 98.64,30.471 98.64,27.552 C98.64,25.342 99.148,24.358 100.287,24.358 C100.993,24.358 101.932,24.689 101.932,27.552 C101.932,29.804 101.425,30.808 100.287,30.808 Z M100.287,21.561 C98.861,21.561 97.636,22.042 96.747,22.953 C95.717,24.006 95.196,25.552 95.196,27.552 C95.196,31.953 97.826,33.521 100.287,33.521 C102.748,33.521 105.378,31.953 105.378,27.552 C105.378,25.555 104.853,24.007 103.819,22.952 C102.926,22.042 101.705,21.561 100.287,21.561 Z M61.929,44.753 C62.255,44.753 63.229,44.753 63.415,46.852 L60.366,46.852 C60.534,45.496 61.085,44.753 61.929,44.753 Z M64.418,49.988 C64.004,50.646 63.193,51.35 62.159,51.35 C61.061,51.35 60.463,50.567 60.337,48.958 L66.581,48.958 L66.581,48.218 C66.581,44.292 64.884,42.04 61.929,42.04 C59.629,42.04 56.942,43.609 56.942,48.03 C56.942,51.768 58.838,54 62.012,54 C63.939,54 65.41,53.222 66.508,51.623 L66.599,51.49 L64.521,49.822 L64.418,49.988 Z M46.797,27.74 L46.797,17.46 L43.415,17.46 L43.415,27.593 C43.415,29.669 42.829,30.515 41.392,30.515 C39.937,30.515 39.37,29.691 39.37,27.573 L39.37,17.46 L35.841,17.46 L35.841,27.761 C35.841,31.597 37.694,33.543 41.35,33.543 C45.015,33.543 46.797,31.644 46.797,27.74 Z M18.105,26.559 C16.986,24.326 13.467,17.858 13.3,17.551 L13.25,17.46 L9.688,17.46 L9.688,33.292 L12.923,33.292 L12.923,23.953 C14.075,26.14 17.884,32.882 18.065,33.203 L18.115,33.292 L21.341,33.292 L21.341,17.46 L18.105,17.46 L18.105,26.559 Z M60.118,30.328 L55.348,30.328 L55.348,17.46 L51.819,17.46 L51.819,33.292 L60.118,33.292 L60.118,30.328 Z M30.401,33.292 L30.401,27.068 L34.873,17.46 L31.388,17.46 L28.72,23.764 L26.053,17.46 L22.422,17.46 L26.873,27.088 L26.873,33.292 L30.401,33.292 L30.401,33.292 Z" id="Fill-4"></path>
           </svg>
         </div>
+
+        <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5 }}
+            animate={{ opacity: 1 }}>
+          <h1 className="py-5 text-4xl font-bentonbold text-[#541A83]
+           lg:text-8xl 
+           md:text-7xl 
+           sm:text-6xl">
+            Under Construction<span className="font-bentonreg"><br/>Coming soon...</span>
+          </h1>
+          </motion.div>
+
         </div>
- 
-
-          
-      {role == 'placeholder' &&(
-      <div className="w-full flex flex-row justify-center items-center">
-        <Ring 
-              size={80}
-              lineWeight={5}
-              speed={2} 
-              color="white" 
-              />
-      </div>
-      )}
-
-      <div className="w-full flex flex-col py-8 justify-center items-center px-12">
-
-      <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Unassigned Users</h1>
-        <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Role</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-        {unassigned?.userList.map(userId =>
-            <tr>
-              <td>{userId.name}</td>
-              <td>{userId.role}</td>
-              <td><a onClick={() => {setId(userId); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
-            </tr>
-          )}
-        </tbody>
-        </table>
-      </div>
-
-    <div className="flex flex-col justify-center items-center pb-5">
-      <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
-      <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Role</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-        {userArray?.userList.map(userId =>
-            <tr>
-              <td>{userId.name}</td>
-              <td>{userId.role}</td>
-              <td><a onClick={() => {setId(userId); setOldRole('user'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
-            </tr>
-          )}
-        </tbody>
-        </table>
-        </div>
-
-      <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
-        <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Role</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-        {managerArray?.userList.map(userId =>
-            <tr>
-              <td>{userId.name}</td>
-              <td>{userId.role}</td>
-              <td><a onClick={() => {setId(userId); setOldRole('manager'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
-            </tr>
-          )}
-        </tbody>
-        </table>
-      </div>
-
-    <div className="flex flex-col justify-center items-center pb-5">
-      <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
-      <table className="table-auto w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Role</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        {adminArray?.userList.map(userId =>
-            <tr>
-              <td>{userId.name}</td>
-              <td>{userId.role}</td>
-              <td><a onClick={() => {setId(userId); setOldRole('admin'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
-            </tr>
-          )}
-        </tbody>
-        </table>
-      </div>
-
-      <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Accolades</h1>
-        <table className="table-auto w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th>Award Name</th>
-            <th>Deleted At</th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-        {deletedAccolades?.accolades.map(id =>
-            <tr>
-              <td>{id.name}</td>
-              <td>{id.deletedAt}</td>
-              <td><button className="bg-[#541A83] rounded-2xl text-white h-9 w-32" onClick={()=>{undoDelete(id.id)}}>Restore</button></td>
-              <td><button className="bg-red-500 w-36 h-9 text-white font-bentonreg rounded-2xl"onClick={() => {setId(id.id); setDeleteWindow(true)}}>Delete</button></td>
-            </tr>
-          )}
-        </tbody>
-        </table>
-      </div>
-      
-      </div>
-      </main>
-      </>
+        </main>
+        </>
 )}
 
 export default admin
