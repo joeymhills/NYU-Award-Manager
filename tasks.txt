@@ -33,11 +33,16 @@
 STUFF TO DO: {
     
     BACKEND/API {
+    - explore middleware
     - dropdown for common institutions in accolade box
-    - user tiers
+    - change from id "state" from api requests
+    - user tiers(4 tiers: Admin: can manage users + more, manager: can edit/delete + more, user: can view,
+    unassigned: has no privelidges and must wait for admin to give them role)
     - filtering and sorting
+    - alterntive table view (that you can print)
+    - add date and time to table(so they can filter by recent additions/ changes)
+    - add WHO created an accolade and who changed/deleted
     - error handling
-    - rollback ability for changes (im thinking about getting data from main table, deleting it, and moving it the backup table)
     -fix all TS errors (change build command back to default)
     -remove detail view atom(persists after leaving page and shows empty detail window)
     }

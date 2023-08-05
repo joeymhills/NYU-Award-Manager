@@ -5,21 +5,19 @@ import prisma from "../../../prisma/client"
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
     if (req.method === "POST") {
-        console.log("req is: ", req.body)
         
             try {
                 
-                const response = await prisma.accolade.findUnique({
+                const response = await prisma.accoladeBackup.findUnique({
                 where: {
-                    id: req.body
+                    id: req.body.undoId
                 }})
-                res.status(200).json({response})
 
                 const {id, name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
                 cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = response
 
                 
-                await prisma.accoladeBackup.create({
+                await prisma.accolade.create({
                     data: {
                         institution, name, comments, outcome, extSource,
                         intSource, messaging, frequency, notifDate, cmcontact,
@@ -27,10 +25,11 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
                         imgurl3, imgurl4
                 }})
 
-                await prisma.accolade.delete({
+                await prisma.accoladeBackup.delete({
                     where: {
                         id: id
                 }})
+                res.status(200).json({message: 'delete successful'})
 
             } catch {
                 res.status(500).json({message: 'error in findUnique'})        
