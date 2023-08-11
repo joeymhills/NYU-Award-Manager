@@ -23,6 +23,8 @@ const config = {
 },
 experimental: {
   esmExternals: false, // THIS IS THE FLAG THAT MATTERS
+  appDir: true,
+  serverComponentsExternalPackages: ['@prisma/client', 'bcrypt']
 },
 };
 export default config;

@@ -8,6 +8,7 @@ datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
   relationMode = "prisma"
+  directUrl = env("DIRECT_URL")
 }
 
 model accolade {
@@ -59,6 +60,14 @@ model accoladeBackup {
 
 model users {
   userId    String     @unique @db.VarChar(50)
-  name      String?    @unique @db.VarChar(50)
+  name      String     @unique @db.VarChar(50)
   role      String?    @db.VarChar(50)
+}
+
+model user {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+  role     String?
 }
