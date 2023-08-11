@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ accolade })
     }   
     catch (error) {}
-    return NextResponse.json({query}, {status: 500})
+    return NextResponse.json({search}, {status: 500})
     }
 
 
