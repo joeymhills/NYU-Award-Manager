@@ -23,7 +23,7 @@ interface create {
     imgurl4:string
 }
 
-export async function POST(req:NextApiRequest) {
+export async function POST(req:NextRequest) {
 
     const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
         cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = req.body
