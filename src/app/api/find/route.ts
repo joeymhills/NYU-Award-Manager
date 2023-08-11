@@ -1,21 +1,20 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest, res: NextResponse) {
     if (req.method === "POST") {
         try {
-            const payload = req.body.id
-
+            const { id } = await req.json();
             const accolade = await prisma.accolade.findUnique({
                 where: {
-                  id: payload
+                  id
                 },
               })
     
-    res.status(200).json({ accolade })}
-    
+        return NextResponse.json({ accolade })  
+            }  
     catch (error) {
-        res.status(500).end();
+        return NextResponse.json({}, {status: 500})
     }
     }
 }
