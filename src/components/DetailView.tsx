@@ -129,15 +129,15 @@ interface FormData {
         
       async function deleteAccolade(id: string) { 
         try {
-          await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete`,{
+          await fetch("/api/delete",{
             body: id,
             headers: { 'Content-Type': 'Application/json'},
             method: 'POST'});
-            notifyDelete()
         }
         catch (error) {
             console.log('error in DELETE request()')
         }
+        notifyDelete()
     }
 
       return (
