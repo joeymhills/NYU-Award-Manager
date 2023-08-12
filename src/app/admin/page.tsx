@@ -284,7 +284,6 @@ return(
         <thead>
           <tr>
             <th>Email</th>
-            <th>Role</th>
             <th> </th>
           </tr>
         </thead>
@@ -292,7 +291,6 @@ return(
         {unassigned.userList?.map(id =>
             <tr>
               <td>{id.email}</td>
-              <td>{id.role}</td>
               <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -307,7 +305,6 @@ return(
         <thead>
           <tr>
             <th>Email</th>
-            <th>Role</th>
             <th> </th>
           </tr>
         </thead>
@@ -315,7 +312,6 @@ return(
         {userArray.userList?.map(id =>
             <tr>
               <td>{id.email}</td>
-              <td>{id.role}</td>
               <td><a onClick={() => {setId(id); setOldRole('user'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -330,7 +326,6 @@ return(
         <thead>
           <tr>
             <th>Email</th>
-            <th>Role</th>
             <th> </th>
           </tr>
         </thead>
@@ -338,7 +333,6 @@ return(
         {managerArray.userList?.map(id =>
             <tr>
               <td>{id.email}</td>
-              <td>{id.role}</td>
               <td><a onClick={() => {setId(id); setOldRole('manager'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -353,7 +347,6 @@ return(
         <thead>
           <tr>
             <th>Email</th>
-            <th>Role</th>
             <th></th>
             <th></th>
           </tr>
@@ -362,7 +355,6 @@ return(
         {adminArray.userList?.map(id =>
             <tr>
               <td>{id.email}</td>
-              <td>{id.role}</td>
               <td><a onClick={() => {setId(id); setOldRole('admin'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -377,7 +369,6 @@ return(
         <thead>
           <tr>
             <th>Award Name</th>
-            <th>Deleted At</th>
             <th> </th>
           </tr>
         </thead>
@@ -385,7 +376,7 @@ return(
         {deletedAccolades?.map(id =>
             <tr>
               <td>{id.name}</td>
-              <td>{id.deletedAt}</td>
+              {/* <td>{id.deletedAt}</td> use this in the future for sorting */}
               <td><button className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32" onClick={()=>{undoDelete(id.id)}}>Restore</button></td>
               <td><button className="bg-white border-2 px-3 border-red-500 rounded-3xl hover:cursor-pointer text-red-500 h-9 w-32"onClick={() => {setId(id.id); setDeleteWindow(true)}}>Delete</button></td>
             </tr>
