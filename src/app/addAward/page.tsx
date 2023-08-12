@@ -72,7 +72,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
   async function create(data: FormData) { 
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/create`,{
+      await fetch("/api/create",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'POST'});
