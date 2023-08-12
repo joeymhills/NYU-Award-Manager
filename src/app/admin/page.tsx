@@ -300,7 +300,7 @@ return(
         )}
 
     <div>
-      <div className="w-full flex flex-col py-8 justify-center items-center">
+      <div className="w-full flex flex-col pt-2 justify-center items-center">
       {unassignedLoading && (
       <div className="w-full flex flex-row justify-center items-center">
         <Ring 
@@ -320,11 +320,11 @@ return(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-3xl font-bentonbold py-2">Unauthorized Users</h1>
         <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">These users have signed up, but are not authorized to use this app</p>
-        <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+        <table className="table-fixed w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {unassigned.userList?.map(id =>
             <tr>
-              <td>{id.email}</td>
+              <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -337,12 +337,12 @@ return(
     {showUser &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
-      <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">"Users" are allowed to view awards, but not create, edit, or delete awards</p>
+      <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">Users are allowed to view awards, but not create, edit, or delete awards</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {userArray.userList?.map(id =>
             <tr>
-              <td>{id.email}</td>
+              <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('user'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -353,12 +353,12 @@ return(
         {showManager &&(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
-        <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">"Managers" are allowed to view, create, edit, and delete awards</p>
+        <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Managers are allowed to view, create, edit, and delete awards</p>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {managerArray.userList?.map(id =>
             <tr>
-              <td>{id.email}</td>
+              <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('manager'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -369,12 +369,12 @@ return(
     {showAdmin &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
-      <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">"Admins" are allowed to view, create, edit, and delete awards. Admins are also allowed access to the Admin Dashboard where they can manage users and reinstate previously deleted awards</p>
+      <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Admins are allowed all read/write privledges as well as access to the Admin Dashboard</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {adminArray.userList?.map(id =>
             <tr>
-              <td>{id.email}</td>
+              <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('admin'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
@@ -394,10 +394,10 @@ return(
         <tbody>
         {deletedAccolades?.map(id =>
             <tr>
-              <td>{id.name}</td>
+              <td className="w-96">{id.name}</td>
               {/* <td>{id.deletedAt}</td> use this in the future for sorting */}
               <td>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2">
               <button className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32" onClick={()=>{undoDelete(id.id)}}>Restore</button>
               <button className="bg-white border-2 px-3 border-red-500 rounded-3xl hover:cursor-pointer text-red-500 h-9 w-32"onClick={() => {setId(id.id); setDeleteWindow(true)}}>Delete</button>
               </div>
