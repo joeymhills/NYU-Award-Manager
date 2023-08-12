@@ -26,7 +26,9 @@ const searchPage = () => {
 
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
     const [filter,setFilter] = useAtom(dropFilter)
-
+    useEffect(()=> {
+        setShowDetail(false)
+      },[])
     
     // setting state for DetailView props
     

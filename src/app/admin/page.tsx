@@ -264,8 +264,10 @@ return(
             <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(true);setShowDeleted(false)}} className={showAdmin ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Admin</button>
             <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(true)}} className={showDeleted ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Deleted Awards</button>
           </div>
-          
-      {/* {roleChecked == "loading" && (
+
+    <div>
+      <div className="w-full flex flex-col py-8 justify-center items-center">
+      {unassignedLoading && (
       <div className="w-full flex flex-row justify-center items-center">
         <Ring 
               size={80}
@@ -274,13 +276,9 @@ return(
               color="white" 
               />
       </div>
-      )} */}
-
-    <div>
-      <div className="w-full flex flex-col py-8 justify-center items-center">
+      )}
       {showUnassigned && !unassignedLoading &&(
-      <motion.div
-      initial={{ opacity: 0 }}
+      <motion.div      initial={{ opacity: 0 }}
       transition={{ duration: .5 }}
       animate={{ opacity: 1 }}>
       <div className="flex flex-col justify-center items-center pb-5">

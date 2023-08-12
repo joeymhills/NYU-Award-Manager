@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { NextApiResponse } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { UploadButton } from "~/utils/uploadthing";
@@ -49,14 +49,13 @@ interface FormData {
   id: string
 }
 
-    const DetailView: React.FC<Props> = (
+  const DetailView: React.FC<Props> = (
 
     {id,name,institution,outcome,extSource,intSource,messaging, 
     comments,frequency,notifDate,cmcontact,sourceatr,wherepubint,promotionlim,imgurl}) => {
 
       const [editPage,setEditPage] = useState(1)
       const router = useRouter()
-
 
       const nextEditPage = () => {
         if (editPage < 4) {
@@ -76,7 +75,6 @@ interface FormData {
       const [deleteWindow,setDeleteWindow] = useState(false)
       const [editWindow, setEditWindow] = useState(false)
       const [showDetail,setShowDetail] = useAtom(showDetailPage)
-
 
       const [form, setForm] = useState<FormData>({id: id, institution: institution, name: name, comments: comments, outcome: outcome, intSource: intSource, extSource: extSource,
       messaging: messaging, frequency: frequency, notifDate: notifDate, cmcontact: cmcontact, sourceatr: sourceatr, wherepubint: wherepubint, promotionlim: promotionlim, imgurl:imgurl})
