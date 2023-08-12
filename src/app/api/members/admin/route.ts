@@ -1,4 +1,4 @@
-
+import prisma from "../../../../../prisma/client"
 export async function GET() {
 
   const userList = await prisma.user.findMany({
