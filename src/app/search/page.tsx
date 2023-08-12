@@ -1,5 +1,4 @@
 "use client";
-// @ts-nocheck
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { accolade, users } from "@prisma/client";
@@ -21,7 +20,6 @@ import axios from "axios";
 
 const searchPage = () => {
 
-    const router = useRouter()
     const search = useSearchParams();
     const searchQuery = search ? search.get("q"): null;
     console.log(searchQuery)
@@ -90,6 +88,7 @@ const searchPage = () => {
       setRole(session.user.role)
     }
   })
+  const router = useRouter();
 
     return(
     <>

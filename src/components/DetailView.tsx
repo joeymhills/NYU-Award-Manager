@@ -1,3 +1,5 @@
+"use client"
+
 import { AnimatePresence, motion } from "framer-motion";
 import { NextApiResponse } from "next";
 import Link from "next/link";
@@ -9,7 +11,7 @@ import "@uploadthing/react/styles.css";
 import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { useAtom } from "jotai";
 import { showDetailPage } from "./atoms";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface Props {
 id:string,
@@ -128,7 +130,7 @@ interface FormData {
       async function deleteAccolade(id: string) { 
         try {
           await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete`,{
-            body: JSON.stringify(id),
+            body: id,
             headers: { 'Content-Type': 'Application/json'},
             method: 'POST'});
             notifyDelete()
@@ -148,7 +150,7 @@ interface FormData {
                     <div className="w-96 h-54 z-80 p-5 m-12 bg-white fixed rounded-2xl">
                         <div className="flex flex-col justify-center items-center gap-3"> 
                             <div>
-                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?<span className="font-bentonreg">(This action cannot be undone)</span></p>
+                                <p className="text-center font-bentonbold">Are you sure you want to delete this entry?</p>
                             </div>
                             <div className="flex flex-row justify-center gap-2">
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setDeleteWindow(false)}}>Cancel</button>

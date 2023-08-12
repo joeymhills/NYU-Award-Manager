@@ -153,7 +153,7 @@ useEffect(() => {
 
 async function changeRole(roleId:string, oldRole:string, role:string) {
   axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/changeRole`, {
-    roleId,role
+    id: roleId,role
   })
   .then(res => {
     console.log('log from admin page', res.data)
@@ -181,7 +181,7 @@ function undoDelete(undoId: string){
     undoId
   })
   .then(res => {
-    console.log(res.data)
+    const fake = res.data
     fetchDeleted()
   })
   .catch(function (error) {
@@ -280,7 +280,7 @@ return(
       {showUnassigned &&(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Unassigned Users</h1>
-        <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+        <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
             <th>Email</th>
@@ -303,7 +303,7 @@ return(
     {showUser &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
-      <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+      <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
             <th>Email</th>
@@ -326,7 +326,7 @@ return(
         {showManager &&(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
-        <table className="table-fixed w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+        <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
             <th>Email</th>
@@ -349,7 +349,7 @@ return(
     {showAdmin &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
-      <table className="table-auto w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+      <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
             <th>Email</th>
@@ -373,7 +373,7 @@ return(
       {showDeleted &&(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Accolades</h1>
-        <table className="table-auto w-200 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+        <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
             <th>Award Name</th>

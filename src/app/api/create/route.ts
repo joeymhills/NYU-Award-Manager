@@ -27,7 +27,7 @@ interface create {
 export async function POST(req:NextRequest) {
 
     const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = req.json()
+        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = await req.json()
 
     try {
         await prisma.accolade.create({

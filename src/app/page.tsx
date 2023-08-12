@@ -1,5 +1,4 @@
 "use client"
-// @ts-nocheck
 
 import { cookies } from 'next/headers'
 import Image from "next/image";
@@ -19,7 +18,6 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation"
 import { LogoutButton } from './auth';
-import { withRouter } from 'next/router';
 
 export default function Home() {
 
@@ -116,42 +114,42 @@ return(
           </div>
 
             <div> 
-          <div className="grid grid-cols-2 md:grid-cols-3 max-w-5xl gap-10 pb-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 max-w-3xl gap-8 pb-16">
             <button type="button" className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid1} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
+              <Image src={grid1} onClick={()=>{router.push("search?q=tisch")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
             </button>
-              <button type="button" className="flex flex-col items-center justify-center gap-4 ">
+              <button type="button" onClick={()=>{router.push("search?q=nyu")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid2} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white text-xs lg:text-lg h-5 font-bentonbold">Institution Wide Accolades</p>
+              <p className="text-white text-xs lg:text-lg h-10 font-bentonbold">Institution Wide Accolades</p>
               </button>
-            <button type="button" className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{router.push("search?q=Brooklyn")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid3} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
+              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
             </button>
             <button type="button" onClick = {() => router.push("/search?q=Rusk")} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid4} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
+              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
             </button>
-            <button type="button"  className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{router.push("search?q=Orthopedic")}}  className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid5} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
+              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
-            <button type="button" className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{router.push("search?q=long%20island")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid6} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
+              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
             </button>
-            <button type="button" className="flex flex-col items-center justify-center gap-4">
+            <button type="button" onClick={()=>{router.push("search?q=medical%20education")}} className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid7} className="w-80 shadow-lg rounded-2xl" alt={""} />
-                <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Medical Education</p>
+                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Medical Education</p>
             </button>
-              <button type="button" className="flex flex-col items-center justify-center gap-4">
+              <button type="button" onClick={()=>{router.push("search?q=nursing")}} className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid8} className="w-80 rounded-2xl" alt={""} />
-                <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Nursing</p>
+                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Nursing</p>
               </button>
-              <button type="button" className="flex flex-col items-center justify-center gap-4">
+              <button type="button" onClick={()=>{router.push("search?q=research")}}className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid9} className="w-80 rounded-2xl" alt={""} />
-                <p className="text-white h-5 text-xs lg:text-lg font-bentonbold">Research</p>
+                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Research</p>
               </button>
             </div>
             </div>
