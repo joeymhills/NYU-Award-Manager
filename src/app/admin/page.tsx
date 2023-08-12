@@ -369,7 +369,7 @@ return(
     {showAdmin &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
-      <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Admins are allowed all read/write privledges as well as access to the Admin Dashboard</p>
+      <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Admins are allowed all read/write privileges as well as access to the Admin Dashboard</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {adminArray.userList?.map(id =>
