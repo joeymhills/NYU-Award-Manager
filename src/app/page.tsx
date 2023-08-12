@@ -80,7 +80,7 @@ return(
             initial={{ opacity: 0 }}
             transition={{ duration: .5, delay: .2 }}
             animate={{ opacity: 1 }}>
-              <p className="text-center">
+              <p className="text-center pb-7">
               This internal tool offers quick access to review accolades and awards given to NYU from independent organizations.
               </p>
             </motion.div>
@@ -102,7 +102,7 @@ return(
             lg:max-w-2xl 
             md:max-w-xl
             sm:max-w-lg">
-            <div className="flex flex-row gap-1">
+            <div className="flex flex-row gap-1 pb-9">
               <SearchInput />
             </div>
           </div>
@@ -111,13 +111,7 @@ return(
 
           <div>
           <div>
-            <div className=" text-white max-w-xs text-sm pt-12 pb-4 font-bentonbold 
-            lg:text-3xl lg:max-w-2xl 
-            md:text-xl md:max-w-xl
-            sm:text-md sm:max-w-lg
-            ">
 
-            </div>
           </div>
           </div>
 
@@ -128,41 +122,41 @@ return(
             transition={{ duration: .5, delay: .4 }}
             animate={{ opacity: 1 }}>
           <div className="grid grid-cols-2 md:grid-cols-3 max-w-3xl gap-8 pb-16">
-            <button type="button" className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid1} onClick={()=>{router.push("search?q=tisch")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
-            </button>
-              <button type="button" onClick={()=>{router.push("search?q=nyu")}} className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid2} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white text-xs lg:text-lg h-10 font-bentonbold">Institution Wide Accolades</p>
-              </button>
-            <button type="button" onClick={()=>{router.push("search?q=Brooklyn")}} className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid3} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
-            </button>
-            <button type="button" onClick = {() => router.push("/search?q=Rusk")} className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid4} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
+          <button type="button" onClick={()=>{router.push("search?q=long%20island")}} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid6} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
             </button>
             <button type="button" onClick={()=>{router.push("search?q=Orthopedic")}}  className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid5} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
+              <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
-            <button type="button" onClick={()=>{router.push("search?q=long%20island")}} className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid6} className="w-80 shadow-lg rounded-2xl" alt={""} />
-              <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
+            <button type="button" onClick={()=>{router.push("search?q=Brooklyn")}} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid3} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
+            </button>
+            <button type="button" onClick = {() => router.push("/search?q=Rusk")} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid4} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
+            </button>
+            <button type="button" onClick={()=>{router.push("search?q=nyu")}} className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid2} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white text-xs mb-6 lg:text-lg h-8 font-bentonbold">Institution Wide Accolades</p>
+              </button>
+            <button type="button" className="flex flex-col items-center justify-center gap-4 ">
+              <Image src={grid1} onClick={()=>{router.push("search?q=tisch")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <p className="text-white h-8 mb-6 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
             </button>
             <button type="button" onClick={()=>{router.push("search?q=medical%20education")}} className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid7} className="w-80 shadow-lg rounded-2xl" alt={""} />
-                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Medical Education</p>
+                <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Medical Education</p>
             </button>
               <button type="button" onClick={()=>{router.push("search?q=nursing")}} className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid8} className="w-80 rounded-2xl" alt={""} />
-                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Nursing</p>
+                <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Nursing</p>
               </button>
               <button type="button" onClick={()=>{router.push("search?q=research")}}className="flex flex-col items-center justify-center gap-4">
                 <Image src={grid9} className="w-80 rounded-2xl" alt={""} />
-                <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Research</p>
+                <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Research</p>
               </button>
             </div>
             </motion.div>

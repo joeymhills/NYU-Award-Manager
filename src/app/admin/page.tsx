@@ -288,17 +288,21 @@ return(
           </h1>
           </motion.div>
 
+      <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5, delay: .1  }}
+            animate={{ opacity: 1 }}>
         <div className="flex flex-row justify-center items-center gap-1">
             <button onClick={()=>{setManageUsers(true);setShowUnassigned(true);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(false)}} className={manageUsers ? 'bg-slate-100 outline-1 font-bentonbold text-sm text-[#541A83] py-2 text-md lg:py-0 w-36 h-8 rounded-lg' : 'bg-white drop-shadow-2xl font-bentonbold text-sm text-[#541A83] lg:text-md py-0 w-36 h-8 rounded-lg'}>Manage Users</button>
             <button onClick={()=>{setManageUsers(false);setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(true)}} className={showDeleted ? 'bg-slate-100 outline-1 font-bentonbold text-sm text-[#541A83] py-2 text-md lg:py-0 w-36 h-8 rounded-lg' : 'bg-white border drop-shadow-2xl font-bentonbold text-sm text-[#541A83] lg:text-md py-0 w-36 h-8 rounded-lg'}>Deleted Awards</button>
           </div>
         
         {!showDeleted && (
-        <div className="pt-5">
+        <div className="w-full flex flex-col justify-center items-center pt-5">
           <Dropdown />
         </div>
         )}
-
+      </motion.div>
     <div>
       <div className="w-full flex flex-col pt-2 justify-center items-center">
       {unassignedLoading && (
