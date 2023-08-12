@@ -6,7 +6,7 @@ const Deletewindow = (id:props) => {
     
     async function deleteAccolade(id:props) { 
         try {
-          await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/delete`,{
+          await fetch("/api/delete",{
             body: JSON.stringify(id),
             headers: { 'Content-Type': 'Application/json'},
             method: 'POST'});
