@@ -21,6 +21,8 @@ const router = useRouter()
 
 // User Role Authentication
 const [unassigned, setUnassigned] = useState([]);
+const [unassignedLoading, setUnassignedLoading] = useState(true);
+
 const [userArray, setUserArray] = useState([]);
 const [managerArray, setManagerArray] =  useState([]);
 const [adminArray, setAdminArray] =  useState([]);
@@ -89,6 +91,7 @@ function getUnassigned() {
   .then(res => {
     const resdata = res.data
     setUnassigned(resdata)
+    setUnassignedLoading(false)
   })
   .catch(function (error) {
     console.log(error);})
@@ -260,8 +263,6 @@ return(
             <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(true);setShowAdmin(false);setShowDeleted(false)}} className={showManager ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Manager</button>
             <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(true);setShowDeleted(false)}} className={showAdmin ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Admin</button>
             <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(true)}} className={showDeleted ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Deleted Awards</button>
-
-
           </div>
           
       {/* {roleChecked == "loading" && (
@@ -277,16 +278,14 @@ return(
 
     <div>
       <div className="w-full flex flex-col py-8 justify-center items-center">
-      {showUnassigned &&(
+      {showUnassigned && !unassignedLoading &&(
+      <motion.div
+      initial={{ opacity: 0 }}
+      transition={{ duration: .5 }}
+      animate={{ opacity: 1 }}>
       <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Unassigned Users</h1>
+        <h1 className="text-white text-2xl font-bentonbold py-2">Unauthorized Users</h1>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
         <tbody>
         {unassigned.userList?.map(id =>
             <tr>
@@ -296,18 +295,14 @@ return(
           )}
         </tbody>
         </table>
-      </div>)}
+      </div>
+      </motion.div>
+      )}
 
     {showUser &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th> </th>
-          </tr>
-        </thead>
         <tbody>
         {userArray.userList?.map(id =>
             <tr>
@@ -323,12 +318,6 @@ return(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th> </th>
-          </tr>
-        </thead>
         <tbody>
         {managerArray.userList?.map(id =>
             <tr>
@@ -344,13 +333,6 @@ return(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
         <tbody>
         {adminArray.userList?.map(id =>
             <tr>
@@ -363,27 +345,32 @@ return(
       </div>)}
 
       {showDeleted &&(
+      <motion.div
+      initial={{ opacity: 0 }}
+      transition={{ duration: .5 }}
+      animate={{ opacity: 1 }}>
+
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Accolades</h1>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
-        <thead>
-          <tr>
-            <th></th>
-            <th> </th>
-          </tr>
-        </thead>
         <tbody>
         {deletedAccolades?.map(id =>
             <tr>
               <td>{id.name}</td>
               {/* <td>{id.deletedAt}</td> use this in the future for sorting */}
-              <td><button className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32" onClick={()=>{undoDelete(id.id)}}>Restore</button></td>
-              <td><button className="bg-white border-2 px-3 border-red-500 rounded-3xl hover:cursor-pointer text-red-500 h-9 w-32"onClick={() => {setId(id.id); setDeleteWindow(true)}}>Delete</button></td>
+              <td>
+              <div className="flex flex-col gap-2">
+              <button className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32" onClick={()=>{undoDelete(id.id)}}>Restore</button>
+              <button className="bg-white border-2 px-3 border-red-500 rounded-3xl hover:cursor-pointer text-red-500 h-9 w-32"onClick={() => {setId(id.id); setDeleteWindow(true)}}>Delete</button>
+              </div>
+              </td>
             </tr>
           )}
         </tbody>
         </table>
-      </div>)}
+      </div>
+     </motion.div> 
+      )}
      
       </div>
       </div>
