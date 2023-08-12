@@ -18,6 +18,7 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation"
 import { LogoutButton } from './auth';
+import { motion } from 'framer-motion';
 
 export default function Home() {
 
@@ -56,14 +57,17 @@ return(
             </svg>
           </div>
 
-           <div>
-          <h1 className="py-5 text-4xl font-bentonreg text-[#541A83]
+          <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5 }}
+            animate={{ opacity: 1 }}>
+            <h1 className="py-5 text-4xl font-bentonreg text-[#541A83]
            lg:text-8xl 
            md:text-7xl 
            sm:text-6xl">
             #The<span className="font-bentonbold">BestOutcomes</span>
           </h1>
-          </div>
+          </motion.div>
 
           <div>
           <div>
@@ -72,25 +76,28 @@ return(
             md:text-xl md:max-w-xl
             sm:text-md sm:max-w-lg
             ">
+            <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5, delay: .2 }}
+            animate={{ opacity: 1 }}>
               <p className="text-center">
               This internal tool offers quick access to review accolades and awards given to NYU from independent organizations.
               </p>
+            </motion.div>
             </div>
             </div>
             
             </div>
 
             <div>
-            <div className="text-white max-w-xs text-sm font-bentonbold 
-            lg:text-3xl lg:max-w-2xl 
-            md:text-xl md:max-w-xl
-            sm:text-md sm:max-w-lg
-            "> 
 
-            </div>
             </div>
 
           <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5, delay: .3 }}
+            animate={{ opacity: 1 }}>
           <div className=" 
             lg:max-w-2xl 
             md:max-w-xl
@@ -99,6 +106,7 @@ return(
               <SearchInput />
             </div>
           </div>
+          </motion.div>
           </div>
 
           <div>
@@ -114,6 +122,11 @@ return(
           </div>
 
             <div> 
+
+            <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5, delay: .4 }}
+            animate={{ opacity: 1 }}>
           <div className="grid grid-cols-2 md:grid-cols-3 max-w-3xl gap-8 pb-16">
             <button type="button" className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid1} onClick={()=>{router.push("search?q=tisch")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
@@ -152,6 +165,7 @@ return(
                 <p className="text-white h-10 text-xs lg:text-lg font-bentonbold">Research</p>
               </button>
             </div>
+            </motion.div>
             </div>
 
         </div>
