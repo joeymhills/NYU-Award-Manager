@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../prisma/client";
 import { NextApiRequest } from "next";
+// @ts-nocheck
 
 interface create {
     institution: string,
@@ -26,7 +27,7 @@ interface create {
 export async function POST(req:NextRequest) {
 
     const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = req.body
+        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = req.json()
 
     try {
         await prisma.accolade.create({

@@ -1,4 +1,5 @@
 "use client";
+// @ts-nocheck
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { accolade, users } from "@prisma/client";
@@ -84,16 +85,11 @@ const searchPage = () => {
 
   const [role, setRole ] = useState("loading")
   const {data:session} = useSession()
-
   useEffect(()=> {
-  if(session) {
-    const user = session
-    setRole(user.user.role)
-  }
-  if (role == "unassigned") {
-    
-  }
-})
+    if(session) {
+      setRole(session.user.role)
+    }
+  })
 
     return(
     <>

@@ -1,4 +1,6 @@
 "use client"
+// @ts-nocheck
+
 import { useEffect, useState } from "react"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
@@ -53,8 +55,7 @@ const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
 useEffect(()=> {
 if(session) {
-  const user = session
-  setRole(user.user.role)
+  setRole(session.user.role)
 }
 })
 

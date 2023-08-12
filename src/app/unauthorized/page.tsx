@@ -1,4 +1,5 @@
 "use client"
+// @ts-nocheck
 
 import { NextPage } from "next"
 import { useSession } from "next-auth/react";

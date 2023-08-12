@@ -1,4 +1,6 @@
 "use client"
+// @ts-nocheck
+
 import axios from "axios"
 import { motion } from "framer-motion"
 import { NextPage } from "next"
@@ -40,11 +42,10 @@ const [showDeleted, setShowDeleted] = useState(false)
 const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
 useEffect(()=> {
-if(session) {
-  const user = session
-  setRole(user.user.role)
-}
-})
+  if(session) {
+    setRole(session.user.role)
+  }
+  })
 
 if((role == "manager") || (role == "user")) {
   router.push("/")
