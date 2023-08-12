@@ -56,7 +56,7 @@ if (role == "unassigned") {
 }
 
 function fetchDeleted(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/deletedAccolades`)
+  axios.get("/api/deletedAccolades")
   .then(res => {
     const resdata = res.data
     setDeletedAccolades(resdata)
@@ -73,7 +73,7 @@ useEffect(() => {
 
 async function deleteAward() { 
   try {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/permDelete`,{
+    await fetch("/api/permDelete",{
       body: JSON.stringify(id),
       headers: { 'Content-Type': 'Application/json'},
       method: 'POST'});
@@ -85,7 +85,7 @@ async function deleteAward() {
 }
 
 function getUnassigned() {
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/unassigned`)
+  axios.get("/api/members/unassigned")
   .then(res => {
     const resdata = res.data
     setUnassigned(resdata)
@@ -99,7 +99,7 @@ useEffect(() => {
   },[]);
   
 function getUsers(){
-  fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/user`, {
+  fetch("/api/members/user", {
     method: "GET",
   })  
   .then(res => {
@@ -120,7 +120,7 @@ useEffect(() => {
   },[]);
 
 function getManagers(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/manager`)
+  axios.get("/api/members/manager")
   .then(res => {
     const resdata = res.data
     setManagerArray(resdata)
@@ -135,7 +135,7 @@ useEffect(() => {
   },[]);
 
 function getAdmins(){
-  axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/members/admin`)
+  axios.get("/api/members/admin")
   .then(res => {
     const resdata = res.data
     setAdminArray(resdata)
@@ -152,7 +152,7 @@ useEffect(() => {
   },[]);
 
 async function changeRole(roleId:string, oldRole:string, role:string) {
-  axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/changeRole`, {
+  axios.post("/api/changeRole", {
     id: roleId,role
   })
   .then(res => {
@@ -177,7 +177,7 @@ async function changeRole(roleId:string, oldRole:string, role:string) {
 
 function undoDelete(undoId: string){
 
-  axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/undoDelete`, {
+  axios.post("/api/undoDelete", {
     undoId
   })
   .then(res => {
