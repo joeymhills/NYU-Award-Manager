@@ -283,8 +283,8 @@ return(
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
-            <th>Email</th>
-            <th> </th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -304,7 +304,7 @@ return(
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
-            <th>Email</th>
+            <th></th>
             <th> </th>
           </tr>
         </thead>
@@ -325,7 +325,7 @@ return(
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
-            <th>Email</th>
+            <th></th>
             <th> </th>
           </tr>
         </thead>
@@ -346,7 +346,7 @@ return(
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
-            <th>Email</th>
+            <th></th>
             <th></th>
             <th></th>
           </tr>
@@ -368,7 +368,7 @@ return(
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <thead>
           <tr>
-            <th>Award Name</th>
+            <th></th>
             <th> </th>
           </tr>
         </thead>
