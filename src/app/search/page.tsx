@@ -10,7 +10,7 @@ import DetailView from "~/components/DetailView";
 import { Ring, Waveform } from "@uiball/loaders";
 import Dropdown from "~/components/Dropdown";
 import { useAtom } from "jotai";
-import { dropFilter, showDetailPage } from "~/components/atoms";
+import { showDetailPage } from "~/components/atoms";
 import Head from "next/head";
 import Link from "next/link";
 import { LogoutButton } from "../auth";
@@ -25,10 +25,10 @@ const searchPage = () => {
     console.log(searchQuery)
 
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
-    const [filter,setFilter] = useAtom(dropFilter)
-    useEffect(()=> {
-        setShowDetail(false)
-      },[])
+
+    // useEffect(()=> {
+    //     setShowDetail(false)
+    //   },[])
     
     // setting state for DetailView props
     

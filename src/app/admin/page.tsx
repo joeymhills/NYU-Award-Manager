@@ -3,16 +3,18 @@
 
 import axios from "axios"
 import { motion } from "framer-motion"
-import { NextPage } from "next"
 import Head from "next/head"
 import { useEffect, useState } from "react"
-import useSWR from "swr"
 import { accoladeBackup, users } from "@prisma/client";
 import Ring from "@uiball/loaders/dist/components/Ring"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { LogoutButton } from "../auth"
+import { useAtom } from "jotai"
+import { uFilter } from "~/components/atoms";
+import Dropdown from "~/components/Dropdown";
+
 
 const admin = () => {
 
@@ -32,14 +34,12 @@ const [id,setId] = useState("id");
 const [oldRole, setOldRole] = useState("role")
 const [roleWindow, setRoleWindow] = useState(false)
 const [roleChecked, setRoleChecked] = useState("loading")
-
+const [manageUsers, setManageUsers] = useState(true)
 const [showUnassigned, setShowUnassigned] = useState(true)
 const [showUser, setShowUser] = useState(false)
 const [showManager, setShowManager] = useState(false)
 const [showAdmin, setShowAdmin] = useState(false)
 const [showDeleted, setShowDeleted] = useState(false)
-
-
 
 const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
@@ -154,6 +154,25 @@ useEffect(() => {
   getAdmins();
   },[]);
 
+
+
+const [userFilter,setUserFilter] = useAtom(uFilter)
+
+useEffect(() => {
+if(userFilter == "unassigned"){
+  setShowUnassigned(true);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(false) 
+}
+if(userFilter == "user"){
+  setShowUnassigned(false);setShowUser(true);setShowManager(false);setShowAdmin(false);setShowDeleted(false) 
+}
+if(userFilter == "manager"){
+  setShowUnassigned(false);setShowUser(false);setShowManager(true);setShowAdmin(false);setShowDeleted(false) 
+}
+if(userFilter == "admin"){
+  setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(true);setShowDeleted(false) 
+}
+},[userFilter])
+
 async function changeRole(roleId:string, oldRole:string, role:string) {
   axios.post("/api/changeRole", {
     id: roleId,role
@@ -257,13 +276,28 @@ return(
         </div>
         </div>
  
+        <motion.div
+            initial={{ opacity: 0 }}
+            transition={{ duration: .5 }}
+            animate={{ opacity: 1 }}>
+            <h1 className="pb-5 pt-1 text-4xl font-bentonreg text-[#541A83]
+           lg:text-6xl 
+           md:text-5xl 
+           sm:text-4xl">
+            <span className="font-bentonbold">Admin Dashboard</span>
+          </h1>
+          </motion.div>
+
         <div className="flex flex-row justify-center items-center gap-1">
-            <button onClick={()=>{setShowUnassigned(true);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(false)}} className={showUnassigned ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Unauthorized Users</button>
-            <button onClick={()=>{setShowUnassigned(false);setShowUser(true);setShowManager(false);setShowAdmin(false);setShowDeleted(false)}} className={showUser ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Users</button>
-            <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(true);setShowAdmin(false);setShowDeleted(false)}} className={showManager ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Manager</button>
-            <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(true);setShowDeleted(false)}} className={showAdmin ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Admin</button>
-            <button onClick={()=>{setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(true)}} className={showDeleted ? 'bg-slate-100 font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg' : 'bg-white border shadow-2xl font-bentonbold text-sm text-[#541A83] py-2 w-20 lg:text-md lg:py-0 md:w-36 h-8 rounded-lg'}>Deleted Awards</button>
+            <button onClick={()=>{setManageUsers(true);setShowUnassigned(true);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(false)}} className={manageUsers ? 'bg-slate-100 outline-1 font-bentonbold text-sm text-[#541A83] py-2 text-md lg:py-0 w-36 h-8 rounded-lg' : 'bg-white drop-shadow-2xl font-bentonbold text-sm text-[#541A83] lg:text-md py-0 w-36 h-8 rounded-lg'}>Manage Users</button>
+            <button onClick={()=>{setManageUsers(false);setShowUnassigned(false);setShowUser(false);setShowManager(false);setShowAdmin(false);setShowDeleted(true)}} className={showDeleted ? 'bg-slate-100 outline-1 font-bentonbold text-sm text-[#541A83] py-2 text-md lg:py-0 w-36 h-8 rounded-lg' : 'bg-white border drop-shadow-2xl font-bentonbold text-sm text-[#541A83] lg:text-md py-0 w-36 h-8 rounded-lg'}>Deleted Awards</button>
           </div>
+        
+        {!showDeleted && (
+        <div className="pt-5">
+          <Dropdown />
+        </div>
+        )}
 
     <div>
       <div className="w-full flex flex-col py-8 justify-center items-center">
@@ -277,12 +311,15 @@ return(
               />
       </div>
       )}
+
       {showUnassigned && !unassignedLoading &&(
-      <motion.div      initial={{ opacity: 0 }}
+      <motion.div      
+      initial={{ opacity: 0 }}
       transition={{ duration: .5 }}
       animate={{ opacity: 1 }}>
       <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Unauthorized Users</h1>
+        <h1 className="text-white text-3xl font-bentonbold py-2">Unauthorized Users</h1>
+        <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">These users have signed up, but are not authorized to use this app</p>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {unassigned.userList?.map(id =>
@@ -300,6 +337,7 @@ return(
     {showUser &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
+      <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">"Users" are allowed to view awards, but not create, edit, or delete awards</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {userArray.userList?.map(id =>
@@ -315,6 +353,7 @@ return(
         {showManager &&(
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
+        <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">"Managers" are allowed to view, create, edit, and delete awards</p>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {managerArray.userList?.map(id =>
@@ -330,6 +369,7 @@ return(
     {showAdmin &&(
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
+      <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">"Admins" are allowed to view, create, edit, and delete awards. Admins are also allowed access to the Admin Dashboard where they can manage users and reinstate previously deleted awards</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {adminArray.userList?.map(id =>

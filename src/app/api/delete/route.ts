@@ -20,6 +20,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
                         sourceatr, wherepubint, promotionlim, imgurl1, imgurl2,
                         imgurl3, imgurl4
                 }})}
+            
             catch(e) {
                 return NextResponse.json({message: e},{status:500})
             }
@@ -34,7 +35,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
             }
         
             
-            return NextResponse.json({message:"success!"},{status:200})
+            return NextResponse.json({payload},{status:200})
 
         } 
     
