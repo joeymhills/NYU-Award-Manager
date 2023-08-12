@@ -29,6 +29,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
             return NextResponse.json({message:"success!"}, {status:200})
 
             } catch {
+                
             return NextResponse.json({message:"error in /api/delete"}, {status:500})
             }
 
