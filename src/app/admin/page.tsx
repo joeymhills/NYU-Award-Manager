@@ -339,6 +339,10 @@ return(
       )}
 
     {showUser &&(
+      <motion.div      
+      initial={{ opacity: 0 }}
+      transition={{ duration: .5 }}
+      animate={{ opacity: 1 }}>
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Users</h1>
       <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">Users are allowed to view awards, but not create, edit, or delete awards</p>
@@ -352,9 +356,15 @@ return(
           )}
         </tbody>
         </table>
-        </div>)}
+        </div>
+        </motion.div>
+        )}
 
         {showManager &&(
+      <motion.div      
+      initial={{ opacity: 0 }}
+      transition={{ duration: .5 }}
+      animate={{ opacity: 1 }}>
       <div className="flex flex-col justify-center items-center pb-5">
         <h1 className="text-white text-2xl font-bentonbold py-2">Managers</h1>
         <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Managers are allowed to view, create, edit, and delete awards</p>
@@ -368,9 +378,15 @@ return(
           )}
         </tbody>
         </table>
-      </div>)}
+      </div>
+      </motion.div>
+      )}
 
     {showAdmin &&(
+      <motion.div      
+      initial={{ opacity: 0 }}
+      transition={{ duration: .5 }}
+      animate={{ opacity: 1 }}>
     <div className="flex flex-col justify-center items-center pb-5">
       <h1 className="text-white text-2xl font-bentonbold py-2">Admins</h1>
       <p className="text-white text-center text-2xl font-bentonreg w-96 py-2">Admins are allowed all read/write privileges as well as access to the Admin Dashboard</p>
@@ -384,7 +400,9 @@ return(
           )}
         </tbody>
         </table>
-      </div>)}
+      </div>
+      </motion.div>
+      )}
 
       {showDeleted &&(
       <motion.div
