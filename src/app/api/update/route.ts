@@ -40,7 +40,7 @@ export async function PUT(req:NextRequest, res:NextResponse) {
                 sourceatr, wherepubint, promotionlim, imgurl1, imgurl2, imgurl3, imgurl4
 
             }})
-        return NextResponse.json({ message: 'Success!!' }, { status: 200 })
+        return NextResponse.json({ message: 'Success!!', name }, { status: 200 })
         } catch (error) {
         return NextResponse.json({ message: 'error in update award', name }, { status: 500 })
         }
