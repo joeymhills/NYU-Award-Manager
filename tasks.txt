@@ -33,12 +33,14 @@
 STUFF TO DO: {
     
     BACKEND/API {
+    -make app bar in the layout.tsx
+    -csv support
+    -actually implement user permissions for adding/edit
+    supported accolades
+     pull reports, both pre-generated and specific – like recently added accolades, user activity, etc
     - dropdown for common institutions in accolade box
-    - user tiers
     - filtering and sorting
     - error handling
-    - rollback ability for changes (im thinking about getting data from main table, deleting it, and moving it the backup table)
-    -fix all TS errors (change build command back to default)
     -remove detail view atom(persists after leaving page and shows empty detail window)
     }
     

@@ -28,11 +28,6 @@ export default function unauthorized() {
   
 return(
 <>
-<div className="w-full h-6 sm:h-8 bg-[#541A83] flex flex-col justify-center items-end">
-    <div className="flex flex-row gap-2 sm:gap-4 p-3">
-    <a type="button" className="text-white hover:text-[#f5b246] duration-500 font-bentonreg py-1 text-sm sm:text-lg sm:py-2"><LogoutButton /></a>
-    </div>
-</div>
 <div className="h-px bg-white"/>
 
 <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">

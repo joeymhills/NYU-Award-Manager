@@ -1,9 +1,11 @@
+
 import Link from 'next/link'
 import '../styles/globals.css'
 import { Providers } from './providers'
 import { LoginButton, LogoutButton } from './auth'
 import { getServerSession } from 'next-auth'
 import { authOptions } from './api/auth/[...nextauth]/route'
+import Appbar from '~/app/Appbar'
 
 export const metadata = {
   title: 'NYU Awards',
@@ -16,10 +18,12 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <>
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+      <Providers><Appbar />{children}</Providers>
       </body>
     </html>
+    </>
   )
 }
