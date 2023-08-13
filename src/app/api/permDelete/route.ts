@@ -8,7 +8,11 @@ export async function POST(req:NextRequest, res:NextResponse) {
                     where: {
                         id
                 }})
-                return NextResponse.json({message:"success!"}, {status:200})
+                const acc = await prisma.accoladeBackup.findUnique({
+                    where: {
+                        id
+                }})
+                return NextResponse.json({message:"success!", acc}, {status:200})
 
             } catch {
                 return NextResponse.json({message:"permDelete failed", id}, {status:500})
