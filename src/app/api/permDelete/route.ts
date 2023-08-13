@@ -6,7 +6,7 @@ export async function POST(req:NextRequest, res:NextResponse) {
             try {
                 await prisma.accoladeBackup.delete({
                     where: {
-                        id: id
+                        id
                 }})
                 return NextResponse.json({message:"success!"}, {status:200})
 
