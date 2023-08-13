@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "../../../../prisma/client"
 
-export async function GET(req: NextRequest) {
-    
+export async function GET(request: Request) {
+console.log(request.url)
         try {
             const accolades = await prisma.accoladeBackup.findMany()
 

@@ -1,9 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import prisma from "../../../../../prisma/client"
 
-export async function GET(req: NextRequest) {
-    if (req.method === "GET") {
-        try {
+export async function GET(request: Request) {
+  console.log(request.url)
+        
+    try {
             const userList = await prisma.user.findMany({
                 where: {
                   role: 'unassigned'
@@ -15,5 +16,4 @@ export async function GET(req: NextRequest) {
         catch (error) {
           console.log("error in get user")
     }
-    }
-}
+  }
