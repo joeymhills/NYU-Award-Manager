@@ -1,8 +1,7 @@
 
-import { NextRequest, NextResponse } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../prisma/client";
-import { NextApiRequest } from "next";
-// @ts-nocheck
+import { NextRequest, NextResponse } from "next/server";
 
 interface create {
     institution: string,
@@ -24,22 +23,25 @@ interface create {
     imgurl4:string
 }
 
-export async function POST(req:NextRequest) {
+export async function PUT(req:NextRequest, res:NextResponse) {
 
-    const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = await req.json()
+    const {id, name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
+        cmcontact, sourceatr, wherepubint, promotionlim,comments,imgurl1,imgurl2,imgurl3,imgurl4} = await req.json()
 
     try {
-        await prisma.accolade.create({
+        await prisma.accolade.update({
+            where: {
+                id
+            },
+            
             data: {
                 institution, name, comments, outcome, extSource,
                 intSource, messaging, frequency, notifDate, cmcontact,
-                sourceatr, wherepubint, promotionlim, imgurl1, imgurl2,
-                imgurl3, imgurl4
+                sourceatr, wherepubint, promotionlim, imgurl1, imgurl2, imgurl3, imgurl4
 
             }})
         return NextResponse.json({ message: 'Success!!' }, { status: 200 })
         } catch (error) {
-       return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
-    }
+        return NextResponse.json({ message: 'error in update award', name }, { status: 500 })
+        }
 }

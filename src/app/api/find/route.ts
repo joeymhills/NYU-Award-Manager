@@ -2,7 +2,7 @@ import prisma from "../../../../prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: NextResponse) {
-    if (req.method === "POST") {
+
         try {
             const { id } = await req.json();
             const accolade = await prisma.accolade.findUnique({
@@ -15,6 +15,5 @@ export async function POST(req: NextRequest, res: NextResponse) {
             }  
     catch (error) {
         return NextResponse.json({}, {status: 500})
-    }
     }
 }
