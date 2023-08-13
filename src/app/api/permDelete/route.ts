@@ -11,6 +11,6 @@ export async function POST(req:NextRequest, res:NextResponse) {
                 return NextResponse.json({message:"success!"}, {status:200})
 
             } catch {
-                return NextResponse.json({message:"success!"}, {status:500})
+                return NextResponse.json({message:"permDelete failed", id}, {status:500})
             }
     }
