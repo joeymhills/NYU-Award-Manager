@@ -12,6 +12,7 @@ import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from "@heroicons/react/2
 import { useAtom } from "jotai";
 import { showDetailPage } from "./atoms";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 interface Props {
 id:string,
@@ -56,6 +57,13 @@ interface FormData {
 
       const [editPage,setEditPage] = useState(1)
       const router = useRouter()
+      const [role, setRole ] = useState("loading")
+      const {data:session} = useSession()
+      useEffect(()=> {
+      if(session) {
+      setRole(session.user.role)
+  }
+  })
 
       const nextEditPage = () => {
         if (editPage < 4) {
@@ -312,10 +320,13 @@ interface FormData {
                 {sourceatr !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Source Attribution: </span>{sourceatr}</div>)}
                 {wherepubint !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Where Published Internally: </span>{wherepubint}</div>)}
                 {promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{promotionlim}</div>)}
+                
+                {((role == "admin") || (role == "manager")) &&(
                 <div className="flex flex-row justify-center items-center gap-3">
                   <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=> {setShowDetail(false);router.push(`/editAward/${id}`)}}>Edit</button>
                   <button className="bg-red-500 w-36 h-8 text-white font-bentonreg rounded-2xl"onClick={()=>setDeleteWindow(true)}>Delete</button>
                 </div>
+                )}
                 <ToastContainer 
                   position="top-center"
                   autoClose={3000}

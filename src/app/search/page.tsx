@@ -217,7 +217,6 @@ const searchPage = () => {
                 {id.wherepubint !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Where Published Internally: </span>{id.wherepubint}</div>)}
                 {id.promotionlim !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Limitations on Promotion: </span>{id.promotionlim}</div>)} */}
                 <div className="p-2" />
-                <div className="font-bentonreg border-b-[2px]" />
                 <div className="flex flex-col justify-center items-center">
                 <div className="p-2" />
                 <button type="button" onClick = {() => {
