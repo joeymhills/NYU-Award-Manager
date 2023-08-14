@@ -237,7 +237,7 @@ return(
                               <p>Which role would you like to assign?</p>
                             </div>
                             <div className="flex flex-col justify-center gap-2">
-                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'unassigned')}}>Unassigned</button>
+                                <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'unassigned')}}>Unauthorized</button>
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'user')}}>User</button>
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id , oldRole, 'manager')}}>Manager</button>
                                 <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setRoleWindow(false); changeRole(id, oldRole, 'admin')}}>Admin</button>
