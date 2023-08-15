@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react'
+import { searchCallback } from './components/atoms';
 
 const SearchInput = () => {
-    
     const [searchQuery, setSearchQuery] = useState("");
 
     const router = useRouter();

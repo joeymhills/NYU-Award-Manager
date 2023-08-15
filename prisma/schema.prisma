@@ -10,11 +10,12 @@ datasource db {
   relationMode = "prisma"
   directUrl = env("DIRECT_URL")
 }
-
+// DB PUSH FIRST
 model accolade {
     id           String   @id @default(cuid())
     name         String?   @db.VarChar(255)
     institution  String?   @db.VarChar(255)
+    serviceLine  String?   @db.VarChar(255)
     outcome      String?   @db.VarChar(255)
     extSource    String?   @db.VarChar(500)
     intSource    String?   @db.VarChar(500)
@@ -30,6 +31,9 @@ model accolade {
     imgurl2      String?   @db.VarChar(200)
     imgurl3      String?   @db.VarChar(200)
     imgurl4      String?   @db.VarChar(200)
+    createdAt    DateTime?  @default(now())
+
+ 
 
     @@index([institution])
 }
@@ -38,6 +42,7 @@ model accoladeBackup {
     id           String    @id @default(cuid())
     name         String?   @db.VarChar(255)
     institution  String?   @db.VarChar(255)
+    serviceLine  String?   @db.VarChar(255)
     outcome      String?   @db.VarChar(255)
     extSource    String?   @db.VarChar(500)
     intSource    String?   @db.VarChar(500)

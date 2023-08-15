@@ -10,7 +10,7 @@ import DetailView from "~/components/DetailView";
 import { Ring, Waveform } from "@uiball/loaders";
 import Dropdown from "~/components/Dropdown";
 import { useAtom } from "jotai";
-import { showDetailPage } from "~/components/atoms";
+import { searchCallback, showDetailPage } from "~/components/atoms";
 import Head from "next/head";
 import Link from "next/link";
 import { LogoutButton } from "../auth";
@@ -23,7 +23,8 @@ const searchPage = () => {
     const search = useSearchParams();
     const searchQuery = search ? search.get("q"): null;
     console.log(searchQuery)
-
+    const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
+    setCallbackUrl(searchQuery)
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
 
     // useEffect(()=> {
@@ -219,26 +220,7 @@ const searchPage = () => {
                 <div className="p-2" />
                 <div className="flex flex-col justify-center items-center">
                 <div className="p-2" />
-                <button type="button" onClick = {() => {
-                  
-                  setShowDetail(true)
-                  
-                  setId(id.id)
-                  setInstitution(id.institution)
-                  setName(id.name)
-                  setOutcome(id.outcome)
-                  setExtSource(id.extSource)
-                  setIntSource(id.intSource)
-                  setMessaging(id.messaging)
-                  setComments(id.comments)
-                  setFrequency(id.frequency)
-                  setNotifDate(id.notifDate)
-                  setCmcontact(id.cmcontact)
-                  setSourceatr(id.sourceatr)
-                  setWherepubint(id.wherepubint)
-                  setPromotionlim(id.promotionlim)
-                  setImgurl(id.imgurl1)
-                  }}
+                <button type="button" onClick = {() => {router.push(`/detailPage/${id.id}`)}}
                   className="bg-[#541A83] font-bentonbold text-sm lg:text-lg text-white py-1 md:py-2 px-0 w-40 md:w-64 rounded-3xl">
                   Full Description</button>
 
