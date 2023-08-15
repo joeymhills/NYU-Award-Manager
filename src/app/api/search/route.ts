@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../prisma/client";
-import { NextApiRequest } from "next";
 
 export async function POST(req: NextRequest) {
         
@@ -17,6 +16,11 @@ export async function POST(req: NextRequest) {
                 },
                 {
                     institution: {
+                        contains: search,
+                    },
+                },
+                {
+                    serviceLine: {
                         contains: search,
                     },
                 },
