@@ -157,8 +157,8 @@ return(
                       transition={{ duration: .5 }}
                       animate={{ opacity: 1 }}>
                   <div className=" flex flex-col gap-6 justify-center relative align-middle w-200 bg-white rounded-lg border-2 p-5 m-4 text-2xl font-bentonbold">
-                      <div >{form.institution}</div> 
-                      {form.name !== "" && (<div className="font-bentonreg border-b-[2px] pb-4">{form.name}</div>)}
+                      <div >{form.name}</div> 
+                      {form.institution !== "" && (<div className="font-bentonreg border-b-[2px] pb-4">{form.institution}</div>)}
                       {((form.imgurl1 !== null) && (form.imgurl1 !== "")) &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={form.imgurl1}>Download link</Link></div><img src={form.imgurl1} className="h-36 w-36"/></div>)}
                       {form.outcome !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Outcome: </span>{form.outcome}</div>)}
                       {form.intSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Internal Source: </span>{form.intSource}</div>)}
