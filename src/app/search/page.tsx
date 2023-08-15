@@ -49,6 +49,7 @@ const searchPage = () => {
     const [promotionlim, setPromotionlim] = useState("")
     const [imgurl, setImgurl] = useState("")
     const [data, setData ] = useState([]);
+    const [loading,setLoading] = useState(true)
 
     useEffect(()=> {
     const fetchAccolades = async (data:string) => {
@@ -64,10 +65,25 @@ const searchPage = () => {
     })
     .then(res => {
       setData((res))
+      setLoading(false)
     })
   }
   fetchAccolades(searchQuery);
-},[searchQuery])
+  },[searchQuery])
+
+  const noSearchResults = () => {
+    if (data.accolade?.length == 0) {
+      return(
+      
+        <div className=" flex flex-col gap-5 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 p-10 text-5xl font-bentonbold">
+          <div className="font-bentonreg flex justify-center items-center text-4xl">
+            <div>No results found</div>
+          </div>
+        </div>
+
+      )
+    }
+  }
 
 
   //   const noSearchResults = () => {
@@ -93,6 +109,7 @@ const searchPage = () => {
   })
   const router = useRouter();
 
+  console.log(data)
     return(
     <>
     <div>
@@ -169,7 +186,9 @@ const searchPage = () => {
 
         <div className="w-full flex flex-col justify-center align-center">
 
-        {!data.accolade && (
+      {}
+
+      {loading && (
       <div className="w-full flex flex-row justify-center items-center">
         <Ring 
               size={80}
@@ -179,7 +198,7 @@ const searchPage = () => {
               />
       </div>
         )}
-          
+        {noSearchResults()}
         {data.accolade?.map(id => 
           <>
             <motion.div
