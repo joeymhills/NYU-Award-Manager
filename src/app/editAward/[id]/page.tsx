@@ -16,6 +16,7 @@ import { Ring } from "@uiball/loaders";
 export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
+const [submiting, setSubmiting] = useState(false)
 
 const router = useRouter();
 
@@ -57,12 +58,7 @@ interface FormData {
       await fetch("/api/update",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
-        method: 'PUT'}).then((response) => {
-            if(response.status == 200) {
-                alert("Successfully updated")
-            }
-        })
-        
+        method: 'PUT'})
     }
     catch (error) {
       console.log('error in POST request()')
@@ -73,9 +69,11 @@ interface FormData {
 
   async function handleSubmit (data: FormData) {
     try {
+      setSubmiting(true)
       await update(data);
+      router.push(`/detailPage/${id}`)
     } catch (error) {
-      console.log('error in handleSubmit')
+      alert('error in submission, please try again')
     }
   }
 
@@ -287,7 +285,7 @@ return(
                 </div>)}
 
               </div>
-              <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
+              <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] flex justify-center items-center font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">{!submiting ? "Update" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}</button>
               
               <ToastContainer 
               position="top-center"
