@@ -21,6 +21,9 @@ const addAward:NextPage = () => {
   const router = useRouter();
 
   const serviceLineAtom  = useAtomValue(aFilter)
+  useEffect(()=> {
+  setForm({...form, serviceLine: serviceLineAtom})
+  },[serviceLineAtom])
   
   interface FormData {
     institution: string,
@@ -72,7 +75,7 @@ if (role == "unassigned") {
   router.push("/unauthorized")
 }
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', serviceLine: '', effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
+messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', serviceLine: serviceLineAtom, effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
 
 
   async function create(data: FormData) { 
@@ -110,10 +113,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
     }
   }
   
-  useEffect(()=> {
-  setForm({...form, serviceLine: serviceLineAtom})
-  },[serviceLineAtom])
-  console.log(form.serviceLine)
 
   return(
         <>
