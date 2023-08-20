@@ -13,7 +13,7 @@ import { TrashIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
-import CreateDropdown from "~/components/createDropdown";
+import CreateDropdown from "../../components/CreateDropdown";
 import { aFilter } from "~/components/atoms";
 
 const addAward:NextPage = () => {
