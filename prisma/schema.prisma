@@ -31,9 +31,10 @@ model accolade {
     imgurl2      String?   @db.VarChar(200)
     imgurl3      String?   @db.VarChar(200)
     imgurl4      String?   @db.VarChar(200)
-    createdAt    DateTime?  @default(now())
-
- 
+    createdAt    DateTime? @default(now())
+    supported    Boolean?  @default(true)
+    effectiveDate  String? @db.VarChar(200) 
+    expirationDate String? @db.VarChar(200) 
 
     @@index([institution])
 }
@@ -58,7 +59,10 @@ model accoladeBackup {
     imgurl2      String?   @db.VarChar(200)
     imgurl3      String?   @db.VarChar(200)
     imgurl4      String?   @db.VarChar(200)
-    deletedAt    DateTime  @default(now())    
+    deletedAt    DateTime  @default(now())
+    supported    Boolean?  @default(true)
+    effectiveDate  String? @db.VarChar(200) 
+    expirationDate String? @db.VarChar(200) 
 
     @@index([institution])
 }

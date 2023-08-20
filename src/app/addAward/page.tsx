@@ -2,24 +2,25 @@
 // @ts-nocheck
 
 import { useEffect, useState } from "react"; 
-import { motion, AnimatePresence } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "@uploadthing/react/styles.css";
 import { OurFileRouter } from "~/server/uploadthing";
 import { UploadButton } from "~/utils/uploadthing";
-import { useAtom } from "jotai";
+import { useAtomValue } from "jotai";
 import { TrashIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import { NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { LogoutButton } from "../auth";
+import CreateDropdown from "~/components/createDropdown";
+import { aFilter } from "~/components/atoms";
 
 const addAward:NextPage = () => {
   
   const router = useRouter();
+
+  const serviceLineAtom  = useAtomValue(aFilter)
   
   interface FormData {
     institution: string,
@@ -35,6 +36,10 @@ const addAward:NextPage = () => {
     sourceatr: string
     wherepubint: string
     promotionlim: string
+    serviceLine: string
+    supported: boolean
+    effectiveDate: string
+    expirationDate: string
     imgurl1: string
     imgurl2: string
     imgurl3: string
@@ -59,7 +64,7 @@ if(session) {
 }
 })
 
-if((role == "manager") || (role == "user")) {
+if(role == "user") {
   router.push("/")
 }
 
@@ -67,7 +72,7 @@ if (role == "unassigned") {
   router.push("/unauthorized")
 }
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
+messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', serviceLine: '', effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
 
 
   async function create(data: FormData) { 
@@ -81,7 +86,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
       console.log('error with addAward request')
     }
     (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
+    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '',serviceLine: '', effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
   }
 
   async function handleSubmit (data: FormData) {
@@ -104,6 +109,11 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
       return true
     }
   }
+  
+  useEffect(()=> {
+  setForm({...form, serviceLine: serviceLineAtom})
+  },[serviceLineAtom])
+  console.log(form.serviceLine)
 
   return(
         <>
@@ -133,77 +143,134 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   relative justify-center items-center">
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
                   </div>
-
+                
+                <div className="pt-3">
+                <CreateDropdown/>
+                </div>
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
                  className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
                   
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
-                  
-                  <input 
-                  type="text" name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
-                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:w-72" placeholder="Award name">
-                  </input>
+               
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Award Name</label>
+                      <textarea
+                      name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
+                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Award name">
+                      </textarea> 
+                  </div>
 
-                  <input 
-                  type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-                  className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:72" placeholder="Institution/Department">
-                  </input>
-
+                  <div className="flex flex-col justify-center items-center">
+                    <label className="font-bentonreg pl-2">Location</label>
+                      <textarea
+                      name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
+                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Institution/Department">
+                      </textarea>
+                  </div>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Related Outcome</label>
                   <textarea 
                   name="outcome" value={form.outcome} onChange ={e=> setForm({...form, outcome: e.target.value})}
-                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Related Outcome">
+                  className= "p-3  rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Related Outcome">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Internal Source, Contact & Approvals</label>
                   <textarea 
                   name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Internal Source, Contact & Approvals">
                   </textarea>
-                
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Frequency</label>                
                   <textarea 
                   name="frequency" value={form.frequency} onChange ={e=> setForm({...form, frequency: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Frequency">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Notification date</label>
                   <textarea 
                   name="notifDate" value={form.notifDate} onChange ={e=> setForm({...form, notifDate: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Notification Date">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">C&M service line contact</label>
                   <textarea 
                   name="cmcontact" value={form.cmcontact} onChange ={e=> setForm({...form, cmcontact: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="C&M Service Line Contact">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Expiration date</label>
                   <textarea
                   name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Source Attribution">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Where published internally</label>
                   <textarea
                   name="wherepubint" value={form.wherepubint} onChange ={e=> setForm({...form, wherepubint: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Where published internally?">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Limitations on promotion</label>
                   <textarea 
                   name="promotionlim" value={form.promotionlim} onChange ={e=> setForm({...form, promotionlim: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Limitations on Promotion">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">External source & acontact</label>
                   <textarea 
                   name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
                   className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="External Source & Contact">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Enter messaging</label>
                   <textarea 
                   name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Enter messaging">
                   </textarea>
+                  </div>
 
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Enter any comments</label>
                   <textarea 
                   name="comments" value={form.comments} onChange ={e=> setForm({...form, comments: e.target.value})}
                   className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="Enter any comments">
                   </textarea>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Effective date</label>
+                  <textarea 
+                   name="effectiveDate" value={form.effectiveDate} onChange ={e=> setForm({...form, effectiveDate: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="MM/DD/YYYY">
+                  </textarea>
+                  </div>
+
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Expiration date</label>
+                  <textarea
+                   name="expirationDate" value={form.expirationDate} onChange ={e=> setForm({...form, expirationDate: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="MM/DD/YYYY">
+                  </textarea>
+                  </div>
 
                   </div>
 
@@ -246,7 +313,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
                   <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">(Only .jpg, .png, and .svg files can be displayed, others file types will still be stored)</div>
                   
-                  {/* Displays images that have been umploaded */}
+                  {/* Displays images that have been uploaded */}
                   <div className="flex flex-row gap-2">
 
                 {imgflag(form.imgurl1) && (
@@ -275,20 +342,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
                   </div>
                   <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
-                  
-                  <ToastContainer 
-                  position="top-center"
-                  autoClose={3000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                  />
-                </form>
+                  </form>
                 </div>
                 </motion.div>
               <div>
@@ -296,8 +350,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
             </div>
             </div>
             </main>
-        </>
-        
+        </>       
   );}
 
 export default addAward;
