@@ -25,8 +25,9 @@ interface create {
 
 export async function PUT(req:NextRequest, res:NextResponse) {
 
-    const {id, name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments,imgurl1,imgurl2,imgurl3,imgurl4} = await req.json()
+    const {id, name, institution, serviceLine, outcome, extSource, intSource, messaging, frequency, notifDate, 
+        cmcontact, sourceatr, wherepubint, promotionlim,comments,imgurl1,imgurl2,imgurl3,imgurl4, effectiveDate,
+        expirationDate} = await req.json()
 
     try {
         await prisma.accolade.update({
@@ -37,7 +38,8 @@ export async function PUT(req:NextRequest, res:NextResponse) {
             data: {
                 institution, name, comments, outcome, extSource,
                 intSource, messaging, frequency, notifDate, cmcontact,
-                sourceatr, wherepubint, promotionlim, imgurl1, imgurl2, imgurl3, imgurl4
+                sourceatr, wherepubint, promotionlim, imgurl1, imgurl2,
+                imgurl3, imgurl4, serviceLine, effectiveDate, expirationDate
 
             }})
         return NextResponse.json({ message: 'Success!!', name }, { status: 200 })
