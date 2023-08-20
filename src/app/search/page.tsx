@@ -219,7 +219,7 @@ const searchPage = () => {
                 </div>
                 <div className="border-b-[2px]"/>
                 
-                {id.serviceLine !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Service Line: </span>{id.servicesine}</div>)}
+                {id.serviceLine !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Service Line: </span>{id.serviceLine}</div>)}
                 {id.messaging !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Messaging: </span>{id.messaging}</div>)}
                 {id.extSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">External Source: </span>{id.extSource}</div>)}
                 {id.cmcontact !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">C&M Contact Line: </span>{id.cmcontact}</div>)}
