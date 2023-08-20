@@ -4,13 +4,14 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useAtom } from 'jotai'
 import { uFilter } from './atoms'
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
-
 
 export default function Dropdown() {
   const [filter, setfilter] = useAtom(uFilter)
+
+  function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+  }
+
 
   return (
   
