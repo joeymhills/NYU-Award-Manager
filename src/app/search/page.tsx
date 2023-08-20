@@ -74,12 +74,16 @@ const searchPage = () => {
   const noSearchResults = () => {
     if (data.accolade?.length == 0) {
       return(
-      
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}> 
         <div className=" flex flex-col gap-5 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 p-10 text-5xl font-bentonbold">
           <div className="font-bentonreg flex justify-center items-center text-4xl">
             <div>No results found</div>
           </div>
         </div>
+        </motion.div>
 
       )
     }
@@ -170,25 +174,16 @@ const searchPage = () => {
                 </p>
               </div>
             </div>
-          {/* <div className="flex flex-row justify-center items-center gap-5">
-            <Dropdown />
-          </div> */}
-          {/* <div className="w-full flex flex-col items-center justify-center">
-            <div className="pt-5" aria-live="polite" aria-busy={isLoading}>
-              {isLoading && <Ring 
-              size={80}
-              lineWeight={5}
-              speed={2} 
-              color="white" 
-              />}
-            </div>
-          </div> */}
 
         <div className="w-full flex flex-col justify-center align-center">
 
-      {}
 
       {loading && (
+
+      <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}>
       <div className="w-full flex flex-row justify-center items-center">
         <Ring 
               size={80}
@@ -197,6 +192,7 @@ const searchPage = () => {
               color="white" 
               />
       </div>
+      </motion.div>
         )}
         {noSearchResults()}
         {data.accolade?.map(id => 
@@ -223,6 +219,7 @@ const searchPage = () => {
                 </div>
                 <div className="border-b-[2px]"/>
                 
+                {id.serviceLine !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Service Line: </span>{id.servicesine}</div>)}
                 {id.messaging !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">Messaging: </span>{id.messaging}</div>)}
                 {id.extSource !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">External Source: </span>{id.extSource}</div>)}
                 {id.cmcontact !== "" && (<div className="font-bentonreg pt-2 md:pt-4 text-md truncate"><span className="font-bentonbold">C&M Contact Line: </span>{id.cmcontact}</div>)}

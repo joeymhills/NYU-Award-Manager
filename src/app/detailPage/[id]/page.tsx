@@ -34,6 +34,7 @@ interface FormData {
     id: object,
     institution: string,
     name: string,
+    serviceLine: string,
     comments: string
     outcome: string
     intSource: string
@@ -49,13 +50,16 @@ interface FormData {
     imgurl2: string
     imgurl3: string
     imgurl4: string
+    expirationDate:string
+    effectiveDate:string
   }
 
   const callbackUrl = useAtomValue(searchCallback)
   const id = params.id
 
-  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
+  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
+  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', expirationDate: '',
+  effectiveDate: '' })
 
 useEffect(() => {
 function send(){ 
@@ -160,6 +164,8 @@ return(
                       <div >{form.name}</div> 
                       {form.institution !== "" && (<div className="font-bentonreg border-b-[2px] pb-4">{form.institution}</div>)}
                       {((form.imgurl1 !== null) && (form.imgurl1 !== "")) &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={form.imgurl1}>Download link</Link></div><img src={form.imgurl1} className="h-36 w-36"/></div>)}
+
+                      {form.serviceLine !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Service Line: </span>{form.serviceLine}</div>)}
                       {form.outcome !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Outcome: </span>{form.outcome}</div>)}
                       {form.intSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Internal Source: </span>{form.intSource}</div>)}
                       {form.extSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">External Source: </span>{form.extSource}</div>)} 
@@ -171,7 +177,8 @@ return(
                       {form.sourceatr !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Source Attribution: </span>{form.sourceatr}</div>)}
                       {form.wherepubint !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Where Published Internally: </span>{form.wherepubint}</div>)}
                       {form.promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{form.promotionlim}</div>)}
-                      
+                      {form.effectiveDate !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Effective Date: </span>{form.effectiveDate}</div>)}
+                      {form.expirationDate !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Expiration Date: </span>{form.expirationDate}</div>)}
                       {((role == "admin") || (role == "manager")) &&(
                       <div className="flex flex-row justify-center items-center gap-3">
                         <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=> {router.push(`/editAward/${id}`)}}>Edit</button>

@@ -1,5 +1,6 @@
 "use client"
 
+import CreateDropdown from "~/components/createDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { motion } from "framer-motion";
@@ -30,6 +31,7 @@ interface FormData {
     id: object,
     institution: string,
     name: string,
+    serviceLine: string,
     comments: string
     outcome: string
     intSource: string
@@ -45,13 +47,16 @@ interface FormData {
     imgurl2: string
     imgurl3: string
     imgurl4: string
+    effectiveDate: string,
+    expirationDate: string
   }
 
   const id = params.id
   const empty = ""
 
-  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
+  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
+  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
+  expirationDate: ''})
 
   async function update(data: FormData) { 
     try {
@@ -63,8 +68,9 @@ interface FormData {
     catch (error) {
       console.log('error in POST request()')
     }
-    (()=> setForm({id: {id}, institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
+    (()=> setForm({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
+  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
+  expirationDate: ''}))
   }
 
   async function handleSubmit (data: FormData) {
@@ -137,88 +143,144 @@ return(
         transition={{ duration: .5}}
         animate={{ opacity: 1 }}
           className={'flex lg:w-200 md:w-150 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
-            <div className="flex flex-col pt-3 items-center justify-center"> 
-              
-              <div className="flex flex-row 
-              lg:w-200 
-              md:w-150 
-              w-96
-              relative justify-center items-center">
-                <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Edit award</h1>
-              </div>
+                <div className="flex flex-col pt-3 items-center justify-center"> 
+                  
+                  <div className="flex flex-row 
+                  lg:w-200 
+                  md:w-150 
+                  w-96
+                  relative justify-center items-center">
+                    <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
+                  </div>
+                
+                <div className="pt-3">
+                <CreateDropdown/>
+                </div>
 
+                <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
+                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
+                  
+                  <div className="grid sm:grid-cols-2 gap-4 p-5">
+               
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Award Name</label>
+                      <textarea
+                      name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
+                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Award name">
+                      </textarea> 
+                  </div>
 
-            <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
-             className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
-              
-              <div className="grid sm:grid-cols-2 gap-4 p-5">
-              
-              <input 
-              type="text" name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:w-72" placeholder="Award name">
-              </input>
+                  <div className="flex flex-col justify-center items-center">
+                    <label className="font-bentonreg pl-2">Location</label>
+                      <textarea
+                      name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
+                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Institution/Department">
+                      </textarea>
+                  </div>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Related Outcome</label>
+                  <textarea 
+                  name="outcome" value={form.outcome} onChange ={e=> setForm({...form, outcome: e.target.value})}
+                  className= "p-3  rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Related Outcome">
+                  </textarea>
+                  </div>
 
-              <input 
-              type="text" name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-              className= "p-3 rounded-xl drop-shadow-md border lg:w-96 md:72" placeholder="Institution/Department">
-              </input>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Internal Source, Contact & Approvals</label>
+                  <textarea 
+                  name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Internal Source, Contact & Approvals">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="outcome" value={form.outcome} onChange ={e=> setForm({...form, outcome: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Related Outcome">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Frequency</label>                
+                  <textarea 
+                  name="frequency" value={form.frequency} onChange ={e=> setForm({...form, frequency: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Frequency">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="intSource" value={form.intSource} onChange ={e=> setForm({...form, intSource: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Internal Source, Contact & Approvals">
-              </textarea>
-            
-              <textarea 
-              name="frequency" value={form.frequency} onChange ={e=> setForm({...form, frequency: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Frequency">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Notification date</label>
+                  <textarea 
+                  name="notifDate" value={form.notifDate} onChange ={e=> setForm({...form, notifDate: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Notification Date">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="notifDate" value={form.notifDate} onChange ={e=> setForm({...form, notifDate: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Notification Date">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">C&M service line contact</label>
+                  <textarea 
+                  name="cmcontact" value={form.cmcontact} onChange ={e=> setForm({...form, cmcontact: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="C&M Service Line Contact">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="cmcontact" value={form.cmcontact} onChange ={e=> setForm({...form, cmcontact: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="C&M Service Line Contact">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Expiration date</label>
+                  <textarea
+                  name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Source Attribution">
+                  </textarea>
+                  </div>
 
-              <textarea
-              name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Source Attribution">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Where published internally</label>
+                  <textarea
+                  name="wherepubint" value={form.wherepubint} onChange ={e=> setForm({...form, wherepubint: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Where published internally?">
+                  </textarea>
+                  </div>
 
-              <textarea
-              name="wherepubint" value={form.wherepubint} onChange ={e=> setForm({...form, wherepubint: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Where published internally?">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Limitations on promotion</label>
+                  <textarea 
+                  name="promotionlim" value={form.promotionlim} onChange ={e=> setForm({...form, promotionlim: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Limitations on Promotion">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="promotionlim" value={form.promotionlim} onChange ={e=> setForm({...form, promotionlim: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Limitations on Promotion">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">External source & acontact</label>
+                  <textarea 
+                  name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="External Source & Contact">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
-              className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="External Source & Contact">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Enter messaging</label>
+                  <textarea 
+                  name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
+                  className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Enter messaging">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="messaging" value={form.messaging} onChange ={e=> setForm({...form, messaging: e.target.value})}
-              className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Enter messaging">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Enter any comments</label>
+                  <textarea 
+                  name="comments" value={form.comments} onChange ={e=> setForm({...form, comments: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="Enter any comments">
+                  </textarea>
+                  </div>
 
-              <textarea 
-              name="comments" value={form.comments} onChange ={e=> setForm({...form, comments: e.target.value})}
-              className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="Enter any comments">
-              </textarea>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Effective date</label>
+                  <textarea 
+                   name="effectiveDate" value={form.effectiveDate} onChange ={e=> setForm({...form, effectiveDate: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="MM/DD/YYYY">
+                  </textarea>
+                  </div>
 
-              </div>
+                  <div className="flex flex-col justify-center items-center">
+                  <label className="font-bentonreg pl-2">Expiration date</label>
+                  <textarea
+                   name="expirationDate" value={form.expirationDate} onChange ={e=> setForm({...form, expirationDate: e.target.value})}
+                  className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="MM/DD/YYYY">
+                  </textarea>
+                  </div>
+                  </div>
 
               <div className="lg:w-200 md:w-150 w-96 justify-center pb-2 flex flex-row items-center">
               <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">Choose any images you would like to upload<br/>(Only .jpg, .png, and .svg files can be displayed, but others file types will still be stored)</div>
@@ -287,18 +349,6 @@ return(
               </div>
               <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] flex justify-center items-center font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">{!submiting ? "Update" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}</button>
               
-              <ToastContainer 
-              position="top-center"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-              />
             </form>
             </div>
             </motion.div>

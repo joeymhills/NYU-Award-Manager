@@ -4,7 +4,7 @@ const accoladeFormAtom = atom(false)
 const showDetailPage = atom(false)
 const uFilter = atom("unassigned")
 const searchCallback = atom("")
-const aFilter = atom("Select a service line")
+const aFilter = atom("")
 
 export { aFilter }
 export { searchCallback }
