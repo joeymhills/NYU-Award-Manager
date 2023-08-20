@@ -1,7 +1,6 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../prisma/client";
-import { NextApiRequest } from "next";
 // @ts-nocheck
 
 interface create {
@@ -26,8 +25,8 @@ interface create {
 
 export async function POST(req:NextRequest) {
 
-    const {name, institution, outcome, extSource, intSource, messaging, frequency, notifDate, 
-        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4} = await req.json()
+    const {name, institution, serviceLine, outcome, extSource, intSource, messaging, frequency, notifDate, 
+        cmcontact, sourceatr, wherepubint, promotionlim,comments, imgurl1, imgurl2,imgurl3,imgurl4, effectiveDate, expirationDate} = await req.json()
 
     try {
         await prisma.accolade.create({
@@ -35,7 +34,7 @@ export async function POST(req:NextRequest) {
                 institution, name, comments, outcome, extSource,
                 intSource, messaging, frequency, notifDate, cmcontact,
                 sourceatr, wherepubint, promotionlim, imgurl1, imgurl2,
-                imgurl3, imgurl4
+                imgurl3, imgurl4, serviceLine, effectiveDate, expirationDate
 
             }})
         return NextResponse.json({ message: 'Success!!' }, { status: 200 })

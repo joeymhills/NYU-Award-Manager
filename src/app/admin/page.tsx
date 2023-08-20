@@ -324,7 +324,7 @@ return(
       </motion.div>
       )}
 
-    {showUser &&(
+    {showUser && !unassignedLoading &&(
       <motion.div      
       initial={{ opacity: 0 }}
       transition={{ duration: .5 }}
@@ -368,7 +368,7 @@ return(
       </motion.div>
       )}
 
-    {showAdmin &&(
+    {showAdmin && !unassignedLoading&&(
       <motion.div      
       initial={{ opacity: 0 }}
       transition={{ duration: .5 }}
@@ -390,7 +390,7 @@ return(
       </motion.div>
       )}
 
-      {showDeleted &&(
+      {showDeleted && !unassignedLoading &&(
       <motion.div
       initial={{ opacity: 0 }}
       transition={{ duration: .5 }}
