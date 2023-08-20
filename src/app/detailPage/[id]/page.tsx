@@ -24,6 +24,18 @@ const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
 const router = useRouter();
 
+ const nullCheck = (str:string) => {
+  if(str == "") {
+    return false
+  }
+  else if(str == null) {
+    return false
+  }
+  else {
+    return true
+  }
+}
+
 interface types {
   queryID: string
   query: string
@@ -165,7 +177,7 @@ return(
                       {((form.imgurl1 !== null) && (form.imgurl1 !== "")) &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base"> <div><Link href={form.imgurl1}>Download link</Link></div><img src={form.imgurl1} className="h-36 w-36"/></div>)}
 
                       {form.institution !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Location: </span>{form.institution}</div>)}
-                      {form.serviceLine !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Service Line: </span>{form.serviceLine}</div>)}
+                      {nullCheck(form.serviceLine) !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Service Line: </span>{form.serviceLine}</div>)}
                       {form.outcome !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Outcome: </span>{form.outcome}</div>)}
                       {form.intSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Internal Source: </span>{form.intSource}</div>)}
                       {form.extSource !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">External Source: </span>{form.extSource}</div>)} 
