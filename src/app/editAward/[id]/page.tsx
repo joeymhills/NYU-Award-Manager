@@ -1,6 +1,6 @@
 "use client"
 
-import CreateDropdown from "../../../components/CreateDropdown";
+import EditServiceDropdown from "../../../components/CreateDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { motion } from "framer-motion";
@@ -13,11 +13,15 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Ring } from "@uiball/loaders";
+import { useAtomValue, useSetAtom } from "jotai";
+import { aFilter, editChannel } from "~/components/atoms";
 
 export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
 const [submiting, setSubmiting] = useState(false)
+const setServiceChannel = useSetAtom(editChannel)
+const getServiceChannel = useAtomValue(aFilter)
 
 const router = useRouter();
 
@@ -52,7 +56,6 @@ interface FormData {
   }
 
   const id = params.id
-  const empty = ""
 
   const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
   messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
@@ -73,10 +76,11 @@ interface FormData {
   expirationDate: ''}))
   }
 
-  async function handleSubmit (data: FormData) {
+  async function handleSubmit () {
     try {
       setSubmiting(true)
-      await update(data);
+      setForm({...form, serviceLine: getServiceChannel})
+      await update(form);
       router.push(`/detailPage/${id}`)
     } catch (error) {
       alert('error in submission, please try again')
@@ -92,6 +96,7 @@ function send(){
   .then(res => {
     const resdata = res.data
     setForm(resdata.accolade)
+    setServiceChannel(resdata.accolade.serviceLine)
     setLoading(false)
   })
   .catch(function (error) {
@@ -154,10 +159,10 @@ return(
                   </div>
                 
                 <div className="pt-3">
-                <CreateDropdown/>
+                <EditServiceDropdown />
                 </div>
 
-                <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
+                <form onSubmit = {e => { e.preventDefault(); handleSubmit()}}
                  className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
                   
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
