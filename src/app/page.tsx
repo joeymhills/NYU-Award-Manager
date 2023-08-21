@@ -138,7 +138,7 @@ return(
               <Image src={grid4} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
             </button>
-            <button type="button" onClick={()=>{router.push("search?q=nyu")}} className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{router.push("search?q= ")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid2} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white text-xs mb-6 lg:text-lg h-8 font-bentonbold">Institution Wide Accolades</p>
               </button>
