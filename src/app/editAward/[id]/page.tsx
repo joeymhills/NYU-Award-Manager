@@ -1,6 +1,6 @@
 "use client"
 
-import CreateDropdown from "../../../components/CreateDropdown";
+import CreateDropdown from "../../components/CreateDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { motion } from "framer-motion";
@@ -150,7 +150,7 @@ return(
                   md:w-150 
                   w-96
                   relative justify-center items-center">
-                    <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
+                    <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Edit award</h1>
                   </div>
                 
                 <div className="pt-3">
