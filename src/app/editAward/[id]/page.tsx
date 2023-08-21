@@ -96,9 +96,14 @@ function send(){
   .then(res => {
     const resdata = res.data
     setForm(resdata.accolade)
-    setServiceChannel(resdata.accolade.serviceLine)
     setLoading(false)
+    res = resdata.accolade
+    return res
   })
+  .then(res => {
+    console.log(res)
+    setServiceChannel(form.serviceLine)
+    })
   .catch(function (error) {
     console.log(error);
   });
