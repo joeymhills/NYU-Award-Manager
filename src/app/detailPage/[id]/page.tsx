@@ -189,8 +189,8 @@ return(
                       {form.sourceatr !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Source Attribution: </span>{form.sourceatr}</div>)}
                       {form.wherepubint !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Where Published Internally: </span>{form.wherepubint}</div>)}
                       {form.promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{form.promotionlim}</div>)}
-                      {form.effectiveDate !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Effective Date: </span>{form.effectiveDate}</div>)}
-                      {form.expirationDate !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Expiration Date: </span>{form.expirationDate}</div>)}
+                      {nullCheck(form.effectiveDate) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Effective Date: </span>{form.effectiveDate}</div>)}
+                      {nullCheck(form.expirationDate) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Expiration Date: </span>{form.expirationDate}</div>)}
                       {((role == "admin") || (role == "manager")) &&(
                       <div className="flex flex-row justify-center items-center gap-3">
                         <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=> {router.push(`/editAward/${id}`)}}>Edit</button>
