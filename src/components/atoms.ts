@@ -7,6 +7,7 @@ const searchCallback = atom("")
 const aFilter = atom("")
 const editChannel = atom("")
 
+export { editChannel }
 export { aFilter }
 export { searchCallback }
 export { accoladeFormAtom}
