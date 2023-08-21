@@ -12,6 +12,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { aFilter, searchCallback, showDetailPage } from "~/components/atoms";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import CreateDropdown from "~/components/CreateDropdown";
 
 
 const searchPage = () => {
@@ -169,7 +170,7 @@ const searchPage = () => {
               </div>
             </div>
           </div>
-          
+         <CreateDropdown /> 
           <div className="flex flex-col justify-center items-center">
             <div className="pb-5 text-white max-w-xs text-sm font-bentonbold
               lg:text-3xl lg:max-w-2xl 
