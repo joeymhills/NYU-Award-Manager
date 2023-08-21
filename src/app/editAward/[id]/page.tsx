@@ -102,7 +102,7 @@ function send(){
     return res
   })
   .then(res => {
-    console.log(res)
+    console.log(res, "inside func")
     setServiceChannel(form.serviceLine)
     })
   .catch(function (error) {
