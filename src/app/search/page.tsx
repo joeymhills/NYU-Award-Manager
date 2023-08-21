@@ -152,7 +152,7 @@ const searchPage = () => {
 
     </div>
     <div className="h-px bg-white" />
-      <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
+      <main className="flex min-h-[130vh] flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
         <Link className="hover:cursor-pointer py-4" href={'/'}>
           <svg width="142.5px" height="60px" viewBox="0 0 129 55" fill="#fff" xmlns="http://www.w3.org/2000/svg">
