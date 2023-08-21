@@ -170,7 +170,11 @@ const searchPage = () => {
               </div>
             </div>
           </div>
-         <CreateDropdown /> 
+
+         <div className="py-3" />
+          <CreateDropdown />
+         </div>
+
           <div className="flex flex-col justify-center items-center">
             <div className="pb-5 text-white max-w-xs text-sm font-bentonbold
               lg:text-3xl lg:max-w-2xl 
