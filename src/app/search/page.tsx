@@ -8,22 +8,18 @@ import SearchInput from "~/SearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
 import { Ring, Waveform } from "@uiball/loaders";
-import Dropdown from "~/components/Dropdown";
-import { useAtom } from "jotai";
-import { searchCallback, showDetailPage } from "~/components/atoms";
-import Head from "next/head";
+import { useAtom, useAtomValue } from "jotai";
+import { aFilter, searchCallback, showDetailPage } from "~/components/atoms";
 import Link from "next/link";
-import { LogoutButton } from "../auth";
 import { useSession } from "next-auth/react";
-import axios from "axios";
 
 
 const searchPage = () => {
 
     const search = useSearchParams();
     const searchQuery = search ? search.get("q"): null;
-    console.log(searchQuery)
     const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
+    const serviceFilter = useAtomValue(aFilter)
     setCallbackUrl(searchQuery)
     const [showDetail,setShowDetail] = useAtom(showDetailPage)
 
@@ -206,7 +202,9 @@ const searchPage = () => {
       </motion.div>
         )}
         {noSearchResults()}
-        {data.accolade?.map(id => 
+        {data.accolade?.map(id => {
+        if((id.serviceLine == serviceFilter) || (serviceFilter == "")) {
+          return(
           <>
             <motion.div
             initial={{ opacity: 0 }}
@@ -256,7 +254,10 @@ const searchPage = () => {
             </motion.div>
             </>
 
-            )}
+              )}
+            else{
+                  return null
+            }})}
         
         </div>
         
