@@ -4,11 +4,8 @@ import EditServiceDropdown from "../../../components/CreateDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { motion } from "framer-motion";
-import { NextPage } from "next";
 import { TrashIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { accolade } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -76,11 +73,15 @@ interface FormData {
   expirationDate: ''}))
   }
 
+  useEffect(() => {
+    setForm({...form, serviceLine: getServiceChannel})
+  },[getServiceChannel])
+
   async function handleSubmit () {
     try {
       setSubmiting(true)
-      setForm({...form, serviceLine: getServiceChannel})
       await update(form);
+      setServiceChannel("")
       router.push(`/detailPage/${id}`)
     } catch (error) {
       alert('error in submission, please try again')
