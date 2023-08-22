@@ -22,7 +22,6 @@ const searchPage = () => {
     const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
     const [serviceFilter, setServiceFilter] = useAtom(searchServiceFilter)
     const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
-    const [count, setCount] = useState(0)
     setCallbackUrl(searchQuery)
 
    const nullCheck = (str:string) => {
@@ -60,12 +59,9 @@ const searchPage = () => {
   fetchAccolades(searchQuery);
   },[searchQuery])
 
-  useEffect(()=> {
-    setCount(0)
-  },[serviceFilter, locationFilter])
 
   const noSearchResults = () => {
-    if (count == 0) {
+  if (data.accolade?.length == 0) {
       return(
         <motion.div
         initial={{ opacity: 0 }}
@@ -190,8 +186,6 @@ const searchPage = () => {
         {noSearchResults()}
         {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
-          
-          setCount(count + 1) 
           return(
           <>
             <motion.div
