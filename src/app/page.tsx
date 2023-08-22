@@ -19,12 +19,17 @@ import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation"
 import { LogoutButton } from './auth';
 import { motion } from 'framer-motion';
+import { aFilter, searchLocationFilter } from '~/components/atoms';
+import { useAtom, useSetAtom } from 'jotai';
 
 export default function Home() {
 
   const [role, setRole ] = useState("loading")
   const {data:session} = useSession()
   const router = useRouter()
+
+  const setServiceFilter = useSetAtom(aFilter)
+  const setLocationFilter = useSetAtom(searchLocationFilter)
 
   useEffect(()=> {
   if(session) {
@@ -122,11 +127,11 @@ return(
             transition={{ duration: .5, delay: .4 }}
             animate={{ opacity: 1 }}>
           <div className="grid grid-cols-2 md:grid-cols-3 max-w-3xl gap-8 pb-16">
-          <button type="button" onClick={()=>{router.push("search?q=long%20island")}} className="flex flex-col items-center justify-center gap-4 ">
+          <button type="button" onClick={()=>{setLocationFilter("NYU Langone Hospital—Long Island");router.push("search?q=")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid6} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Hospital—Long Island</p>
             </button>
-            <button type="button" onClick={()=>{router.push("search?q=Orthopedic")}}  className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{setLocationFilter("NYU Langone Orthopedic Hospital");router.push("search?q=")}}  className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid5} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
