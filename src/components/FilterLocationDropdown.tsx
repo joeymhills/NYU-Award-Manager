@@ -1,16 +1,14 @@
 
 "use client"
+
 import { Menu, Transition } from "@headlessui/react";
 import { useAtom } from "jotai";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { locationFilter } from "./atoms";
-import { Fragment, useEffect } from "react";
+import { searchLocationFilter } from "./atoms";
+import { Fragment } from "react";
 
- export default function CreateLocationDropdown() {
-  const [ location, setLocation ] = useAtom(locationFilter)
-  useEffect(()=>{
-    setLocation("")
-  },[])  
+ export default function FilterLocationDropdown() {
+  const [ location, setLocation ] = useAtom(searchLocationFilter)
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

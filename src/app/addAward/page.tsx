@@ -14,7 +14,8 @@ import { useRouter } from "next/navigation";
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import CreateDropdown from "../../components/CreateDropdown";
-import { aFilter } from "~/components/atoms";
+import CreatLocationdDropdown from "../../components/CreateLocationDropdown";
+import { aFilter, locationFilter } from "~/components/atoms";
 
 const addAward:NextPage = () => {
   
@@ -25,6 +26,10 @@ const addAward:NextPage = () => {
   setForm({...form, serviceLine: serviceLineAtom})
   },[serviceLineAtom])
 
+  const locationAtom  = useAtomValue(locationFilter)
+  useEffect(()=> {
+  setForm({...form, institution: locationAtom})
+  },[locationAtom])
   
   interface FormData {
     institution: string,
@@ -144,7 +149,8 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
                   </div>
                 
-                <div className="pt-3">
+                <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-3">
+                <CreatLocationdDropdown />
                 <CreateDropdown/>
                 </div>
 
@@ -161,13 +167,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                       </textarea> 
                   </div>
 
-                  <div className="flex flex-col justify-center items-center">
-                    <label className="font-bentonreg pl-2">Location</label>
-                      <textarea
-                      name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Institution/Department">
-                      </textarea>
-                  </div>
                   <div className="flex flex-col justify-center items-center">
                   <label className="font-bentonreg pl-2">Related Outcome</label>
                   <textarea 

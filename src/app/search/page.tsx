@@ -1,18 +1,17 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { accolade, users } from "@prisma/client";
-import useSWR from 'swr';
-import { JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchInput from "~/SearchInput";
 import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
-import { Ring, Waveform } from "@uiball/loaders";
+import { Ring } from "@uiball/loaders";
 import { useAtom, useAtomValue } from "jotai";
-import { aFilter, searchCallback, showDetailPage } from "~/components/atoms";
+import { aFilter, searchCallback, searchLocationFilter, showDetailPage } from "~/components/atoms";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import CreateDropdown from "~/components/CreateDropdown";
+import FilterLocationDropdown from "~/components/FilterLocationDropdown";
 
 
 const searchPage = () => {
@@ -20,9 +19,9 @@ const searchPage = () => {
     const search = useSearchParams();
     const searchQuery = search ? search.get("q"): null;
     const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
-    const serviceFilter = useAtomValue(aFilter)
+    const [serviceFilter, setServiceFilter] = useAtom(aFilter)
+    const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
     setCallbackUrl(searchQuery)
-    const [showDetail,setShowDetail] = useAtom(showDetailPage)
 
    const nullCheck = (str:string) => {
     if(str == "") {
@@ -35,27 +34,7 @@ const searchPage = () => {
       return true
     }
   }
-    // useEffect(()=> {
-    //     setShowDetail(false)
-    //   },[])
     
-    // setting state for DetailView props
-    
-    const[id, setId] = useState("")
-    const [name,setName] = useState("")
-    const [institution, setInstitution] = useState("")
-    const [outcome,setOutcome] = useState("")
-    const [extSource, setExtSource] = useState("")
-    const [intSource, setIntSource] = useState("")
-    const [messaging, setMessaging] = useState("")
-    const [comments, setComments] = useState("")
-    const [frequency, setFrequency] = useState("")
-    const [notifDate, setNotifDate] = useState("")
-    const [cmcontact, setCmcontact] = useState("")
-    const [sourceatr, setSourceatr] = useState("")
-    const [wherepubint, setWherepubint] = useState("")
-    const [promotionlim, setPromotionlim] = useState("")
-    const [imgurl, setImgurl] = useState("")
     const [data, setData ] = useState([]);
     const [loading,setLoading] = useState(true)
 
@@ -124,33 +103,6 @@ const searchPage = () => {
   console.log(data)
     return(
     <>
-    <div>
-      <AnimatePresence>
-      {showDetail && (
-        <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}>
-        <DetailView 
-          id={id}
-          institution={institution}
-          name={name}
-          outcome={outcome}
-          extSource={extSource}
-          intSource={intSource}
-          messaging={messaging}
-          comments={comments}
-          frequency={frequency}
-          notifDate={notifDate}
-          cmcontact={cmcontact}
-          sourceatr={sourceatr}
-          wherepubint={wherepubint}
-          promotionlim={promotionlim}
-          imgurl={imgurl}/>
-        </motion.div>)}
-      </AnimatePresence>
-
-    </div>
     <div className="h-px bg-white" />
       <main className="flex min-h-[130vh] flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
@@ -163,6 +115,11 @@ const searchPage = () => {
           </Link>
         <div>
 
+
+        <motion.div
+        initial={{ opacity: 0 }}
+        transition={{ duration: .5 }}
+        animate={{ opacity: 1 }}>
         <div className="pb-5 w-full">
             <div className="flex flex-col justify-center items-center gap-1">
               <div>
@@ -170,10 +127,22 @@ const searchPage = () => {
               </div>
             </div>
           </div>
+        </motion.div>
 
-         <div className="pb-3 pt-1"> 
-          <CreateDropdown />
-         </div>
+
+          <motion.div
+          initial={{ opacity: 0 }}
+          transition={{ duration: .5, delay: .1 }}
+          animate={{ opacity: 1 }}>
+          <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-2 pb-3">
+          <FilterLocationDropdown/>
+          <CreateDropdown/>
+          </div>
+          <div className="flex flex-row justify-center items-center pb-2 ">
+          <button className="rounded-md bg-white px-3 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
+          ring-gray-300 hover:cursor-pointer hover:bg-gray-50" onClick={()=>{setLocationFilter(""); setServiceFilter("")}}>Clear filters</button>
+          </div>
+          </motion.div>
 
           <div className="flex flex-col justify-center items-center">
             <div className="pb-5 text-white max-w-xs text-sm font-bentonbold
@@ -208,7 +177,7 @@ const searchPage = () => {
         )}
         {noSearchResults()}
         {data.accolade?.map(id => {
-        if((id.serviceLine == serviceFilter) || (serviceFilter == "")) {
+        if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
           return(
           <>
             <motion.div
