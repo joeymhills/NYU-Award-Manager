@@ -60,6 +60,24 @@ const searchPage = () => {
   fetchAccolades(searchQuery);
   },[searchQuery])
 
+  const noSearchResults = () => {
+    if (count == 0) {
+      return(
+        <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}> 
+        <div className=" flex flex-col gap-5 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 p-10 text-5xl font-bentonbold">
+          <div className="font-bentonreg flex justify-center items-center text-4xl">
+            <div>No results found</div>
+          </div>
+        </div>
+        </motion.div>
+
+      )
+    }
+  }
+
 
   //   const noSearchResults = () => {
   //   if (data?.accolade.length === 0) {
@@ -165,6 +183,7 @@ const searchPage = () => {
       </div>
       </motion.div>
         )}
+        {noSearchResults()}
         {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
           
