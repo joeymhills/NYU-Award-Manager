@@ -135,20 +135,20 @@ return(
               <Image src={grid5} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Orthopedic Hospital</p>
             </button>
-            <button type="button" onClick={()=>{router.push("search?q=Brooklyn")}} className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{setLocationFilter("NYU Langone Hospital—Brooklyn");router.push("search?q=")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid3} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">NYU Langone Hospital—Brooklyn</p>
             </button>
-            <button type="button" onClick = {() => router.push("/search?q=Rusk")} className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick = {() =>{setLocationFilter("Rusk Rehabilitation");router.push("/search?q=")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid4} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 text-xs mb-6 lg:text-lg font-bentonbold">Rusk Rehabilitation</p>
             </button>
-            <button type="button" onClick={()=>{router.push("search?q= ")}} className="flex flex-col items-center justify-center gap-4 ">
+            <button type="button" onClick={()=>{setLocationFilter("");setServiceFilter("");router.push("search?q=")}} className="flex flex-col items-center justify-center gap-4 ">
               <Image src={grid2} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white text-xs mb-6 lg:text-lg h-8 font-bentonbold">Institution Wide Accolades</p>
               </button>
             <button type="button" className="flex flex-col items-center justify-center gap-4 ">
-              <Image src={grid1} onClick={()=>{router.push("search?q=tisch")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
+              <Image src={grid1} onClick={()=>{setLocationFilter("Tisch Hospital and Kimmel Pavilion");router.push("search?q=")}} className="w-80 shadow-lg rounded-2xl" alt={""} />
               <p className="text-white h-8 mb-6 text-xs lg:text-lg font-bentonbold">Tisch Hospital and Kimmel Pavilion</p>
             </button>
             <button type="button" onClick={()=>{router.push("search?q=medical%20education")}} className="flex flex-col items-center justify-center gap-4">
