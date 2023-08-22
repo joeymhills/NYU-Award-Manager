@@ -209,7 +209,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </div>
 
                   <div className="flex flex-col justify-center items-center">
-                  <label className="font-bentonreg pl-2">Expiration date</label>
+                  <label className="font-bentonreg pl-2">Source Attribution</label>
                   <textarea
                   name="sourceatr" value={form.sourceatr} onChange ={e=> setForm({...form, sourceatr: e.target.value})}
                   className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Source Attribution">
@@ -233,7 +233,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </div>
 
                   <div className="flex flex-col justify-center items-center">
-                  <label className="font-bentonreg pl-2">External source & acontact</label>
+                  <label className="font-bentonreg pl-2">External source & contact</label>
                   <textarea 
                   name="extSource" value={form.extSource} onChange ={e=> setForm({...form, extSource: e.target.value})}
                   className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="External Source & Contact">
