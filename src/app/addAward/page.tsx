@@ -143,7 +143,8 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   
                   <div className="flex flex-row 
                   lg:w-200 
-                  md:w-150 
+                  md:w-150
+                  sm:128
                   w-96
                   relative justify-center items-center">
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
@@ -155,7 +156,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                 </div>
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
-                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
+                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 sm:128 w-96">
                   
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
                

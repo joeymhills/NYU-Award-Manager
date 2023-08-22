@@ -7,11 +7,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
 import { Ring } from "@uiball/loaders";
 import { useAtom, useAtomValue } from "jotai";
-import { aFilter, searchCallback, searchLocationFilter, showDetailPage } from "~/components/atoms";
+import { searchServiceFilter, searchCallback, searchLocationFilter } from "~/components/atoms";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import CreateDropdown from "~/components/CreateDropdown";
 import FilterLocationDropdown from "~/components/FilterLocationDropdown";
+import FilterServiceDropdown from "~/components/FilterServiceDropdown";
 
 
 const searchPage = () => {
@@ -19,8 +20,9 @@ const searchPage = () => {
     const search = useSearchParams();
     const searchQuery = search ? search.get("q"): null;
     const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
-    const [serviceFilter, setServiceFilter] = useAtom(aFilter)
+    const [serviceFilter, setServiceFilter] = useAtom(searchServiceFilter)
     const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
+    const [count, setCount] = useState(0)
     setCallbackUrl(searchQuery)
 
    const nullCheck = (str:string) => {
@@ -58,8 +60,12 @@ const searchPage = () => {
   fetchAccolades(searchQuery);
   },[searchQuery])
 
+  useEffect(()=> {
+    setCount(0)
+  },[serviceFilter, locationFilter])
+
   const noSearchResults = () => {
-    if (data.accolade?.length == 0) {
+    if (count == 0) {
       return(
         <motion.div
         initial={{ opacity: 0 }}
@@ -134,16 +140,22 @@ const searchPage = () => {
           initial={{ opacity: 0 }}
           transition={{ duration: .5, delay: .1 }}
           animate={{ opacity: 1 }}>
+          <div className="w-screen-full">
           <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-2 pb-3">
           <FilterLocationDropdown/>
-          <CreateDropdown/>
+          <FilterServiceDropdown/>
           </div>
           <div className="flex flex-row justify-center items-center pb-2 ">
-          <button className="rounded-md bg-white px-3 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
+          <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
           ring-gray-300 hover:cursor-pointer hover:bg-gray-50" onClick={()=>{setLocationFilter(""); setServiceFilter("")}}>Clear filters</button>
+          </div>
           </div>
           </motion.div>
 
+          <motion.div
+          initial={{ opacity: 0 }}
+          transition={{ duration: .5, delay: .1 }}
+          animate={{ opacity: 1 }}>
           <div className="flex flex-col justify-center items-center">
             <div className="pb-5 text-white max-w-xs text-sm font-bentonbold
               lg:text-3xl lg:max-w-2xl 
@@ -155,7 +167,7 @@ const searchPage = () => {
                 </p>
               </div>
             </div>
-
+          </motion.div>
         <div className="w-full flex flex-col justify-center align-center">
 
 
@@ -178,6 +190,8 @@ const searchPage = () => {
         {noSearchResults()}
         {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
+          
+          setCount(count + 1) 
           return(
           <>
             <motion.div

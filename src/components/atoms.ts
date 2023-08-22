@@ -8,7 +8,9 @@ const aFilter = atom("")
 const editChannel = atom("")
 const locationFilter = atom ("")
 const searchLocationFilter = atom("")
+const searchServiceFilter = atom("")
 
+export { searchServiceFilter }
 export { searchLocationFilter }
 export { locationFilter }
 export { editChannel }

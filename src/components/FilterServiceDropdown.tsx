@@ -1,15 +1,13 @@
 "use client"
+
 import { Menu, Transition } from "@headlessui/react";
 import { useAtom } from "jotai";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { aFilter } from "./atoms";
-import { Fragment, useEffect } from "react";
+import { searchServiceFilter } from "./atoms";
+import { Fragment } from "react";
 
- export default function CreateDropdown() {
-    const [ serviceLine, setServiceLine] = useAtom(aFilter)
-  useEffect(()=>{
-    setServiceLine("")
-  },[])  
+ export default function FilterServiceDropdown() {
+    const [ serviceLine, setServiceLine] = useAtom(searchServiceFilter)
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

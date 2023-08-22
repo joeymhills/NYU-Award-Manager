@@ -17,10 +17,9 @@ import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation"
-import { LogoutButton } from './auth';
 import { motion } from 'framer-motion';
-import { aFilter, searchLocationFilter } from '~/components/atoms';
-import { useAtom, useSetAtom } from 'jotai';
+import { searchLocationFilter, searchServiceFilter } from '~/components/atoms';
+import {  useSetAtom } from 'jotai';
 
 export default function Home() {
 
@@ -28,7 +27,7 @@ export default function Home() {
   const {data:session} = useSession()
   const router = useRouter()
 
-  const setServiceFilter = useSetAtom(aFilter)
+  const setServiceFilter = useSetAtom(searchServiceFilter)
   const setLocationFilter = useSetAtom(searchLocationFilter)
 
   useEffect(()=> {
