@@ -60,10 +60,6 @@ const searchPage = () => {
   fetchAccolades(searchQuery);
   },[searchQuery])
 
-  useEffect(()=> {
-    setCount(0)
-  },[serviceFilter, locationFilter])
-
   const noSearchResults = () => {
     if (count == 0) {
       return(
