@@ -72,6 +72,7 @@ interface FormData {
 
   function editServiceFunc(){
   if(!loading){
+    console.log("from inside editAward", form.serviceLine)
     return(
     <div className="pt-3">
     <EditServiceDropdown 

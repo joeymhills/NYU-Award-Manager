@@ -17,7 +17,7 @@ const EditServiceDropdown: React.FC<Props> = ({
   const initialServiceLine = useAtomValue(editChannel)
  
   useEffect(()=>{
-  console.log(serviceProp)
+  console.log("from inside component", serviceProp)
   setServiceLine(serviceProp)
   },[serviceProp])
 
