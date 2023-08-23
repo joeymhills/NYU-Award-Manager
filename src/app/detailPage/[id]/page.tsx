@@ -1,6 +1,5 @@
 "use client"
 
-import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { NextPage } from "next";
@@ -158,7 +157,8 @@ return(
                                   </div>
                                   <div className="flex flex-row justify-center gap-2">
                                       <button className="bg-white border-2 border-[#541A83] rounded-2xl text-[#541A83] h-8 w-32" onClick={()=>{setDeleteWindow(false)}}>Cancel</button>
-                                      <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAccolade(id);setDeleteWindow(false)}}>Delete</button>
+                                      <button className="bg-red-500 rounded-2xl text-white h-8 w-32" onClick={()=>{deleteAccolade(id);setDeleteWindow(false);
+                                      router.push(`/search?q=${callbackUrl}`)}}>Delete</button>
                                   </div>
                               </div>
                           </div>
