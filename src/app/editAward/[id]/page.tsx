@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
 const [submiting, setSubmiting] = useState(false)
-const [service, setService] = useState("")
+const [service, setService] = useState("test")
 const getServiceChannel = useAtomValue(aFilter)
 
 const router = useRouter();
