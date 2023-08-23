@@ -192,12 +192,12 @@ return(
                       {nullCheck(form.expirationDate) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Expiration Date: </span>{form.expirationDate}</div>)}
 
                       {((form.imgurl1 !== null) && (form.imgurl1 !== "")) && (<div className="flex flex-col font-bentonreg justify-center items-center text-base">
+                      <img src={form.imgurl1} className="h-24 w-24"/>
                       <div>
                           <Link className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
                           ring-gray-300 hover:cursor-pointer hover:bg-gray-50"
                             href={form.imgurl1}>Download link</Link>
                        </div>
-                        <img src={form.imgurl1} className="h-24 w-24"/>
                       </div>)}
 
                       {((role == "admin") || (role == "manager")) &&(
