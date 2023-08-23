@@ -16,7 +16,6 @@ const EditServiceDropdown: React.FC<Props> = ({
   const [ serviceLine, setServiceLine] = useAtom(aFilter)
   const initialServiceLine = useAtomValue(editChannel)
  
-  console.log("from inside component", serviceProp)
   setServiceLine(serviceProp)
 
   function classNames(...classes: string[]) {
@@ -31,7 +30,8 @@ const EditServiceDropdown: React.FC<Props> = ({
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
           ring-gray-300 hover:cursor-pointer hover:bg-gray-50">
-         {(serviceLine == "") ? "Select a service line" : serviceLine}
+            {/* {(serviceLine == "") ? "Select a service line" : serviceLine} */}
+            {serviceProp}
 
           <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
         </Menu.Button>
