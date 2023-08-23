@@ -79,7 +79,7 @@ interface FormData {
     try {
       setSubmiting(true)
       await update(form);
-      setServiceChannel("")
+      setService("")
       router.push(`/detailPage/${id}`)
     } catch (error) {
       alert('error in submission, please try again')
