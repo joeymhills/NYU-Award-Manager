@@ -70,6 +70,10 @@ interface FormData {
   expirationDate: ''}))
   }
 
+  useEffect(()=> {
+    setForm({...form, serviceLine: getServiceLine})
+  },[getServiceLine])
+
   function editServiceFunc(){
   if(!loading){
     return(
@@ -83,7 +87,6 @@ interface FormData {
 
   async function handleSubmit () {
     try {
-      setForm({...form, serviceLine: getServiceLine})
       setSubmiting(true)
       await update(form);
       router.push(`/detailPage/${id}`)
