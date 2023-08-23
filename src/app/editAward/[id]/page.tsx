@@ -84,11 +84,11 @@ interface FormData {
   if(!loading){
     return(
     <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-3">
-    <EditServiceDropdown 
-      serviceProp={form.serviceLine}
-    />
     <EditLocationDropdown
       locationProp={form.institution}
+    />
+    <EditServiceDropdown 
+      serviceProp={form.serviceLine}
     />
     </div>
     )}
