@@ -88,7 +88,7 @@ interface FormData {
       serviceProp={form.serviceLine}
     />
     <EditLocationDropdown
-      locationProp={form.serviceLine}
+      locationProp={form.institution}
     />
     </div>
     )}
