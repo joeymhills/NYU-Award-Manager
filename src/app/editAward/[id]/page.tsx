@@ -1,6 +1,6 @@
 "use client"
 
-import EditServiceDropdown from "../../../components/CreateDropdown";
+import EditServiceDropdown from "../../../components/editServiceDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
 import { motion } from "framer-motion";
