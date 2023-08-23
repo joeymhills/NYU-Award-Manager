@@ -6,14 +6,14 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { aFilter, editChannel } from "./atoms";
 import { Fragment, useEffect } from "react";
 
- export default function EditServiceDropdown() {
+ export default function EditServiceDropdown( serviceProp: string ) {
 
   const [ serviceLine, setServiceLine] = useAtom(aFilter)
   const initialServiceLine = useAtomValue(editChannel)
   
   useEffect(()=>{
-    setServiceLine(initialServiceLine)
-  },[initialServiceLine])  
+    setServiceLine(serviceProp)
+  },[serviceProp])  
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')

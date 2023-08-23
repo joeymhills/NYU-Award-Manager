@@ -17,15 +17,13 @@ export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
 const [submiting, setSubmiting] = useState(false)
-const setServiceChannel = useSetAtom(editChannel)
+const [service, setService] = useState("")
 const getServiceChannel = useAtomValue(aFilter)
 
 const router = useRouter();
 
-interface types {
-  queryID: string
-  query: string
-  result: string[]
+interface props {
+    serviceProp: string
 }
 
 interface FormData {
@@ -97,14 +95,9 @@ function send(){
   .then(res => {
     const resdata = res.data
     setForm(resdata.accolade)
+    setService(resdata.accolade.serviceLine)
     setLoading(false)
-    res = resdata.accolade
-    return res
   })
-  .then(res => {
-    console.log(res, "inside func")
-    setServiceChannel(form.serviceLine)
-    })
   .catch(function (error) {
     console.log(error);
   });
@@ -165,7 +158,8 @@ return(
                   </div>
                 
                 <div className="pt-3">
-                <EditServiceDropdown />
+                <EditServiceDropdown 
+                  serviceProp = {{service}}/>
                 </div>
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit()}}
