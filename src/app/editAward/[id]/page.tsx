@@ -190,13 +190,6 @@ return(
                   </div>
 
                   <div className="flex flex-col justify-center items-center">
-                    <label className="font-bentonreg pl-2">Location</label>
-                      <textarea
-                      name="institution" value={form.institution} onChange ={e=> setForm({...form, institution: e.target.value})} 
-                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Institution/Department">
-                      </textarea>
-                  </div>
-                  <div className="flex flex-col justify-center items-center">
                   <label className="font-bentonreg pl-2">Related Outcome</label>
                   <textarea 
                   name="outcome" value={form.outcome} onChange ={e=> setForm({...form, outcome: e.target.value})}
