@@ -161,11 +161,11 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
                
                   <div className="flex flex-col justify-center items-center">
-                  <label className="font-bentonreg pl-2">Award Name</label>
-                      <textarea
-                      name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
-                      className= "p-3 rounded-xl drop-shadow-md border h-32 lg:w-96 md:72" placeholder="Award name">
-                      </textarea> 
+                  <label className="font-bentonreg pl-2">Award name</label>
+                  <textarea 
+                  name="accolade" value={form.name} onChange ={e=> setForm({...form, name: e.target.value})}
+                  className= "p-3  rounded-xl drop-shadow-md border h-32 lg:w-96 md:w-72" placeholder="Award name">
+                  </textarea>
                   </div>
 
                   <div className="flex flex-col justify-center items-center">
