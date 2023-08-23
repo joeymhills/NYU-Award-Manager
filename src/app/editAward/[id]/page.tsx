@@ -72,8 +72,8 @@ interface FormData {
   }
 
   useEffect(() => {
-    setForm({...form, serviceLine: getServiceChannel})
-  },[getServiceChannel])
+    setService(form.serviceLine)
+  },[loading])
 
   async function handleSubmit () {
     try {
