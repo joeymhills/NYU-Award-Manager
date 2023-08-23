@@ -16,10 +16,8 @@ const EditServiceDropdown: React.FC<Props> = ({
   const [ serviceLine, setServiceLine] = useAtom(aFilter)
   const initialServiceLine = useAtomValue(editChannel)
  
-  useEffect(()=>{
   console.log("from inside component", serviceProp)
   setServiceLine(serviceProp)
-  },[serviceProp])
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
