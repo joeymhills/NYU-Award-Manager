@@ -85,7 +85,6 @@ interface FormData {
     try {
       setSubmiting(true)
       await update(form);
-      setService("")
       router.push(`/detailPage/${id}`)
     } catch (error) {
       alert('error in submission, please try again')
@@ -101,8 +100,6 @@ function send(){
   .then(res => {
     const resdata = res.data
     setForm(resdata.accolade)
-    setService(resdata.accolade.serviceLine)
-    console.log(service)
     setLoading(false)
   })
   .catch(function (error) {
