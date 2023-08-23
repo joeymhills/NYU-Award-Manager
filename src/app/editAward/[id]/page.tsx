@@ -11,13 +11,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Ring } from "@uiball/loaders";
 import { useAtomValue, useSetAtom } from "jotai";
-import { aFilter, editChannel } from "~/components/atoms";
+import { editService } from "~/components/atoms";
 
 export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
 const [submiting, setSubmiting] = useState(false)
-const getServiceChannel = useAtomValue(aFilter)
+const getServiceLine = useAtomValue(editService)
 
 const router = useRouter();
 
@@ -72,7 +72,6 @@ interface FormData {
 
   function editServiceFunc(){
   if(!loading){
-    console.log("from inside editAward", form.serviceLine)
     return(
     <div className="pt-3">
     <EditServiceDropdown 
@@ -84,6 +83,7 @@ interface FormData {
 
   async function handleSubmit () {
     try {
+      setForm({...form, serviceLine: getServiceLine})
       setSubmiting(true)
       await update(form);
       router.push(`/detailPage/${id}`)

@@ -1,9 +1,9 @@
 "use client"
 
 import { Menu, Transition } from "@headlessui/react";
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { aFilter, editChannel } from "./atoms";
+import { editService } from "./atoms";
 import { Fragment, useEffect } from "react";
 
 interface Props{
@@ -13,8 +13,7 @@ const EditServiceDropdown: React.FC<Props> = ({
   serviceProp
 }) => {
 
-  const [ serviceLine, setServiceLine] = useAtom(aFilter)
-  const initialServiceLine = useAtomValue(editChannel)
+  const [ serviceLine, setServiceLine] = useAtom(editService)
   
   useEffect(()=> {
   console.log("from dropdown", serviceProp)

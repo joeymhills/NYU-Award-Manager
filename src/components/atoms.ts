@@ -5,7 +5,7 @@ const showDetailPage = atom(false)
 const uFilter = atom("unassigned")
 const searchCallback = atom("")
 const aFilter = atom("")
-const editChannel = atom("")
+const editService = atom("")
 const locationFilter = atom ("")
 const searchLocationFilter = atom("")
 const searchServiceFilter = atom("")
@@ -13,7 +13,7 @@ const searchServiceFilter = atom("")
 export { searchServiceFilter }
 export { searchLocationFilter }
 export { locationFilter }
-export { editChannel }
+export { editService }
 export { aFilter }
 export { searchCallback }
 export { accoladeFormAtom}
