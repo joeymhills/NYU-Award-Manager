@@ -11,9 +11,7 @@ import { Fragment, useEffect } from "react";
   const [ serviceLine, setServiceLine] = useAtom(aFilter)
   const initialServiceLine = useAtomValue(editChannel)
   
-  useEffect(()=>{
-    setServiceLine(serviceProp)
-  },[serviceProp])  
+  setServiceLine(serviceProp)
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
