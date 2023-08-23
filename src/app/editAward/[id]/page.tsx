@@ -75,6 +75,17 @@ interface FormData {
     setService(form.serviceLine)
   },[loading])
 
+  function editServiceFunc(){
+  if(!loading){
+    return(
+    <div className="pt-3">
+    <EditServiceDropdown 
+      serviceProp={service}
+    />
+    </div>
+    )}
+  }
+
   async function handleSubmit () {
     try {
       setSubmiting(true)
@@ -96,6 +107,7 @@ function send(){
     const resdata = res.data
     setForm(resdata.accolade)
     setService(resdata.accolade.serviceLine)
+    console.log(service)
     setLoading(false)
   })
   .catch(function (error) {
@@ -156,11 +168,8 @@ return(
                   relative justify-center items-center">
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Edit award</h1>
                   </div>
-                
-                <div className="pt-3">
-                <EditServiceDropdown 
-                  serviceProp = {{service}}/>
-                </div>
+
+                {editServiceFunc()}
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit()}}
                  className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">

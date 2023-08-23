@@ -6,7 +6,12 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { aFilter, editChannel } from "./atoms";
 import { Fragment, useEffect } from "react";
 
- export default function EditServiceDropdown( serviceProp: string ) {
+interface Props{
+  serviceProp: string
+}
+const EditServiceDropdown: React.FC<Props> = ({
+  serviceProp
+}) => {
 
   const [ serviceLine, setServiceLine] = useAtom(aFilter)
   const initialServiceLine = useAtomValue(editChannel)
@@ -303,3 +308,4 @@ import { Fragment, useEffect } from "react";
     </div>
   )
 }
+export default EditServiceDropdown; 
