@@ -174,8 +174,6 @@ return(
                       animate={{ opacity: 1 }}>
                   <div className=" flex flex-col gap-6 justify-center relative align-middle w-200 bg-white rounded-lg border-2 p-5 m-4 text-2xl font-bentonbold">
                       <div >{form.name}</div> 
-                      {((form.imgurl1 !== null) && (form.imgurl1 !== "")) &&(<div className="flex flex-row font-bentonreg justify-center items-center text-base">
-                      <div><Link href={form.imgurl1}>Download link</Link></div><img src={form.imgurl1} className="h-36 w-36"/></div>)}
 
                       {nullCheck(form.institution) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Location: </span>{form.institution}</div>)}
                       {nullCheck(form.serviceLine) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Service Line: </span>{form.serviceLine}</div>)}
@@ -192,6 +190,14 @@ return(
                       {form.promotionlim !== "" && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Limitations on Promotion: </span>{form.promotionlim}</div>)}
                       {nullCheck(form.effectiveDate) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Effective Date: </span>{form.effectiveDate}</div>)}
                       {nullCheck(form.expirationDate) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Expiration Date: </span>{form.expirationDate}</div>)}
+
+                      {((form.imgurl1 !== null) && (form.imgurl1 !== "")) && (<div className="flex flex-col font-bentonreg justify-center items-center text-base">
+                      <div>
+                          <Link href={form.imgurl1}>Download link</Link>
+                       </div>
+                        <img src={form.imgurl1} className="h-24 w-24"/>
+                      </div>)}
+
                       {((role == "admin") || (role == "manager")) &&(
                       <div className="flex flex-row justify-center items-center gap-3">
                         <button className="bg-white border-2 font-bentonreg border-[#541A83] text-[#541A83] h-8 w-36 rounded-2xl"onClick={()=> {router.push(`/editAward/${id}`)}}>Edit</button>
