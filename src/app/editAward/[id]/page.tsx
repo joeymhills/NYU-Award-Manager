@@ -11,13 +11,15 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Ring } from "@uiball/loaders";
 import { useAtomValue, useSetAtom } from "jotai";
-import { editService } from "~/components/atoms";
+import { editLocation, editService } from "~/components/atoms";
+import EditLocationDropdown from "~/components/EditLocationDropdown";
 
 export default function Page({ params }: { params: { id: string } }) {
 
 const [loading, setLoading] = useState(true)
 const [submiting, setSubmiting] = useState(false)
 const getServiceLine = useAtomValue(editService)
+const getLocation = useAtomValue(editLocation)
 
 const router = useRouter();
 
@@ -74,12 +76,19 @@ interface FormData {
     setForm({...form, serviceLine: getServiceLine})
   },[getServiceLine])
 
+  useEffect(()=>{
+  setForm({...form, institution: getLocation})
+  },[getLocation])
+
   function editServiceFunc(){
   if(!loading){
     return(
-    <div className="pt-3">
+    <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-3">
     <EditServiceDropdown 
       serviceProp={form.serviceLine}
+    />
+    <EditLocationDropdown
+      locationProp={form.serviceLine}
     />
     </div>
     )}

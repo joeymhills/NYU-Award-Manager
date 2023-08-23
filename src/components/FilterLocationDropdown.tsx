@@ -16,7 +16,6 @@ import { Fragment } from "react";
 
 
   return (
- 
   <div className="w-full flex flex-col justify-center items-center">
   <Menu as="div" className="relative inline-block w-72 sm:w-96 text-left">
       <div>

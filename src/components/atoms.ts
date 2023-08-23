@@ -9,7 +9,9 @@ const editService = atom("")
 const locationFilter = atom ("")
 const searchLocationFilter = atom("")
 const searchServiceFilter = atom("")
+const editLocation = atom("")
 
+export { editLocation }
 export { searchServiceFilter }
 export { searchLocationFilter }
 export { locationFilter }
