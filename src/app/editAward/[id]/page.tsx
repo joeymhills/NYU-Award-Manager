@@ -1,5 +1,6 @@
 "use client"
 
+import { toast } from "react-toastify";
 import EditServiceDropdown from "../../../components/editServiceDropdown";
 import { UploadButton } from "~/utils/uploadthing";
 import "@uploadthing/react/styles.css";
@@ -57,9 +58,33 @@ interface FormData {
   messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
   expirationDate: ''})
 
+
+  const successToast = () => toast.success('Submission was successful!', {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+  const errorToast = () => toast.error('Error in submission, please try again.', {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
   async function update(data: FormData) { 
+    let response;
     try {
-      await fetch("/api/update",{
+      response = await fetch("/api/update",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'PUT'})
@@ -67,9 +92,13 @@ interface FormData {
     catch (error) {
       console.log('error in POST request()')
     }
-    (()=> setForm({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
-  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
-  expirationDate: ''}))
+    if (response?.ok){
+    successToast();
+    }
+    else {
+    console.log("error in update api call")
+    errorToast();
+    }
   }
 
   useEffect(()=> {
@@ -94,7 +123,7 @@ interface FormData {
     )}
   }
 
-  async function handleSubmit () {
+  async function handleSubmit() {
     try {
       setSubmiting(true)
       await update(form);

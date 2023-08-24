@@ -4,8 +4,7 @@
 import { Ring } from '@uiball/loaders'
 import { useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
-import { ToastContainer,toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 import "@uploadthing/react/styles.css";
 import { OurFileRouter } from "~/server/uploadthing";
 import { UploadButton } from "~/utils/uploadthing";
@@ -379,18 +378,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                 </div>
                 </motion.div>
 
-                <ToastContainer 
-                  position="top-center"
-                  autoClose={3000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                  />
               <div>
             </div>
             </div>

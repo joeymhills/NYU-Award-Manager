@@ -1,10 +1,8 @@
 
-import Link from 'next/link'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 import '../styles/globals.css'
 import { Providers } from './providers'
-import { LoginButton, LogoutButton } from './auth'
-import { getServerSession } from 'next-auth'
-import { authOptions } from './api/auth/[...nextauth]/route'
 import Appbar from '~/app/Appbar'
 
 export const metadata = {
@@ -21,7 +19,23 @@ export default async function RootLayout({
     <>
     <html lang="en">
       <body>
-      <Providers><Appbar />{children}</Providers>
+      <Providers>
+        <Appbar />
+        {children}
+
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
+      </Providers>
       </body>
     </html>
     </>
