@@ -366,7 +366,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   </div>
                  
                   <div className='pb-3'>
-                  <button type="submit" onClick={() => {handleSubmit}} className="bg-[#501685] text-white text-lg font-bentonbold flex flex-row justify-center items-center rounded-lg w-36 py-1">
+                  <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] flex justify-center items-center font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">
                     {!loading ? "Submit" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}
                   </button>
                   </div>
