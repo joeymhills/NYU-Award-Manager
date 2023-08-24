@@ -196,7 +196,7 @@ return(
                       initial={{ opacity: 0 }}
                       transition={{ duration: .5 }}
                       animate={{ opacity: 1 }}>
-                  <div className=" flex flex-col gap-6 justify-center relative align-middle w-200 bg-white rounded-lg border-2 p-5 m-4 text-2xl font-bentonbold">
+                  <div className=" flex flex-col gap-6 justify-center relative align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 p-5 m-4 text-lg font-bentonbold">
                       <div >{form.name}</div> 
 
                       {nullCheck(form.institution) && (<div className="font-bentonreg text-base"><span className="font-bentonbold">Location: </span>{form.institution}</div>)}
