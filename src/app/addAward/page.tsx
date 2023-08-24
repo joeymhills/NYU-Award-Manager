@@ -1,6 +1,7 @@
 "use client"
 // @ts-nocheck
 
+import { Ring } from '@uiball/loaders'
 import { useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
@@ -83,6 +84,7 @@ if (role == "unassigned") {
   const [form, setForm] = useState<FormData>({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
 messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', serviceLine: serviceLineAtom, effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''})
 
+  const [loading, setLoading] = useState(false)
 
   async function create(data: FormData) { 
     try {
@@ -100,8 +102,9 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
 
   async function handleSubmit (data: FormData) {
     try {
+      setLoading(true)
       await create(data);
-      notify()
+      setLoading(false)
     } catch (error) {
       console.log('error in handleSubmit')
     }
@@ -341,7 +344,12 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                 </div>)}
 
                   </div>
-                  <button type="submit" onClick={() => {handleSubmit}} className="bg-[#541A83] font-bentonbold text-xl text-white py-2 m-4 w-64 rounded-3xl">Submit</button>
+                 
+                  <div className='pb-3'>
+                  <button type="submit" onClick={() => {handleSubmit}} className="bg-[#501685] text-white text-lg font-bentonbold flex flex-row justify-center items-center rounded-lg w-36 py-1">
+                    {!loading ? "Login" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}
+                  </button>
+                  </div>
                   </form>
                 </div>
                 </motion.div>
