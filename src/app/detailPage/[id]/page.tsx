@@ -95,7 +95,7 @@ useEffect(()=> {
   }
 })
 
-const successToast = () => toast.success('Submission was successful!', {
+const successToast = () => toast.success('Award successfully deleted', {
     position: "bottom-right",
     autoClose: 1700,
     hideProgressBar: true,
@@ -105,7 +105,7 @@ const successToast = () => toast.success('Submission was successful!', {
     theme: "colored"
     });
 
-  const errorToast = () => toast.error('Error in submission', {
+  const errorToast = () => toast.error('Error in deletion', {
   position: "bottom-right",
   autoClose: 1700,
   hideProgressBar: true,
