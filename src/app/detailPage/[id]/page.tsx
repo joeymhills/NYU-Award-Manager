@@ -1,5 +1,6 @@
 "use client"
 
+import { toast } from "react-toastify";
 import "@uploadthing/react/styles.css";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -94,9 +95,29 @@ useEffect(()=> {
   }
 })
 
+const successToast = () => toast.success('Submission was successful!', {
+    position: "bottom-right",
+    autoClose: 1700,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    theme: "colored"
+    });
+
+  const errorToast = () => toast.error('Error in submission', {
+  position: "bottom-right",
+  autoClose: 1700,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  theme: "colored"
+    });
 async function deleteAccolade(id: string) { 
+  let response;
   try {
-    await fetch("/api/delete",{
+    response = await fetch("/api/delete",{
       body: JSON.stringify(id),
       headers: { 'Content-Type': 'Application/json'},
       method: 'POST'});
@@ -104,6 +125,13 @@ async function deleteAccolade(id: string) {
   catch (error) {
       console.log('error in DELETE request()')
   }
+  
+  if(response?.ok){
+    successToast()
+    }
+  else{
+    errorToast()
+    }
   setDeleteWindow(false)
 }
 
