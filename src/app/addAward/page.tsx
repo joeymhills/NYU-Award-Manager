@@ -56,7 +56,7 @@ const addAward:NextPage = () => {
   }  
   const successToast = () => toast.success('Submission was successful!', {
     position: "bottom-right",
-    autoClose: 3000,
+    autoClose: 1700,
     hideProgressBar: true,
     closeOnClick: true,
     pauseOnHover: false,
@@ -336,8 +336,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                     }}
                   />
 
-                  <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">(Only .jpg, .png, and .svg files can be displayed, others file types will still be stored)</div>
-                  
                   {/* Displays images that have been uploaded */}
                   <div className="flex flex-row gap-2">
 

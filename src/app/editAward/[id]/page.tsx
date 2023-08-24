@@ -322,7 +322,7 @@ return(
                   </div>
 
               <div className="lg:w-200 md:w-150 w-96 justify-center pb-2 flex flex-row items-center">
-              <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">Choose any images you would like to upload<br/>(Only .jpg, .png, and .svg files can be displayed, but others file types will still be stored)</div>
+              <div className="text-black text-center font-bentonreg py-1 text-sm sm:text-xl sm:py-2 sm:mx-16">Choose images for upload</div>
               </div>
               <UploadButton
                 endpoint="imageUploader"
