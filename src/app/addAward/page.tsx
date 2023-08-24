@@ -55,25 +55,23 @@ const addAward:NextPage = () => {
     imgurl4: string
   }  
   const successToast = () => toast.success('Submission was successful!', {
-    position: "top-center",
+    position: "bottom-right",
     autoClose: 3000,
-    hideProgressBar: false,
+    hideProgressBar: true,
     closeOnClick: true,
-    pauseOnHover: true,
+    pauseOnHover: false,
     draggable: true,
-    progress: undefined,
-    theme: "light",
+    theme: "colored"
     });
 
-  const errorToast = () => toast.error('Error in submission, please try again.', {
-    position: "top-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const errorToast = () => toast.error('Error in submission', {
+  position: "bottom-right",
+  autoClose: 1700,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  theme: "colored"
     });
 
 const [role, setRole ] = useState("loading")

@@ -59,26 +59,24 @@ interface FormData {
   expirationDate: ''})
 
 
-  const successToast = () => toast.success('Submission was successful!', {
-    position: "top-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const successToast = () => toast.success('Award successfully updated!', {
+  position: "bottom-right",
+  autoClose: 1700,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  theme: "colored"
     });
 
-  const errorToast = () => toast.error('Error in submission, please try again.', {
-    position: "top-center",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
+  const errorToast = () => toast.error('Error in submission.', {
+  position: "bottom-right",
+  autoClose: 1700,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: false,
+  draggable: true,
+  theme: "colored"
     });
 
   async function update(data: FormData) { 

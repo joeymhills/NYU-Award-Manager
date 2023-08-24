@@ -2,15 +2,11 @@
 
 import "@uploadthing/react/styles.css";
 import { AnimatePresence, motion } from "framer-motion";
-import { NextPage } from "next";
-import { TrashIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { accolade } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { DotPulse, DotWave, NewtonsCradle, Ring } from "@uiball/loaders";
+import { Ring } from "@uiball/loaders";
 import { useSession } from "next-auth/react";
 import { searchCallback } from "~/components/atoms";
 import { useAtomValue } from "jotai";
@@ -207,18 +203,6 @@ return(
                       </div>
                       )}
 
-                      <ToastContainer 
-                        position="top-center"
-                        autoClose={3000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="light"
-                        />
                   </div>    
                       </motion.div>
                     <div>

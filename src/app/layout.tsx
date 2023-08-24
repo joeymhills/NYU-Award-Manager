@@ -1,6 +1,6 @@
 
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 import '../styles/globals.css'
 import { Providers } from './providers'
 import Appbar from '~/app/Appbar'
@@ -24,16 +24,18 @@ export default async function RootLayout({
         {children}
 
       <ToastContainer 
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
+        position="bottom-right"
+        autoClose={2500}
+        transition={Slide}
+        hideProgressBar
+        limit={1}
         newestOnTop={false}
-        closeOnClick
+        closeOnClick={false}
         rtl={false}
         pauseOnFocusLoss
         draggable
-        pauseOnHover
-        theme="light"
+        pauseOnHover={false}
+        theme="colored"
         />
       </Providers>
       </body>
