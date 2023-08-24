@@ -98,14 +98,26 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
   const [loading, setLoading] = useState(false)
 
   async function create(data: FormData) { 
+    let response;
     try {
-      await fetch("/api/create",{
+      response = await fetch("/api/create",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'POST'});
     }
     catch (error) {
       console.log('error in create fetch call', error)
+    }
+
+    if (response?.ok) {
+      successToast();
+
+      (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
+      messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '',serviceLine: '', effectiveDate: '', expirationDate: '', supported: true,
+      imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
+
+    } else {
+      console.log(`HTTP Response Code: ${response?.status}`)
       errorToast()
     }
 
@@ -117,9 +129,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
       await create(data);
       setLoading(false);
       
-      (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-      messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '',serviceLine: '', effectiveDate: '', expirationDate: '', supported: true,
-      imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
 
     } catch (error) {
       console.log('error in handleSubmit', error)
