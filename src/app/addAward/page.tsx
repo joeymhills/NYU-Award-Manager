@@ -4,7 +4,7 @@
 import { Ring } from '@uiball/loaders'
 import { useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "@uploadthing/react/styles.css";
 import { OurFileRouter } from "~/server/uploadthing";
@@ -55,7 +55,18 @@ const addAward:NextPage = () => {
     imgurl3: string
     imgurl4: string
   }  
-  const notify = () => toast.success('Form submission was successful!', {
+  const successToast = () => toast.success('Submission was successful!', {
+    position: "top-center",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+  const errorToast = () => toast.error('Error in submission, please try again.', {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -94,19 +105,24 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
         method: 'POST'});
     }
     catch (error) {
-      console.log('error with addAward request')
+      console.log('error in create fetch call', error)
+      errorToast()
     }
-    (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
-    messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '',serviceLine: '', effectiveDate: '', expirationDate: '', supported: true, imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
+
   }
 
   async function handleSubmit (data: FormData) {
     try {
       setLoading(true)
       await create(data);
-      setLoading(false)
+      setLoading(false);
+      
+      (()=> setForm({institution: '', name: '', comments: '', outcome: '', intSource: '', extSource: '',
+      messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '',serviceLine: '', effectiveDate: '', expirationDate: '', supported: true,
+      imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: ''}))
+
     } catch (error) {
-      console.log('error in handleSubmit')
+      console.log('error in handleSubmit', error)
     }
   }
 
@@ -347,12 +363,25 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                  
                   <div className='pb-3'>
                   <button type="submit" onClick={() => {handleSubmit}} className="bg-[#501685] text-white text-lg font-bentonbold flex flex-row justify-center items-center rounded-lg w-36 py-1">
-                    {!loading ? "Login" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}
+                    {!loading ? "Submit" : <Ring size={28} lineWeight={7} speed={2} color='white'/>}
                   </button>
                   </div>
                   </form>
                 </div>
                 </motion.div>
+
+                <ToastContainer 
+                  position="top-center"
+                  autoClose={3000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                  />
               <div>
             </div>
             </div>
