@@ -217,7 +217,7 @@ type AccoladeArray = Accolade[];
       </motion.div>
         )}
       
-      <Table Awards={data}/>
+      <Table Awards={data.accolade}/>
       {noSearchResults()}
       {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
