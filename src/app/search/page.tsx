@@ -111,6 +111,13 @@ type AccoladeArray = Accolade[];
     }
   }
 
+  const table = () => {
+    if (data?.accolade.length > 0) {
+       return(
+      <Table Awards={data.accolade}/>
+      )}
+  }
+
 
   //   const noSearchResults = () => {
   //   if (data?.accolade.length === 0) {
@@ -216,8 +223,8 @@ type AccoladeArray = Accolade[];
       </div>
       </motion.div>
         )}
-      
-      <Table Awards={data.accolade}/>
+
+      {table()}
       {noSearchResults()}
       {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
