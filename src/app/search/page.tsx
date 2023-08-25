@@ -117,7 +117,7 @@ type AccoladeArray = Accolade[];
       />
       <div className="hidden">
       <div ref={componentRef}>
-      <div>
+      <div className="m-4 mt-24">
         <table className="w-200 bg-white">
           <thead>
           <tr>
