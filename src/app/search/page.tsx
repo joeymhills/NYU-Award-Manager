@@ -228,7 +228,6 @@ type AccoladeArray = Accolade[];
         )}
       
       {table()}
-      <button className="bg-white p-3 border" onClick={handlePrint}>Print please</button>
 
       {noSearchResults()}
       {data.accolade?.map(id => {
