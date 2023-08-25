@@ -14,7 +14,6 @@ import { useSession } from "next-auth/react";
 import CreateDropdown from "~/components/CreateDropdown";
 import FilterLocationDropdown from "~/components/FilterLocationDropdown";
 import FilterServiceDropdown from "~/components/FilterServiceDropdown";
-import Table from "~/components/table";
 const searchPage = () => {
 
     const search = useSearchParams();
@@ -109,7 +108,7 @@ type AccoladeArray = Accolade[];
   }
 
   const table = () => {
-       return(
+      return(
       <div>
         <ReactToPrint
         trigger={() => <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
@@ -118,10 +117,31 @@ type AccoladeArray = Accolade[];
       />
       <div className="hidden">
       <div ref={componentRef}>
-            testing printability
+      <div>
+        <table className="w-200 bg-white">
+          <thead>
+          <tr>
+          <td>Name</td>
+          <td>serviceLine</td>
+          <td>Location</td>
+          <td>Messaging</td>
+          </tr>
+          </thead>
+          <tbody>
+          {data.accolade?.map((id: Accolade) => (
+            <tr>
+              <td>{id.name}</td>
+              <td>{id.serviceLine}</td>
+              <td>{id.institution}</td>
+              <td>{id.messaging}</td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
       </div>
-      </div>
-      </div>
+          </div>
+          </div>
+          </div>
       )
   }
 
