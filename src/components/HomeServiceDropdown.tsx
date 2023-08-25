@@ -2,13 +2,14 @@
 
 import { useRouter } from "next/navigation"
 import { Menu, Transition } from "@headlessui/react";
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { searchServiceFilter } from "./atoms";
+import { searchServiceFilter, searchLocationFilter } from "./atoms";
 import { Fragment } from "react";
 
  export default function HomeServiceDropdown() {
     const [ serviceLine, setServiceLine] = useAtom(searchServiceFilter)
+  const setLocationFilter = useSetAtom(searchLocationFilter)
 
   function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -43,7 +44,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Neurology & Neurosurgery");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Neurology & Neurosurgery");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -56,7 +57,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=>{setServiceLine("Diabetes & Endocrinology");router.push("search?q=")}}
+                onClick={()=>{setLocationFilter("");setServiceLine("Diabetes & Endocrinology");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -69,7 +70,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                  onClick={()=> {setServiceLine("Urology");router.push("search?q=")}}
+                  onClick={()=> {setLocationFilter("");setServiceLine("Urology");router.push("search?q=")}}
                   className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -82,7 +83,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Pulmonology & Lung Surgery");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Pulmonology & Lung Surgery");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -96,7 +97,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Gastroenterology & GI Surgery");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Gastroenterology & GI Surgery");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -110,7 +111,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Pulmonology & Lung Surgery");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Pulmonology & Lung Surgery");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -123,7 +124,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Cardiology, Heart & Vascular Surgery");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Cardiology, Heart & Vascular Surgery");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -137,7 +138,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Orthopedics");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Orthopedics");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -150,7 +151,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Rehabilitation");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Rehabilitation");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -164,7 +165,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Cancer");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Cancer");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -178,7 +179,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Geriatrics");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Geriatrics");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -191,7 +192,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Rheumatology");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Rheumatology");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -204,7 +205,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Ear, Nose and Throat");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Ear, Nose and Throat");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -217,7 +218,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Obstetrics & Gynecology");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Obstetrics & Gynecology");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -230,7 +231,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Psychiatry");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Psychiatry");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -243,7 +244,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Ophthalmology");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Ophthalmology");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -257,7 +258,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Pediatrics");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Pediatrics");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -271,7 +272,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Nephrology");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Nephrology");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
@@ -284,7 +285,7 @@ import { Fragment } from "react";
             <Menu.Item>
               {({ active }) => (
                 <a
-                onClick={()=> {setServiceLine("Other ");router.push("search?q=")}}
+                onClick={()=> {setLocationFilter("");setServiceLine("Other ");router.push("search?q=")}}
                 className={classNames(
                     active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                     'block px-4 py-2 text-sm'
