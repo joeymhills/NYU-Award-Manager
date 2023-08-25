@@ -116,7 +116,8 @@ type AccoladeArray = Accolade[];
         trigger={() => <button>Print this out!</button>}
         content={() => componentRef.current}
       />
-      <Table Awards={data.accolade} ref={componentRef} />
+
+      <div ref={componentRef}>testing printability</div>
       </div>
       )}
   }
