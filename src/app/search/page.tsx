@@ -191,7 +191,7 @@ const searchPage = () => {
       </motion.div>
         )}
       
-      <Table Awards={data.accolade?}/>
+      <Table Awards={data}/>
 
       {noSearchResults()}
       {data.accolade?.map(id => {
