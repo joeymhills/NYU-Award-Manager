@@ -112,7 +112,7 @@ type AccoladeArray = Accolade[];
   }
 
   const table = () => {
-    if (data?.accolade.length > 0) {
+    if (data.accolade) {
        return(
       <Table Awards={data.accolade}/>
       )}
