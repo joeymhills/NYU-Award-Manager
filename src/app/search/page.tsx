@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState } from "react";
 import SearchInput from "~/SearchInput";
-import { useReactToPrint } from 'react-to-print';
+import ReactToPrint from 'react-to-print';
 import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
 import { Ring } from "@uiball/loaders";
@@ -26,9 +26,6 @@ const searchPage = () => {
     setCallbackUrl(searchQuery)
     
     const componentRef = useRef(null);
-    const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    });
     
 interface Accolade {
   id: string,
@@ -114,7 +111,13 @@ type AccoladeArray = Accolade[];
   const table = () => {
     if (data.accolade) {
        return(
+      <div>
+        <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => componentRef.current}
+      />
       <Table Awards={data.accolade} ref={componentRef} />
+      </div>
       )}
   }
 
