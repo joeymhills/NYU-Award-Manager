@@ -117,7 +117,7 @@ type AccoladeArray = Accolade[];
       />
       <div className="hidden">
       <div ref={componentRef}>
-      <div className="m-4 mt-24">
+      <div className="m-6 mt-24">
         <table className="w-200 bg-white">
           <thead>
           <tr>
@@ -128,14 +128,19 @@ type AccoladeArray = Accolade[];
           </tr>
           </thead>
           <tbody>
-          {data.accolade?.map((id: Accolade) => (
-            <tr>
-              <td>{id.name}</td>
-              <td>{id.serviceLine}</td>
-              <td>{id.institution}</td>
-              <td>{id.messaging}</td>
-            </tr>
-          ))}
+        {data.accolade?.map(id => {
+          if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
+            return(
+              <tr>
+                <td>{id.name}</td>
+                <td>{id.serviceLine}</td>
+                <td>{id.institution}</td>
+                <td>{id.messaging}</td>
+              </tr>
+                )}
+              else{
+                    return null
+              }})}
           </tbody>
         </table>
       </div>
