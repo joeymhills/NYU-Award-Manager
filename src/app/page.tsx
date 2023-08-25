@@ -110,10 +110,13 @@ return(
             <div className="flex flex-row gap-1 pb-6">
               <SearchInput />
             </div>
-            <div className='w-screen-full justify-center items-center pb-3'>
-              <HomeServiceDropdown />
             </div>
-          </div>
+          
+            <div className='w-screen-full flex gap-2 flex-row justify-center items-center pb-3'>
+              <HomeServiceDropdown />
+            <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
+            ring-gray-300 hover:cursor-pointer hover:bg-gray-50" onClick={()=>{setLocationFilter(""); setServiceFilter("")}}>Clear</button>
+            </div>
           </motion.div>
           </div>
 
