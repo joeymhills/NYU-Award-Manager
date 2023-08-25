@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation"
 import { motion } from 'framer-motion';
 import { searchLocationFilter, searchServiceFilter } from '~/components/atoms';
 import {  useSetAtom } from 'jotai';
+import HomeServiceDropdown from '~/components/HomeServiceDropdown';
 
 export default function Home() {
 
@@ -106,8 +107,11 @@ return(
             lg:max-w-2xl 
             md:max-w-xl
             sm:max-w-lg">
-            <div className="flex flex-row gap-1 pb-9">
+            <div className="flex flex-row gap-1 pb-6">
               <SearchInput />
+            </div>
+            <div className='w-screen-full justify-center items-center pb-3'>
+              <HomeServiceDropdown />
             </div>
           </div>
           </motion.div>
