@@ -25,7 +25,7 @@ const searchPage = () => {
     const [cardView, setCardView] = useState(true)
     setCallbackUrl(searchQuery)
     
-    const componentRef = useRef();
+    const componentRef = useRef(null);
     const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     });
