@@ -223,9 +223,11 @@ type AccoladeArray = Accolade[];
       </div>
       </motion.div>
         )}
-
+      
+      {/*
       {table()}
       <button className="bg-white p-3 border" onClick={handlePrint}>Print please</button>
+      */}
       {noSearchResults()}
       {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
