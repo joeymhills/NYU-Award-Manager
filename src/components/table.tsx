@@ -1,3 +1,6 @@
+"use client"
+import React from 'react';
+import {  forwardRef, ReactNode } from "react";
 
 interface Award {
   id: string,
@@ -25,13 +28,30 @@ interface Award {
 
 type AwardList = Award[];
 
-const Table: React.FC<{ Awards: AwardList }> = ({ Awards }) => {
+export const Table = React.forwardRef<HTMLDivElement, AwardList>(( Awards, ref) => {
+
   return (
-    <ul>
+  <div ref={ref}>
+    <table className="w-200 bg-white">
+      <thead>
+      <tr>
+      <td>Name</td>
+      <td>serviceLine</td>
+      <td>Location</td>
+      <td>Messaging</td>
+      </tr>
+      </thead>
+      <tbody>
       {Awards.map((award: Award) => (
-        <li key={award.id}>{award.name}</li>
+        <tr>
+          <td>{award.name}</td>
+          <td>{award.serviceLine}</td>
+          <td>{award.institution}</td>
+          <td>{award.messaging}</td>
+        </tr>
       ))}
-    </ul>
+      </tbody>
+    </table>
+  </div>
   );
-};
-export default Table;
+});
