@@ -1,6 +1,6 @@
 "use client"
-import React from 'react';
-import {  forwardRef, ReactNode } from "react";
+import React from "react";
+import { forwardRef } from 'react';
 
 interface Award {
   id: string,
@@ -28,7 +28,7 @@ interface Award {
 
 type AwardList = Award[];
 
-export const Table = React.forwardRef<HTMLDivElement, AwardList>(( Awards, ref) => {
+export const Table = forwardRef<HTMLDivElement, AwardList>(( Awards, ref) => {
 
   return (
   <div ref={ref}>

@@ -114,7 +114,7 @@ type AccoladeArray = Accolade[];
   const table = () => {
     if (data.accolade) {
        return(
-      <Table ref={componentRef} Awards={data.accolade}/>
+      <Table Awards={data.accolade} ref={componentRef} />
       )}
   }
 
