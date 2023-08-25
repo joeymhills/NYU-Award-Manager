@@ -113,11 +113,15 @@ type AccoladeArray = Accolade[];
        return(
       <div>
         <ReactToPrint
-        trigger={() => <button>Print this out!</button>}
+        trigger={() => <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
+          ring-gray-300 hover:cursor-pointer hover:bg-gray-50">Print report</button>}
         content={() => componentRef.current}
       />
-
-      <div ref={componentRef}>testing printability</div>
+      <div className="hidden">
+      <div ref={componentRef}>
+            testing printability
+      </div>
+      </div>
       </div>
       )}
   }
@@ -188,6 +192,7 @@ type AccoladeArray = Accolade[];
           <div className="flex flex-row justify-center items-center pb-2 ">
           <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
           ring-gray-300 hover:cursor-pointer hover:bg-gray-50" onClick={()=>{setLocationFilter(""); setServiceFilter("")}}>Clear filters</button>
+          {table()}
           </div>
           </div>
           </motion.div>
@@ -228,7 +233,7 @@ type AccoladeArray = Accolade[];
       </motion.div>
         )}
       
-      {table()}
+      
 
       {noSearchResults()}
       {data.accolade?.map(id => {
