@@ -30,6 +30,32 @@ const searchPage = () => {
     content: () => componentRef.current,
     });
     
+interface Accolade {
+  id: string,
+  institution: string,
+  name: string,
+  serviceLine: string,
+  comments: string
+  outcome: string
+  intSource: string
+  extSource: string
+  messaging: string
+  frequency: string
+  notifDate: string
+  cmcontact: string
+  sourceatr: string
+  wherepubint: string
+  promotionlim: string
+  imgurl1: string
+  imgurl2: string
+  imgurl3: string
+  imgurl4: string
+  effectiveDate: string,
+  expirationDate: string
+}
+type AccoladeArray = Accolade[];
+
+
 
    const nullCheck = (str:string) => {
     if(str == "") {
@@ -43,7 +69,7 @@ const searchPage = () => {
     }
   }
     
-    const [data, setData ] = useState([]);
+    const [data, setData ] = useState<AccoladeArray>([]);
     const [loading,setLoading] = useState(true)
 
     useEffect(()=> {
@@ -191,7 +217,6 @@ const searchPage = () => {
       </motion.div>
         )}
       
-      <Table Awards={data.accolade?}/>
 
       {noSearchResults()}
       {data.accolade?.map(id => {
