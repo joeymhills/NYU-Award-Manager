@@ -109,7 +109,6 @@ type AccoladeArray = Accolade[];
   }
 
   const table = () => {
-    if (data.accolade) {
        return(
       <div>
         <ReactToPrint
@@ -123,7 +122,7 @@ type AccoladeArray = Accolade[];
       </div>
       </div>
       </div>
-      )}
+      )
   }
 
 
@@ -189,7 +188,7 @@ type AccoladeArray = Accolade[];
           <FilterLocationDropdown/>
           <FilterServiceDropdown/>
           </div>
-          <div className="flex flex-row justify-center items-center pb-2 ">
+          <div className="flex flex-row justify-center items-center gap-2 pb-2 ">
           <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
           ring-gray-300 hover:cursor-pointer hover:bg-gray-50" onClick={()=>{setLocationFilter(""); setServiceFilter("")}}>Clear filters</button>
           {table()}
