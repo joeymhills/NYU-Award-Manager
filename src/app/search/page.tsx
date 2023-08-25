@@ -114,7 +114,7 @@ type AccoladeArray = Accolade[];
   const table = () => {
     if (data.accolade) {
        return(
-      <Table Awards={data.accolade}/>
+      <Table ref={componentRef} Awards={data.accolade}/>
       )}
   }
 
@@ -225,6 +225,7 @@ type AccoladeArray = Accolade[];
         )}
 
       {table()}
+      <button className="bg-white p-3 border" onClick={handlePrint}>Print please</button>
       {noSearchResults()}
       {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
