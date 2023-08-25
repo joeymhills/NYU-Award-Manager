@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import SearchInput from "~/SearchInput";
+import { useReactToPrint } from 'react-to-print';
 import { AnimatePresence, motion } from "framer-motion";
 import DetailView from "~/components/DetailView";
 import { Ring } from "@uiball/loaders";
@@ -13,8 +14,7 @@ import { useSession } from "next-auth/react";
 import CreateDropdown from "~/components/CreateDropdown";
 import FilterLocationDropdown from "~/components/FilterLocationDropdown";
 import FilterServiceDropdown from "~/components/FilterServiceDropdown";
-
-
+import Table from "~/components/table";
 const searchPage = () => {
 
     const search = useSearchParams();
@@ -22,7 +22,14 @@ const searchPage = () => {
     const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
     const [serviceFilter, setServiceFilter] = useAtom(searchServiceFilter)
     const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
+    const [cardView, setCardView] = useState(true)
     setCallbackUrl(searchQuery)
+    
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    });
+    
 
    const nullCheck = (str:string) => {
     if(str == "") {
@@ -183,8 +190,11 @@ const searchPage = () => {
       </div>
       </motion.div>
         )}
-        {noSearchResults()}
-        {data.accolade?.map(id => {
+      
+      <Table Awards={data.accolade?}/>
+
+      {noSearchResults()}
+      {data.accolade?.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
           return(
           <>
@@ -240,6 +250,7 @@ const searchPage = () => {
             else{
                   return null
             }})}
+            
         
         </div>
         
