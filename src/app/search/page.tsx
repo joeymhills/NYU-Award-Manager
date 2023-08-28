@@ -276,7 +276,7 @@ type AccoladeArray = Accolade[];
             transition={{ duration: .7 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}>
-            <div className="flex flex-col w-full mb-2 md:mb-4 gap-0 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 font-bentonbold">
+            <div className="flex flex-col mb-2 md:mb-4 gap-0 justify-center align-middle w-96 md:w-150 lg:w-200 bg-white rounded-lg border-2 px-8 pb-4 pt-0 font-bentonbold">
                 
                 <div className="flex flex-row justify-between">
 
