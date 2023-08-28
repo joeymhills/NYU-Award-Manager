@@ -397,7 +397,7 @@ return(
       animate={{ opacity: 1 }}>
 
       <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Accolades</h1>
+        <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Awards</h1>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {deletedAccolades?.map(id =>
