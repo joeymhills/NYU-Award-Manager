@@ -215,7 +215,7 @@ type AccoladeArray = Accolade[];
           initial={{ opacity: 0 }}
           transition={{ duration: .5, delay: .1 }}
           animate={{ opacity: 1 }}>
-          <div className="w-screen-full">
+          <div className="w-full">
           <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-2 pb-3">
           <FilterLocationDropdown/>
           <FilterServiceDropdown/>
