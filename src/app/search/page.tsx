@@ -126,7 +126,7 @@ type AccoladeArray = Accolade[];
       </div>
       <div className="m-6 mt-5">
         <table className="w-200 table-fixed bg-white">
-          <thead className="font-bentonbold grid grid-cols-4">
+          <thead className="font-bentonbold">
           <tr>
           <td>Name</td>
           <td>serviceLine</td>
