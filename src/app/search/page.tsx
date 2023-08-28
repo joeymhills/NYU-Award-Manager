@@ -129,7 +129,7 @@ type AccoladeArray = Accolade[];
           <thead className="font-bentonbold">
           <tr>
           <td>Name</td>
-          <td>serviceLine</td>
+          <td>Service Line</td>
           <td>Location</td>
           <td>Messaging</td>
           </tr>
