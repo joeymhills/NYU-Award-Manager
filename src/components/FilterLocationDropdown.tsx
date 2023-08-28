@@ -16,7 +16,6 @@ import { Fragment } from "react";
 
 
   return (
-  <div className="w-full flex flex-col justify-center items-center">
   <Menu as="div" className="relative inline-block w-72 sm:w-96 text-left">
       <div>
         <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
@@ -154,6 +153,5 @@ import { Fragment } from "react";
         </Menu.Items>
       </Transition>
     </Menu>
-    </div>
   )
 }
