@@ -138,7 +138,7 @@ type AccoladeArray = Accolade[];
         {data.accolade?.map(id => {
           if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
             return(
-              <tr className="border-b border-slate-500">
+              <tr className="py-2 border-b border-slate-500">
                 <td>{id.name}</td>
                 <td>{id.serviceLine}</td>
                 <td>{id.institution}</td>
