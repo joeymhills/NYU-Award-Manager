@@ -125,7 +125,7 @@ type AccoladeArray = Accolade[];
           </svg>
       </div>
       <div className="m-6 mt-5">
-        <table className="w-200 table-auto bg-white">
+        <table className="w-200 table-fixed bg-white">
           <thead className="font-bentonbold">
           <tr>
           <td>Name</td>
