@@ -15,6 +15,7 @@ import { useAtom } from "jotai"
 import { uFilter } from "~/components/atoms";
 import Dropdown from "~/components/Dropdown";
 
+
 const admin = () => {
 
 
@@ -85,23 +86,62 @@ async function deleteAward() {
   }
 }
 
-function getUsers() {
-  axios.get("https://awards.up.railway.app/getusers",{
-    headers: { 'Access-Control-Allow-Origin' : 'https://nyu-award.vercel.app/'},
-  })
+function getUsers(){
+  fetch("https://awards.up.railway.app/getusers", {
+    method: "GET",
+    headers: {"allow-access-control-origin": "*"},
+  })  
   .then(res => {
-    const resdata = res.data
-    setUserArray(resdata)
-    setUnassignedLoading(false)
-  })
+    return res.json()
+})
+  .then(res =>{
+    setUserArray(res)
+    console.log(res)
+  }
+  )
   .catch(function (error) {
-    console.log(error);})
+    console.log(error);
+  });
 }
 
 useEffect(() => {
-  getUsers();
+  getUsers()
   },[]);
-  
+
+function getManagers(){
+  axios.get("/api/members/manager")
+  .then(res => {
+    const resdata = res.data
+    setManagerArray(resdata)
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+useEffect(() => {
+  getManagers();
+  },[]);
+
+function getAdmins(){
+  axios.get("/api/members/admin")
+  .then(res => {
+    const resdata = res.data
+    setAdminArray(resdata)
+    return resdata
+  }).then(res => {
+  console.log("admin page",res)
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
+useEffect(() => {
+  getAdmins();
+  },[]);
+
+
+
 const [userFilter,setUserFilter] = useAtom(uFilter)
 
 useEffect(() => {
@@ -126,16 +166,16 @@ async function changeRole(roleId:string, oldRole:string, role:string) {
   .then(res => {
     console.log('log from admin page', res.data)
     if(role == 'unassigned' || oldRole == 'unassigned'){
-    getUsers()
+    getUnassigned()
     }
     if(role == 'user' || oldRole == 'user'){
     getUsers()
     }
     if (role == 'manager' ||oldRole == 'manager') {
-    getUsers()
+    getManagers()
     }
     if(role == 'admin' || oldRole == 'admin'){
-    getUsers()
+    getAdmins()
     }
   })
   .catch(function (error) {
