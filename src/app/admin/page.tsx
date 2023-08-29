@@ -15,7 +15,6 @@ import { useAtom } from "jotai"
 import { uFilter } from "~/components/atoms";
 import Dropdown from "~/components/Dropdown";
 
-
 const admin = () => {
 
 
@@ -127,16 +126,16 @@ async function changeRole(roleId:string, oldRole:string, role:string) {
   .then(res => {
     console.log('log from admin page', res.data)
     if(role == 'unassigned' || oldRole == 'unassigned'){
-    getUnassigned()
+    getUsers()
     }
     if(role == 'user' || oldRole == 'user'){
     getUsers()
     }
     if (role == 'manager' ||oldRole == 'manager') {
-    getManagers()
+    getUsers()
     }
     if(role == 'admin' || oldRole == 'admin'){
-    getAdmins()
+    getUsers()
     }
   })
   .catch(function (error) {
