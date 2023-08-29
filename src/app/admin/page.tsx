@@ -88,6 +88,10 @@ async function deleteAward() {
 function getUsers(){
   fetch("https://awards.up.railway.app/getusers", {
     method: "GET",
+    headers: {
+      'Content-Type': 'application/json',
+      "Access-Control-Allow-Origin": "*"
+    }
   })  
   .then(res => {
     return res.json()
