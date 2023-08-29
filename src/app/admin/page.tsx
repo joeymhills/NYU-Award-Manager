@@ -108,40 +108,6 @@ useEffect(() => {
   getUsers()
   },[]);
 
-function getManagers(){
-  axios.get("/api/members/manager")
-  .then(res => {
-    const resdata = res.data
-    setManagerArray(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getManagers();
-  },[]);
-
-function getAdmins(){
-  axios.get("/api/members/admin")
-  .then(res => {
-    const resdata = res.data
-    setAdminArray(resdata)
-    return resdata
-  }).then(res => {
-  console.log("admin page",res)
-  }).catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getAdmins();
-  },[]);
-
-
-
 const [userFilter,setUserFilter] = useAtom(uFilter)
 
 useEffect(() => {
@@ -166,16 +132,16 @@ async function changeRole(roleId:string, oldRole:string, role:string) {
   .then(res => {
     console.log('log from admin page', res.data)
     if(role == 'unassigned' || oldRole == 'unassigned'){
-    getUnassigned()
+    getUsers()
     }
     if(role == 'user' || oldRole == 'user'){
     getUsers()
     }
     if (role == 'manager' ||oldRole == 'manager') {
-    getManagers()
+    getUsers()
     }
     if(role == 'admin' || oldRole == 'admin'){
-    getAdmins()
+    getUsers()
     }
   })
   .catch(function (error) {
