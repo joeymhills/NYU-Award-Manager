@@ -85,22 +85,6 @@ async function deleteAward() {
       console.log('error in DELETE request()')
   }
 }
-
-function getUnassigned() {
-  axios.get("https://awards.up.railway.app/getunauthorized")
-  .then(res => {
-    const resdata = res.data
-    setUnassigned(resdata)
-    setUnassignedLoading(false)
-  })
-  .catch(function (error) {
-    console.log(error);})
-}
-
-useEffect(() => {
-  getUnassigned();
-  },[]);
-  
 function getUsers(){
   fetch("https://awards.up.railway.app/getusers", {
     method: "GET",
@@ -121,40 +105,6 @@ function getUsers(){
 useEffect(() => {
   getUsers()
   },[]);
-
-function getManagers(){
-  axios.get("/api/members/manager")
-  .then(res => {
-    const resdata = res.data
-    setManagerArray(resdata)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getManagers();
-  },[]);
-
-function getAdmins(){
-  axios.get("/api/members/admin")
-  .then(res => {
-    const resdata = res.data
-    setAdminArray(resdata)
-    return resdata
-  }).then(res => {
-  console.log("admin page",res)
-  }).catch(function (error) {
-    console.log(error);
-  });
-}
-
-useEffect(() => {
-  getAdmins();
-  },[]);
-
-
 
 const [userFilter,setUserFilter] = useAtom(uFilter)
 
@@ -340,12 +290,18 @@ return(
       <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">Users are allowed to view awards, but not create, edit, or delete awards</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
-        {userArray.map(id =>
+        {userArray.map(id => {
+        if (id.role == 'unassigned'){    
+         return( 
             <tr>
               <td className="w-96">{id.name}</td>
-              <td><a onClick={() => {setId(id); setOldRole('user'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
+              <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer
+              text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
-          )}
+         )}
+        else {
+          return null
+        }})}
         </tbody>
         </table>
         </div>
