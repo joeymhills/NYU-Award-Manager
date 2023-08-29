@@ -102,7 +102,7 @@ useEffect(() => {
   },[]);
   
 function getUsers(){
-  fetch("/api/members/user", {
+  fetch("https://awards.up.railway.app/getusers", {
     method: "GET",
   })  
   .then(res => {
