@@ -314,7 +314,7 @@ return(
         <tbody>
         {unassigned.map(id =>
             <tr>
-              <td className="w-96">{id.email}</td>
+              <td className="w-96">{id.name}</td>
               <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
           )}
