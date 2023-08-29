@@ -89,7 +89,6 @@ async function deleteAward() {
 function getUsers(){
   fetch("https://awards.up.railway.app/getusers", {
     method: "GET",
-    headers: {"allow-access-control-origin": "*"},
   })  
   .then(res => {
     return res.json()
