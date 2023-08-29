@@ -87,7 +87,7 @@ async function deleteAward() {
 }
 
 function getUnassigned() {
-  axios.get("/api/members/unassigned")
+  axios.get("https://awards.up.railway.app/getunauthorized")
   .then(res => {
     const resdata = res.data
     setUnassigned(resdata)
@@ -312,7 +312,7 @@ return(
         <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">These users have signed up, but are not authorized to use this app</p>
         <table className="table-fixed w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
-        {unassigned.userList?.map(id =>
+        {unassigned.map(id =>
             <tr>
               <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
@@ -397,7 +397,7 @@ return(
       animate={{ opacity: 1 }}>
 
       <div className="flex flex-col justify-center items-center pb-5">
-        <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Awards</h1>
+        <h1 className="text-white text-2xl font-bentonbold py-2">Deleted Accolades</h1>
         <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
         {deletedAccolades?.map(id =>
