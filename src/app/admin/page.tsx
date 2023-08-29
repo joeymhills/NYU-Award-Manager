@@ -87,7 +87,7 @@ async function deleteAward() {
 
 function getUsers() {
   axios.get("https://awards.up.railway.app/getusers",{
-    headers: { 'Access-Control-Allow-Origin' : '*'},
+    headers: { 'Access-Control-Allow-Origin' : 'https://nyu-award.vercel.app/'},
   })
   .then(res => {
     const resdata = res.data
