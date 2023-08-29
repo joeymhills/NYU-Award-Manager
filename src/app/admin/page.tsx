@@ -312,12 +312,18 @@ return(
         <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">These users have signed up, but are not authorized to use this app</p>
         <table className="table-fixed w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
-        {unassigned.map(id =>
+        {unassigned.map(id => {
+        if (id.role == 'unassigned'){    
+         return( 
             <tr>
               <td className="w-96">{id.name}</td>
-              <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
+              <td><a onClick={() => {setId(id); setOldRole('unassigned'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer
+              text-[#541A83] h-9 w-32">Change Role</a></td>
             </tr>
-          )}
+         )}
+        else {
+          return null
+        }})}
         </tbody>
         </table>
       </div>
