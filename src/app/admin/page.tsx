@@ -87,7 +87,9 @@ async function deleteAward() {
 }
 
 function getUsers() {
-  axios.get("https://awards.up.railway.app/getusers")
+  axios.get("https://awards.up.railway.app/getusers",{
+    headers: { 'Access-Control-Allow-Origin' : '*'},
+  })
   .then(res => {
     const resdata = res.data
     setUserArray(resdata)
