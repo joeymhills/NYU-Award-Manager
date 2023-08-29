@@ -334,7 +334,7 @@ return(
       <p className="text-white text-2xl text-center font-bentonreg w-96 py-2">Users are allowed to view awards, but not create, edit, or delete awards</p>
       <table className="table-auto w-150 border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
-        {userArray.userList?.map(id =>
+        {userArray.map(id =>
             <tr>
               <td className="w-96">{id.email}</td>
               <td><a onClick={() => {setId(id); setOldRole('user'); setRoleWindow(true)}} className="bg-white border-2 px-3 border-[#541A83] rounded-3xl hover:cursor-pointer text-[#541A83] h-9 w-32">Change Role</a></td>
