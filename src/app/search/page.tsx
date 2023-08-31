@@ -46,8 +46,9 @@ interface Accolade {
   imgurl2: string
   imgurl3: string
   imgurl4: string
-  effectiveDate: string,
+  effectiveDate: string
   expirationDate: string
+  supported: boolean
 }
 type AccoladeArray = Accolade[];
 
@@ -72,9 +73,9 @@ type AccoladeArray = Accolade[];
     const fetchAccolades = async (data:string) => {
     fetch("/api/search", {
       method: "POST",
-      body: JSON.stringify({ search: data}),
+      body: data,
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "plain/text"
       }
     })
     .then(res => {
