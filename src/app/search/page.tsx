@@ -71,7 +71,7 @@ type AccoladeArray = Accolade[];
 
     useEffect(()=> {
     const fetchAccolades = async (data:string) => {
-    fetch("/api/search", {
+    fetch("https://awards.up.railway.app/search", {
       method: "POST",
       body: data,
       headers: {
@@ -91,7 +91,7 @@ type AccoladeArray = Accolade[];
 
 
   const noSearchResults = () => {
-  if (data.accolade?.length == 0) {
+  if (data.length == 0) {
       return(
         <motion.div
         initial={{ opacity: 0 }}
@@ -136,7 +136,7 @@ type AccoladeArray = Accolade[];
           </tr>
           </thead>
           <tbody>
-        {data.accolade?.map(id => {
+        {data.map(id => {
           if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
             return(
               <tr className="p- border-t border-slate-500">
@@ -267,8 +267,8 @@ type AccoladeArray = Accolade[];
       
       
 
-      {noSearchResults()}
-      {data.accolade?.map(id => {
+      {/* {noSearchResults()} */}
+      {data.map(id => {
         if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
           return(
           <>
