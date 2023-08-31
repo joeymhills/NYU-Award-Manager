@@ -1,6 +1,7 @@
 "use client"
 // @ts-nocheck
 
+import { AiOutlineCheck } from "react-icons/ai";
 import { Ring } from '@uiball/loaders'
 import { useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
@@ -16,6 +17,7 @@ import { useSession } from "next-auth/react";
 import CreateDropdown from "../../components/CreateDropdown";
 import CreatLocationdDropdown from "../../components/CreateLocationDropdown";
 import { aFilter, locationFilter } from "~/components/atoms";
+import { Switch } from '@headlessui/react';
 
 const addAward:NextPage = () => {
   
@@ -132,6 +134,34 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
     }
   }
 
+  function SupportedCheck({ label, name, checked, onChange}) {
+    return (
+      <Switch.Group>
+        <div className="flex items-center justify-between">
+          <Switch.Label className="mr-4">{label}</Switch.Label>
+          <Switch
+            checked={checked}
+            onChange={onChange}
+            name={name}
+            className={`
+              relative flex h-6 w-6 items-center justify-center rounded-lg transition-all duration-200 outline-none ring-1 
+              ${!checked ? "ring-gray-400" : ""}
+              ${checked ? "ring-red-400" : ""} 
+            `}
+          >
+            <AiOutlineCheck
+              size="1rem"
+              className={`
+               ${checked ? "scale-100" : "scale-0"} 
+               ${checked ? "text-red-400" : "text-gray-400"} 
+               transition-transform duration-200 ease-out`}
+            />
+          </Switch>
+        </div>
+      </Switch.Group>
+    );
+  }
+
   const imgflag = (img:string) => {
     if(img == "") {
       return false
@@ -163,13 +193,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
             initial={{ opacity: 0 }}
             transition={{ duration: .5}}
             animate={{ opacity: 1 }}
-              className={'flex lg:w-200 md:w-150 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
+              className={'flex lg:w-200 md:w-150 sm:w-128 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
                 <div className="flex flex-col pt-3 items-center justify-center"> 
                   
                   <div className="flex flex-row 
                   lg:w-200 
                   md:w-150
-                  sm:128
+                  sm:w-128
                   w-96
                   relative justify-center items-center">
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
@@ -181,7 +211,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                 </div>
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit(form)}}
-                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 sm:128 w-96">
+                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 sm:w-128 w-96">
                   
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
                
@@ -296,6 +326,13 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   className= "p-3 rounded-xl h-32 drop-shadow-md border lg:w-96 md:w-72" placeholder="MM/DD/YYYY">
                   </textarea>
                   </div>
+
+                  {/* <SupportedCheck
+                  name="name"
+                  label="Item 1"
+                  checked={form.supported}
+                  onChange={setForm({...form, supported: !form.supported})}
+                  /> */}
 
                   </div>
 
