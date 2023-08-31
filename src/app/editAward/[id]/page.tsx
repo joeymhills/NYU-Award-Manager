@@ -190,12 +190,13 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5}}
         animate={{ opacity: 1 }}
-          className={'flex lg:w-200 md:w-150 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
+          className={'flex lg:w-200 md:w-150 sm:w-128 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
                 <div className="flex flex-col pt-3 items-center justify-center"> 
                   
                   <div className="flex flex-row 
                   lg:w-200 
                   md:w-150 
+                  sm:w-128
                   w-96
                   relative justify-center items-center">
                     <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Edit award</h1>
@@ -204,7 +205,7 @@ return(
                 {editServiceFunc()}
 
                 <form onSubmit = {e => { e.preventDefault(); handleSubmit()}}
-                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 w-96">
+                 className="flex flex-col items-center justify-center lg:w-200 md:w-150 sm:w-128 w-96">
                   
                   <div className="grid sm:grid-cols-2 gap-4 p-5">
                
