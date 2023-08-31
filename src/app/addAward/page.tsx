@@ -1,7 +1,7 @@
 "use client"
 // @ts-nocheck
 
-import { AiOutlineCheck } from "react-icons/ai";
+// import { AiOutlineCheck } from "react-icons/ai";
 import { Ring } from '@uiball/loaders'
 import { useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
