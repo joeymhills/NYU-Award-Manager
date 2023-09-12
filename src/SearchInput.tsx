@@ -28,9 +28,9 @@ const SearchInput = () => {
             onSubmit={onSearch}>
             <input
             value={searchQuery}
-            placeholder="Search for Accolades"
+            placeholder="Search for awards"
             onChange={(event) => setSearchQuery(event.target.value)}
-            className="h-9 p-1 mr-1 sm:mr-3 rounded-lg w-56 sm:w-72 md:w-96 lg:w-100
+            className="h-9 p-1 mr-1 sm:mr-3 rounded-lg w-56 sm:w-72 md:w-96 lg:w-150
             drop-shadow-md ring-1 ring-inset ring-gray-300"
             />
             <button type="submit" className="bg-white font-bentonbold text-gray-900 drop-shadow-md ring-1 ring-inset

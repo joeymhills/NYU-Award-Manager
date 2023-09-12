@@ -1,5 +1,5 @@
 "use client"
-import { EllipsisHorizontalCircleIcon, EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
+import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import { Ring } from "@uiball/loaders";
 import axios from "axios";
 import { motion } from "framer-motion"
@@ -7,7 +7,6 @@ import { useAtom } from "jotai/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
-import { AiOutlineEllipsis } from "react-icons/ai";
 import SearchInput from "~/SearchInput";
 import { uFilter } from "~/components/atoms";
 
@@ -15,27 +14,14 @@ const admin = () => {
 
 const router = useRouter()
 // User Role Authentication
-const [unassigned, setUnassigned] = useState([]);
 const [userLoading, setUserLoading] = useState(true);
 const [deletedLoading, setDeletedLoading] = useState(true);
 const [recentLoading, setRecentLoading] = useState(true);
-
+const [deletedAccolades, setDeletedAccolades] = useState([]);
 const [recentArray, setRecentArray] = useState([]);
 const [userArray, setUserArray] = useState([]);
-const [managerArray, setManagerArray] =  useState([]);
-const [adminArray, setAdminArray] =  useState([]);
-const [deletedAccolades, setDeletedAccolades] = useState([]);
-const [deleteWindow,setDeleteWindow] = useState(false);
 const [id,setId] = useState("id");
-const [oldRole, setOldRole] = useState("role")
 const [roleWindow, setRoleWindow] = useState(false)
-const [roleChecked, setRoleChecked] = useState("loading")
-const [manageUsers, setManageUsers] = useState(true)
-const [showUnassigned, setShowUnassigned] = useState(true)
-const [showUser, setShowUser] = useState(false)
-const [showManager, setShowManager] = useState(false)
-const [showAdmin, setShowAdmin] = useState(false)
-const [showDeleted, setShowDeleted] = useState(false)
 
 const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
