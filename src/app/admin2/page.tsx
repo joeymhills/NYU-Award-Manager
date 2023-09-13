@@ -192,11 +192,12 @@ return(
     className="py-3 flex justify-center items-center bg-white row-span-1 col-[span_12_/_span_12] rounded-lg w-full drop-shadow-xl">
         <SearchInput/>
     </motion.div>
+    
     <motion.div
     initial={{ opacity: 0 }}
     transition={{ duration: .5, delay: 0 }}
     animate={{ opacity: 1 }}
-    className="bg-white row-[span_11_/_span_11] col-span-4 rounded-lg w-full drop-shadow-xl">
+    className="bg-white row-[span_10_/_span_10] col-span-4 rounded-lg w-full drop-shadow-xl">
     <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Created</h1>
     <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
         <tbody>
