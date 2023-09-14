@@ -64,15 +64,50 @@ interface FormData {
 
   const callbackUrl = useAtomValue(searchCallback)
   const id = params.id
+  const jsonid = JSON.stringify({"id": id})
+  console.log("here is the payload: ", jsonid)
+  
+  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '',
+  comments: '', outcome: '', intSource: '', extSource: '', messaging: '', frequency: '', notifDate: '',
+  cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '',
+  imgurl4: '', expirationDate: '', effectiveDate: '' })
 
-  const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
-  messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', expirationDate: '',
-  effectiveDate: '' })
+   useEffect(()=> {
+    const fetchAccolades = async (data:string) => {
+    fetch("https://awards.up.railway.app/search", {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "plain/text"
+      }
+    })
+    .then(res => {
+      return res.json()
+    })
+  }
+  fetchAccolades('{"id": "cljczhm3r0002uylbcgkcle4g"}');
+  },[])
 
+  useEffect(()=> {
+    const fetchAward = async (data:string) => {
+    fetch("https://awards.up.railway.app/findaward", {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "plain/text"
+      }
+    })
+    .then(res => {
+      return res.json()
+    })
+  }
+  fetchAward('{"id": "cljczhm3r0002uylbcgkcle4g"}');
+  },[])
+  
 useEffect(() => {
-function send(){ 
-  axios.post("/api/find", {
-    id
+function send(id: string){ 
+  axios.post("https://awards.up.railway.app/findaward", {
+    id 
   })
   .then(res => {
     const resdata = res.data
@@ -83,8 +118,9 @@ function send(){
     console.log(error);
   });
 }
-send()
+send(jsonid)
 },[])
+
 useEffect(()=> {
   if(session) {
     const user = session
