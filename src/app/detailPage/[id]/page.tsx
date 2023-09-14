@@ -64,27 +64,33 @@ interface FormData {
 
   const callbackUrl = useAtomValue(searchCallback)
   const id = params.id
+  const findid = JSON.stringify(id)
 
   const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
   messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', expirationDate: '',
   effectiveDate: '' })
 
-useEffect(() => {
-function send(){ 
-  axios.post("/api/find", {
-    id
-  })
-  .then(res => {
-    const resdata = res.data
-    setForm(resdata.accolade)
+ useEffect(()=> {
+    const fetchAccolades = async (data:string) => {
+    fetch("https://awards.up.railway.app/find", {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "plain/text"
+      }
+    })
+    .then(res => {
+      return res.json()
+    })
+    .then(res => {
+    setForm(res)
     setLoading(false)
+    console.log(res)
   })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-send()
-},[])
+  }
+  fetchAccolades(findid);
+  },[])
+
 useEffect(()=> {
   if(session) {
     const user = session

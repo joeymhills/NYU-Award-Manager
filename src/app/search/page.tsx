@@ -15,16 +15,6 @@ import FilterLocationDropdown from "~/components/FilterLocationDropdown";
 import FilterServiceDropdown from "~/components/FilterServiceDropdown";
 const searchPage = () => {
 
-    const search = useSearchParams();
-    const searchQuery = search ? search.get("q"): null;
-    const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
-    const [serviceFilter, setServiceFilter] = useAtom(searchServiceFilter)
-    const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
-    const [cardView, setCardView] = useState(true)
-    setCallbackUrl(searchQuery)
-    
-    const componentRef = useRef(null);
-    
 interface Accolade {
   id: string,
   institution: string,
@@ -51,7 +41,14 @@ interface Accolade {
 }
 type AccoladeArray = Accolade[];
 
+const search = useSearchParams();
+const searchQuery = search ? search.get("q"): null;
+const [callbackUrl, setCallbackUrl] = useAtom(searchCallback)
+const [serviceFilter, setServiceFilter] = useAtom(searchServiceFilter)
+const [locationFilter, setLocationFilter] = useAtom(searchLocationFilter)
+setCallbackUrl(searchQuery)
 
+const componentRef = useRef(null);
 
    const nullCheck = (str:string) => {
     if(str == "") {
@@ -125,25 +122,27 @@ type AccoladeArray = Accolade[];
           </svg>
       </div>
       <div className="m-3 mt-5">
-        <table className="w-200 table-fixed bg-white">
-          <thead className="text-xl font-bentonbold">
+        <table className="w-200 border-collapse table-auto bg-white">
+          <thead className="text-xl py-3 font-bentonbold">
           <tr>
-          <td>Name</td>
-          <td>Service Line</td>
-          <td>Location</td>
-          <td>Messaging</td>
+          <th scope="col">Name</th>
+          <th scope="col">Service Line</th>
+          <th scope="col">Location</th>
+          <th scope="col">Messaging</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody className="">
         {data.map(id => {
           if(((id.serviceLine == serviceFilter) || (serviceFilter == "")) && ((id.institution == locationFilter) || (locationFilter == ""))) {
             return(
-              <tr className="p- border-t border-slate-500">
+            <>
+              <tr className="">
                 <td>{id.name}</td>
                 <td>{id.serviceLine}</td>
                 <td>{id.institution}</td>
-                <td>{id.messaging}</td>
+                <td className="py-6">{id.messaging}</td>
               </tr>
+              </>
                 )}
               else{
                     return null

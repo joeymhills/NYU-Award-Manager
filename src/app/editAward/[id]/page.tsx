@@ -53,6 +53,7 @@ interface FormData {
   }
 
   const id = params.id
+  const findid = JSON.stringify(id)
 
   const [form, setForm] = useState<FormData>({id: {id}, institution: '', name: '', serviceLine: '', comments: '', outcome: '', intSource: '', extSource: '',
   messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', wherepubint: '', promotionlim: '', imgurl1: '', imgurl2: '', imgurl3: '', imgurl4: '', effectiveDate: '',
@@ -82,7 +83,7 @@ interface FormData {
   async function update(data: FormData) { 
     let response;
     try {
-      response = await fetch("/api/update",{
+      response = await fetch("https://awards.up.railway.app/findaward",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'PUT'})
@@ -132,22 +133,28 @@ interface FormData {
   }
 
 
-useEffect(() => {
-function send(){ 
-  axios.post("/api/find", {
-    id
-  })
-  .then(res => {
-    const resdata = res.data
-    setForm(resdata.accolade)
+
+
+ useEffect(()=> {
+    const fetchAccolades = async (data:string) => {
+    fetch("https://awards.up.railway.app/find", {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "plain/text"
+      }
+    })
+    .then(res => {
+      return res.json()
+    })
+    .then(res => {
+    setForm(res)
     setLoading(false)
+    console.log(res)
   })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
-send()
-},[])
+  }
+  fetchAccolades(findid);
+  },[])
 
 const imgflag = (img:string) => {
   if(img == "") {
@@ -165,7 +172,7 @@ return(
     <>
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
         <div className="container flex flex-col items-center justify-center w-9/12 ">
-        <div className="hover:cursor-pointer pt-14">
+        <div className="hover:cursor-pointer pt-20">
         </div>
     
         <div className="flex z-10 min-h-screen w-screen flex-col items-center">
