@@ -83,7 +83,7 @@ interface FormData {
   async function update(data: FormData) { 
     let response;
     try {
-      response = await fetch("https://awards.up.railway.app/findaward",{
+      response = await fetch("/api/update",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
         method: 'PUT'})
