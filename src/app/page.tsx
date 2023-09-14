@@ -36,6 +36,7 @@ export default function Home() {
     const user = session
     setRole(user.user.role)
   }
+
   if (role == "unassigned") {
     router.push("/unauthorized")
     
