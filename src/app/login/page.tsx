@@ -4,7 +4,7 @@ import { RegisterForm } from './form'
 export default function LoginPage() {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
-    <div className="shadow-xl px-6 pb-6 pt-8 bg-white rounded-xl space-y-5">
+    <div className="shadow-2xl px-6 pb-6 pt-8 bg-white rounded-xl space-y-5">
       <div className="flex flex-col items-center justify-center">
           <div className="">
             <svg className="fill-current text-[#501685]"  width="142.5px" height="60px" viewBox="0 0 129 55" xmlns="http://www.w3.org/2000/svg">

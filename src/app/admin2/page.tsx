@@ -211,7 +211,7 @@ return(
 {roleWindow &&(
   <motion.div
   initial={{ opacity: 0 }}
-  transition={{ duration: .5, delay: 0 }}
+  transition={{ duration: .3, delay: 0 }}
   animate={{ opacity: 1 }}
   className="flex fixed top-0 right-0 z-[9000] min-h-screen bg-black/50 w-screen flex-col items-center">
       <div className="w-96 h-54 z-80 p-5 mt-24 bg-white fixed rounded-2xl">
