@@ -151,7 +151,7 @@ function undoDelete(undoId: string){
       <div>
         <ReactToPrint
         trigger={() => <button className="rounded-lg bg-white px-5 py-2 text-md font-bentonreg text-gray-900 drop-shadow-md ring-1 ring-inset
-          ring-gray-300 hover:cursor-pointer hover:bg-gray-50">Print recents</button>}
+          ring-gray-300 hover:cursor-pointer hover:bg-gray-50">Print report</button>}
         content={() => componentRef.current}
       />
       <div className="hidden">
@@ -164,26 +164,28 @@ function undoDelete(undoId: string){
           </svg>
       </div>
       <div className="m-3 mt-5">
-        <table className="w-200 table-fixed bg-white">
-          <thead className="text-xl font-bentonbold">
+        <table className="w-200 border-collapse table-auto bg-white">
+          <thead className="align-left text-xl py-3 font-bentonbold">
           <tr>
-          <td>Name</td>
-          <td>Service Line</td>
-          <td>Location</td>
-          <td>Messaging</td>
+          <th className ="pr-20" scope="col">Name</th>
+          <th className ="pr-20" scope="col">Service Line</th>
+          <th scope="col">Location</th>
+          <th scope="col">Messaging</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody className="">
         {recentArray.map(id => {
-          {
             return(
-              <tr className="p- border-t border-slate-500">
+            <>
+              <tr className="">
                 <td>{id.name}</td>
                 <td>{id.serviceLine}</td>
                 <td>{id.institution}</td>
-                <td>{id.messaging}</td>
+                <td className="py-6">{id.messaging}</td>
               </tr>
-              )}})}  
+              </>
+                )}
+              )}
           </tbody>
         </table>
       </div>
