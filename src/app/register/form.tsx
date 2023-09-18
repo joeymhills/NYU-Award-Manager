@@ -62,7 +62,7 @@ export const RegisterForm = () => {
       </div>
       <div className='flex flex-col py-4 w-full items-center text-red-600 justify-center h-8'>{error ? "Email already taken" : <br/>}</div>      
       <div className="flex flex-col items-center justify-center">
-      <button className="bg-[#501685] text-white flex flex-row justify-center items-center rounded-2xl w-36 py-1">
+      <button className="bg-[#501685] drop-shadow-lg text-white flex flex-row justify-center items-center rounded-lg w-36 py-1">
           {!loading ? "Register" : <Ring size={24} lineWeight={7} speed={2} color='white'/>}
       </button>
       </div>
