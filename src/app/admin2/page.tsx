@@ -265,7 +265,7 @@ return(
                 <tr>
                 <td className="">{id.name}</td>
                 <td>
-                        <EllipsisHorizontalIcon className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                        <EllipsisHorizontalIcon onClick={()=>router.push(`/adminDetailPage/${id.id}`)} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
                 </td>
                 </tr>)}
             )}

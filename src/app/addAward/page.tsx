@@ -99,9 +99,9 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
   async function create(data: FormData) { 
     let response;
     try {
-      response = await fetch("/api/create",{
+      response = await fetch("https://awards.up.railway.app/create",{
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'Application/json'},
+        headers: { 'Content-Type': 'text/plain'},
         method: 'POST'});
     }
     catch (error) {
