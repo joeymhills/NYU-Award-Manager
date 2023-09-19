@@ -86,7 +86,7 @@ interface FormData {
     try {
       response = await fetch("https://awards.up.railway.app/update",{
         body: JSON.stringify(data),
-        headers: { 'Content-Type': 'Application/json'},
+        headers: { 'Content-Type': 'text/plain'},
         method: 'POST'})
     }
     catch (error) {
