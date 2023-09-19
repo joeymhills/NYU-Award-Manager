@@ -81,12 +81,13 @@ interface FormData {
     });
 
   async function update(data: FormData) { 
+    console.log(JSON.stringify(data))
     let response;
     try {
-      response = await fetch("/api/update",{
+      response = await fetch("https://awards.up.railway.app/update",{
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'Application/json'},
-        method: 'PUT'})
+        method: 'POST'})
     }
     catch (error) {
       console.log('error in POST request()')
