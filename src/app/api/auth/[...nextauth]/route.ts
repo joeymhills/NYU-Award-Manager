@@ -3,6 +3,14 @@ import { compare } from 'bcrypt'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+interface User {
+id: number
+name: string
+email: string
+password: string
+role: string
+
+}
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login'
@@ -25,12 +33,27 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials.password) {
           return null
         }
-
+        {/* 
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
           }
-        })
+        })*/}
+
+        const user: User = async () => {
+            await fetch("https://awards.up.railway.app/auth", {
+            method: "POST",
+            body: credentials.email,
+            headers: {"Content-Type": "plain/text"}
+            })
+            .then(res => {
+                console.log(res)
+                return res.json()
+            })
+            .then(res => {
+               let response: User = JSON.parse(res) 
+               return response
+            })
 
         if (!user) {
           return null
@@ -51,7 +74,7 @@ export const authOptions: NextAuthOptions = {
           name: user.name,
           role: user.role
         }
-      }
+        }}
     })
   ],
   callbacks: {
