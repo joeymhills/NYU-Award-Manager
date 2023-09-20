@@ -5,7 +5,7 @@ import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
-export const RegisterForm = () => {
+export const LoginForm = () => {
     const router = useRouter()
     const callbackUrl =  '/'
     const [email, setEmail] = useState('')

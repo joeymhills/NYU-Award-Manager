@@ -1,7 +1,20 @@
+"use client"
+
 import Link from 'next/link'
-import { RegisterForm } from './form'
+import { LoginForm } from './form'
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation"
+import { useEffect } from "react";
 
 export default function LoginPage() {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
+useEffect(()=> {
+  if(session) {
+  router.push("/")
+}})
+
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
     <div className="shadow-2xl px-6 pb-6 pt-8 bg-white rounded-xl space-y-5">
@@ -15,7 +28,7 @@ export default function LoginPage() {
           </div>
         </div>
         <h1 className="font-bentonbold text-center text-xl">Login</h1>
-        <RegisterForm />
+        <LoginForm />
         <p className="text-center">
           Don't have an account?{' '}
           <Link className="text-[#501685] hover:underline" href="/register">

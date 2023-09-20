@@ -1,6 +1,5 @@
 "use client"
 
-import { cookies } from 'next/headers'
 import Image from "next/image";
 import grid1 from "../assets/grid1.png"
 import grid2 from "../assets/grid2.png"
@@ -13,7 +12,6 @@ import grid8 from "../assets/grid8.png"
 import grid9 from "../assets/grid9.png"
 import SearchInput from '~/SearchInput'
 import React from 'react'
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from "next/navigation"
@@ -42,6 +40,7 @@ export default function Home() {
     
   }
 })
+
 return(
 <>
       <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
