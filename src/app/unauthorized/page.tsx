@@ -32,7 +32,7 @@ return(
 <main className="flex min-h-screen flex-col items-center bg-gradient-to-b from-[#f5b246] to-[#501685]">
   <div className="container flex flex-col items-center justify-center gap-2 w-9/12 ">
 
-      <h1 className="py-24 align-center text-4xl font-bentonreg text-[#541A83]
+      <h1 className="py-24 text-center text-4xl font-bentonreg text-[#541A83]
         sm:text-4xl">Please Contact Administrator for Permissions
         </h1>
     </div>
