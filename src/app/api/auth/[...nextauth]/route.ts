@@ -33,13 +33,13 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials.password) {
           return null
         }
-        {/* 
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.email
           }
-        })*/}
+        })
 
+        {/* 
         const user: User = async () => {
             await fetch("https://awards.up.railway.app/auth", {
             method: "POST",
@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
                let response: User = JSON.parse(res) 
                return response
             })
+        */}
 
         if (!user) {
           return null
