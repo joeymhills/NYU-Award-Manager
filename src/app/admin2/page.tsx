@@ -1,17 +1,25 @@
 "use client"
+
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import ReactToPrint from "react-to-print";
 import { Ring } from "@uiball/loaders";
 import axios from "axios";
 import { motion } from "framer-motion"
-import { useAtom } from "jotai/react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation"
 import { useRef, useEffect, useState } from "react";
-import SearchInput from "~/SearchInput";
-import { uFilter } from "~/components/atoms";
 
-export default function admin(){
+
+export default function admin() {
+
+type User = {
+id: string;
+name: string;
+role: string;
+password: string;
+email: string;
+}
+type UserArray = User[]
 
 const router = useRouter()
 // User Role Authentication
@@ -20,12 +28,13 @@ const [deletedLoading, setDeletedLoading] = useState(true);
 const [recentLoading, setRecentLoading] = useState(true);
 const [deletedAccolades, setDeletedAccolades] = useState([]);
 const [recentArray, setRecentArray] = useState([]);
-const [userArray, setUserArray] = useState([]);
+const [userArray, setUserArray] = useState<UserArray>([]);
 const [id,setId] = useState("id");
 const [roleWindow, setRoleWindow] = useState(false)
 const componentRef = useRef(null);
 const [role, setRole ] = useState("loading")
 const {data:session} = useSession()
+const [searchQuery, setSearchQuery] = useState("");
 
 useEffect(()=> {
   if(session) {
@@ -110,27 +119,28 @@ function getUsers(){
   });
 }
 
-useEffect(() => {
-  getUsers()
-  },[]);
-
-const [userFilter,setUserFilter] = useAtom(uFilter)
-
+//TODO: Add user refresh after user change
 useEffect(() => {
 getUsers()
-},[userFilter])
+},[])
 
 async function changeRole(roleId:string, role:string) {
-  axios.post("/api/changeRole", {
-    id: roleId,role
+  fetch("https://awards.up.railway.app/changerole", {
+  method: "POST",
+  body: JSON.stringify({
+    id: String(roleId),
+    role: role
+  })})
+  .then(res => {
+    return res.json()
   })
   .then(res => {
-    console.log('log from admin page', res.data)
-    getUsers()
+    setUserArray(res)
   })
   .catch(function (error) {
     console.log(error);
-  });
+  })
+
 }
 
 function undoDelete(undoId: string){
@@ -249,7 +259,24 @@ return(
     transition={{ duration: .5, delay: 0 }}
     animate={{ opacity: 1 }}
     className="py-3 flex justify-center items-center bg-white row-span-1 col-[span_8/_span_8] rounded-lg w-full drop-shadow-xl">
-        <SearchInput/>
+        <div className='w-full flex flex-col justify-center items-center'>
+        <form className='
+            flex flex-row justify-center items-center         
+            max-w-sm 
+            lg:max-w-xl 
+            md:max-w-lg
+            sm:max-w-md' 
+            >
+            <input
+            value={searchQuery}
+            placeholder="Search users"
+            onChange={(event) => setSearchQuery(event.target.value)}
+            className="h-11 p-2 sm:mr-3 rounded-lg w-56 sm:w-72 md:w-96 lg:w-150
+            drop-shadow-md ring-1 ring-inset ring-gray-300"
+            />
+            
+        </form>
+        </div>
     </motion.div>
     
     <motion.div
@@ -281,12 +308,12 @@ return(
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
                 <tbody className="">
                     {userArray.map(id => {
-                    if(id.role == 'unassigned'){
+                    if((id.role == 'unassigned') && (id.name?.includes(searchQuery))){
                         return(
                         <tr className="pb-2 border-slate-500 border-b">
                         <td className="">{id.name}</td>
                         <td>
-                        <EllipsisHorizontalIcon onClick={() => {setId(id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                        <EllipsisHorizontalIcon onClick={() => {setId(id.id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
                         </td>
                         </tr>
                         )}
@@ -305,12 +332,12 @@ return(
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
                 <tbody>
                     {userArray.map(id => {
-                    if(id.role == 'user'){
+                if((id.role == 'user') && (id.name?.includes(searchQuery))){
                         return(
                         <tr>
                         <td className="">{id.name}</td>
                         <td>
-                        <EllipsisHorizontalIcon onClick={() => {setId(id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                        <EllipsisHorizontalIcon onClick={() => {setId(id.id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
                         </td>
                         </tr>)}
                     else{
@@ -329,12 +356,12 @@ return(
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
                 <tbody>
                     {userArray.map(id => {
-                    if(id.role == 'manager'){
+                if((id.role == 'manager') && (id.name?.includes(searchQuery))){
                         return(
                         <tr>
                         <td className="">{id.name}</td>
                         <td>
-                        <EllipsisHorizontalIcon onClick={() => {setId(id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                        <EllipsisHorizontalIcon onClick={() => {setId(id.id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
                         </td>
                         </tr>)}
                     else{
@@ -352,12 +379,12 @@ return(
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
                 <tbody>
                     {userArray.map(id => {
-                    if(id.role == 'admin'){
+            if((id.role == 'admin') && (id.name?.includes(searchQuery))){
                         return(
                         <tr>
                         <td className="">{id.name}</td>
                         <td>
-                        <EllipsisHorizontalIcon onClick={() => {setId(id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                        <EllipsisHorizontalIcon onClick={() => {setId(id.id); setRoleWindow(true)}} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
                         </td>
                         </tr>)}
                     else{
