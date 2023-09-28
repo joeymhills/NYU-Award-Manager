@@ -306,7 +306,7 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .05 }}
         animate={{ opacity: 1 }}
-        className="flex flex-col bg-white ring-1 ring-inset ring-gray-300 row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
+        className="flex flex-col bg-white h-64 ring-1 ring-inset ring-gray-300 row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Unauthorized users</h1>
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody className="">
@@ -330,7 +330,7 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .1 }}
         animate={{ opacity: 1 }}
-        className="bg-white lg:row-span-5 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
+        className="bg-white lg:row-span-5 h-64 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Users</h1>
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
@@ -354,7 +354,7 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .1 }}
         animate={{ opacity: 1 }}
-        className="bg-white lg:row-span-5 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
+        className="bg-white lg:row-span-5 h-64 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Managers</h1>
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
@@ -377,7 +377,7 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .15 }}
         animate={{ opacity: 1 }}
-        className="bg-white ring-1 ring-inset ring-gray-300 lg:row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
+        className="bg-white ring-1 ring-inset h-64 ring-gray-300 lg:row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Admins</h1>
             <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
