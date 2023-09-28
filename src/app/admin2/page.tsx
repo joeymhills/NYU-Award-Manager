@@ -400,7 +400,7 @@ return(
     <div className="grid grid-cols-1 grid-rows-2 h-full gap-3 pb-5 px-4 w-full">
     <motion.div
     initial={{ opacity: 0 }}
-    transition={{ duration: .5, delay: 0 }}
+    transition={{ duration: .5, delay: .2 }}
     animate={{ opacity: 1 }}
     className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
     <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Deleted</h1>
@@ -428,7 +428,7 @@ return(
     </motion.div>
     <motion.div
     initial={{ opacity: 0 }}
-    transition={{ duration: .5, delay: 0 }}
+    transition={{ duration: .5, delay: .2 }}
     animate={{ opacity: 1 }}
     className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
     <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Created</h1>
