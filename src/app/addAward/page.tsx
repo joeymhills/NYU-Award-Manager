@@ -187,7 +187,7 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
             initial={{ opacity: 0 }}
             transition={{ duration: .5}}
             animate={{ opacity: 1 }}
-              className={'flex lg:w-200 md:w-150 sm:w-128 w-96 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
+              className={'flex pt-3 lg:w-200 md:w-150 sm:w-128 w-96 ring-1 ring-inset ring-gray-300 flex-col z-20 rounded-2xl m-2 items-center justify-center mb-32 bg-white drop-shadow-xl'}>
                 <div className="flex flex-col pt-3 items-center justify-center"> 
                   
                   <div className="flex flex-row 
@@ -196,7 +196,6 @@ messaging: '', frequency: '', notifDate: '', cmcontact: '', sourceatr: '', where
                   sm:w-128
                   w-96
                   relative justify-center items-center">
-                    <h1 className="font-bentonbold text-black md:text-4xl text-3xl py-1 ">Add award</h1>
                   </div>
                 
                 <div className="flex flex-col lg:flex-row gap-2 justify-center items-center pt-3">

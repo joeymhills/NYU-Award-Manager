@@ -243,9 +243,9 @@ return(
   </motion.div>
 )}
 {!userLoading && !deletedLoading && (
-<div className="">
-    <div className="w-screen min-h-screen pt-20 grid grid-cols-12 grid-rows-12 h-full gap-3 pb-5 px-4">
-
+<div className="w-screen">
+    <div className="grid grid-cols-12 pt-20 grid-rows-12 justify-center min-h-[85vh] gap-3 pb-5 px-4">
+{/*
     <motion.div
     initial={{ opacity: 0 }}
     transition={{ duration: .5, delay: 0 }}
@@ -253,12 +253,13 @@ return(
     className="py-3 flex justify-center items-center bg-white row-span-1 col-span-4 rounded-lg w-full drop-shadow-xl">
     {table()}
     </motion.div>
+*/}
 
     <motion.div
     initial={{ opacity: 0 }}
     transition={{ duration: .5, delay: 0 }}
     animate={{ opacity: 1 }}
-    className="py-3 flex justify-center items-center bg-white row-span-1 col-[span_8/_span_8] rounded-lg w-full drop-shadow-xl">
+    className="py-3 flex justify-center ring-1 ring-inset ring-gray-300 items-center bg-white row-span-1 col-[span_12/_span_12] rounded-lg w-full drop-shadow-xl">
         <div className='w-full flex flex-col justify-center items-center'>
         <form className='
             flex flex-row justify-center items-center         
@@ -279,6 +280,7 @@ return(
         </div>
     </motion.div>
     
+{/*
     <motion.div
     initial={{ opacity: 0 }}
     transition={{ duration: .5, delay: 0 }}
@@ -299,13 +301,14 @@ return(
         </tbody>
         </table>
     </motion.div>
+*/}
         <motion.div
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .05 }}
         animate={{ opacity: 1 }}
-        className="flex flex-col bg-white row-span-5 col-span-4 rounded-lg w-full drop-shadow-xl">
+        className="flex flex-col bg-white ring-1 ring-inset ring-gray-300 row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Unauthorized users</h1>
-            <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+            <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody className="">
                     {userArray.map(id => {
                     if((id.role == 'unassigned') && (id.name?.includes(searchQuery))){
@@ -327,9 +330,9 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .1 }}
         animate={{ opacity: 1 }}
-        className="bg-white row-span-5 col-span-4 rounded-lg w-full drop-shadow-xl">
+        className="bg-white lg:row-span-5 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Users</h1>
-            <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+            <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
                     {userArray.map(id => {
                 if((id.role == 'user') && (id.name?.includes(searchQuery))){
@@ -351,9 +354,9 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .1 }}
         animate={{ opacity: 1 }}
-        className="bg-white row-span-5 col-span-4 rounded-lg w-full drop-shadow-xl">
+        className="bg-white lg:row-span-5 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Managers</h1>
-            <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+            <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
                     {userArray.map(id => {
                 if((id.role == 'manager') && (id.name?.includes(searchQuery))){
@@ -374,9 +377,9 @@ return(
         initial={{ opacity: 0 }}
         transition={{ duration: .5, delay: .15 }}
         animate={{ opacity: 1 }}
-        className="bg-white row-span-5 col-span-4 rounded-lg w-full drop-shadow-xl">
+        className="bg-white ring-1 ring-inset ring-gray-300 lg:row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Admins</h1>
-            <table className="table-auto w-full border-separate border-spacing-3 text-2xl bg-white rounded-lg">
+            <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
                 <tbody>
                     {userArray.map(id => {
             if((id.role == 'admin') && (id.name?.includes(searchQuery))){
@@ -393,6 +396,56 @@ return(
                 </tbody>
                 </table>
         </motion.div>
+    </div>
+    <div className="grid grid-cols-1 grid-rows-2 h-full gap-3 pb-5 px-4 w-full">
+    <motion.div
+    initial={{ opacity: 0 }}
+    transition={{ duration: .5, delay: 0 }}
+    animate={{ opacity: 1 }}
+    className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
+    <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Deleted</h1>
+    <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
+        <tbody>
+            {deletedAccolades.map(id => {
+                return(
+                <tr>
+                <td className="">{id.name}</td>
+                <td>
+                        <button onClick={()=>router.push(`/adminDetailPage/${id.id}`)} 
+                        className="bg-[#501685] text-xl drop-shadow-lg text-white flex flex-row justify-center items-center rounded-lg w-36 py-1 hover:cursor-pointer">
+                        Restore</button>
+                </td>
+
+                <td>
+                        <button onClick={()=>router.push(`/adminDetailPage/${id.id}`)} 
+                        className="bg-red-500 text-xl drop-shadow-lg text-white flex flex-row justify-center items-center rounded-lg w-36 py-1 hover:cursor-pointer">
+                        Delete</button>
+                </td>
+                </tr>)}
+            )}
+        </tbody>
+        </table>
+    </motion.div>
+    <motion.div
+    initial={{ opacity: 0 }}
+    transition={{ duration: .5, delay: 0 }}
+    animate={{ opacity: 1 }}
+    className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
+    <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Created</h1>
+    <table className="table-auto w-full border-separate border-spacing-3 text-2xl rounded-lg">
+        <tbody>
+            {recentArray.map(id => {
+                return(
+                <tr>
+                <td className="">{id.name}</td>
+                <td>
+                        <EllipsisHorizontalIcon onClick={()=>router.push(`/adminDetailPage/${id.id}`)} className="-mr-1 h-9 w-9 text-black hover:cursor-pointer"/>
+                </td>
+                </tr>)}
+            )}
+        </tbody>
+        </table>
+    </motion.div>
     </div>
 </div>
     )}
