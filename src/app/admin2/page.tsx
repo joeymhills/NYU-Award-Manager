@@ -304,7 +304,7 @@ return(
 */}
         <motion.div
         initial={{ opacity: 0 }}
-        transition={{ duration: .5, delay: .05 }}
+        transition={{ duration: .5, delay: .03 }}
         animate={{ opacity: 1 }}
         className="flex flex-col bg-white h-64 ring-1 ring-inset ring-gray-300 row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Unauthorized users</h1>
@@ -328,7 +328,7 @@ return(
         </motion.div>
         <motion.div
         initial={{ opacity: 0 }}
-        transition={{ duration: .5, delay: .1 }}
+        transition={{ duration: .5, delay: .03 }}
         animate={{ opacity: 1 }}
         className="bg-white lg:row-span-5 h-64 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Users</h1>
@@ -352,7 +352,7 @@ return(
 
         <motion.div
         initial={{ opacity: 0 }}
-        transition={{ duration: .5, delay: .1 }}
+        transition={{ duration: .5, delay: .06 }}
         animate={{ opacity: 1 }}
         className="bg-white lg:row-span-5 h-64 ring-1 ring-inset ring-gray-300 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Managers</h1>
@@ -375,7 +375,7 @@ return(
         </motion.div>
         <motion.div
         initial={{ opacity: 0 }}
-        transition={{ duration: .5, delay: .15 }}
+        transition={{ duration: .5, delay: .06 }}
         animate={{ opacity: 1 }}
         className="bg-white ring-1 ring-inset h-64 ring-gray-300 lg:row-span-5 lg:col-span-6 col-span-12 rounded-lg w-full drop-shadow-xl">
             <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Admins</h1>
@@ -400,7 +400,7 @@ return(
     <div className="grid grid-cols-1 grid-rows-2 h-full gap-3 pb-5 px-4 w-full">
     <motion.div
     initial={{ opacity: 0 }}
-    transition={{ duration: .5, delay: .2 }}
+    transition={{ duration: .5, delay: .09 }}
     animate={{ opacity: 1 }}
     className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
     <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Deleted</h1>
@@ -428,7 +428,7 @@ return(
     </motion.div>
     <motion.div
     initial={{ opacity: 0 }}
-    transition={{ duration: .5, delay: .2 }}
+    transition={{ duration: .5, delay: .12 }}
     animate={{ opacity: 1 }}
     className="bg-white row-span-1 col-span-1 rounded-lg ring-1 ring-inset ring-gray-300 w-full drop-shadow-xl">
     <h1 className="font-bentonreg pl-3 text-2xl pt-3 pb-2 border-b">Recently Created</h1>
