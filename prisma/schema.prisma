@@ -8,7 +8,6 @@ datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
   relationMode = "prisma"
-  directUrl = env("DIRECT_URL")
 }
 // DB PUSH FIRST
 model accolade {

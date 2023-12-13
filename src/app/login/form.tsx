@@ -30,7 +30,9 @@ try{
       } else {
         setError('Invalid email or password')
       }
-    } catch (err: any) {}
+    } catch (err: any) {
+      console.log(err)
+    }
   }
 
 
