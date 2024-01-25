@@ -1,4 +1,4 @@
-# NYU Langone Health Award Tracking Application
+# Award Manager for NYU Langone Health
 
 ## Overview
 
