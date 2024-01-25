@@ -6,16 +6,19 @@ This repository contains the source code for a Next.js application designed to t
 
 ## Features
 
+- **Authentication:**
+  - Secure user authentication system using NextAuth.
+  
 - **User Roles:**
   - **User:** Can search for awards and generate reports.
   - **Manager:** Has user permissions and can create and delete awards.
   - **Admin:** Has all permissions, including access to the admin dashboard for user management.
 
-- **Authentication:**
-  - Secure user authentication system using NextAuth.
-
 - **Admin Dashboard:**
   - Admins can manage users and perform additional administrative tasks.
+
+- **Printable Reports:**
+  - All users can generate printable reports on awards for easy documentation and sharing.
  
 ## License
 
