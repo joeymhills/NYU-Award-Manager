@@ -1,32 +1,26 @@
-# Create T3 App
+# Frontend code for NYU Award Manager
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Overview
 
-## What's next? How do I make an app with this?
+This repository contains the React code for the NYU Award Manager, a system designed for tracking awards
+received by NYU Langone Health. The backend integrates with a MySQL database to manage data and support the features implemented in the frontend application.
+![home](https://github.com/joeymhills/NYU-Award-Manager/assets/69769618/aafead68-d18f-467f-909e-14841eb35d50)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- **User authentication:**
+  - User authentication created using NextAuth for a fast and easy login experience.
+  ![login](https://github.com/joeymhills/NYU-Award-Manager/assets/69769618/a6b12402-25bb-413f-97ff-6dec17e066b7)
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- **Award Searching and Filtering:**
+- Allows the user to narrow down their results
+![search](https://github.com/joeymhills/NYU-Award-Manager/assets/69769618/05682cef-c292-4319-93d1-426505cdeed5)
 
-## Learn More
+- **User Operations:**
+  - Handles server operations for user-related functionalities.
+  - Manages user roles and permissions.
+ 
+## License
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+This project is licensed under the [MIT License](LICENSE).
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
-# please-work
-# nyu-app-router
-# nyu-app-router
-# nyu-app-router
